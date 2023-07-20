@@ -1,31 +1,30 @@
-/** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors')
-const defaultTheme = require('tailwindcss/defaultTheme')
-
 module.exports = {
   content: [
+    './app/components/**/*.{erb,html}',
+    './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
     './app/assets/stylesheets/**/*.css',
-    './app/views/**/*.{html,html.erb,erb}',
-    './app/javascript/components/**/*.js',
+    './app/javascript/**/*.js'
   ],
   theme: {
-    fontFamily: {
-      'sans': ["BlinkMacSystemFont", "Avenir Next", "Avenir",
-        "Nimbus Sans L", "Roboto", "Noto Sans", "Segoe UI", "Arial", "Helvetica",
-        "Helvetica Neue", "sans-serif"],
-      'mono': ["Consolas", "Menlo", "Monaco", "Andale Mono", "Ubuntu Mono", "monospace"]
-    },
-    extend: {
+  extend: {
+    colors: {
+      //just add this below and your all other tailwind colors willwork
+   ...colors
+  },
+    keyframes: {
+      fade: { 
+        '0%, 100%': { opacity: 0 },
+        '5%, 60%': { opacity: 1},
     },
   },
-  corePlugins: {
-    aspectRatio: false,
+    animation: {
+      fade: 'fade 4s ease-in-out both'
+    },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/line-clamp'),
-  ],
+},
+plugins: [
+
+],
 }
