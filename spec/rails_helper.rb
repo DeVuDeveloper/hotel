@@ -1,11 +1,10 @@
 require 'spec_helper'
-require_relative 'support/factory_bot'
-require_relative 'support/chrome'
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -13,6 +12,12 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
+
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :feature
+
+  config.include FactoryBot::Syntax::Methods
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

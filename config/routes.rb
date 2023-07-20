@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Rails.application.routes.draw do
   devise_for :users
   root "home#index"
@@ -11,6 +9,24 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :rooms
     resources :reservations
+
+  resources :hotels do
+    resources :rooms
+    resources :amenities
+    resources :activities
+    resources :messages
+  end
+
+  resources :rooms do
+    resources :reservations
+    resources :calendars, only: [:index, :new, :create]
+  end
+
+  resources :reservations do
+    resources :payments
+  end
+
+  resources :reviews
    
   end
 end
