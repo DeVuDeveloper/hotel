@@ -30,14 +30,23 @@
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <%= active_link_to  t('global.menu.home'), root_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium", active_class: 'bg-gray-900'%>
-            
-
+            <%= active_link_to  t('global.menu.rooms'), rooms_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium", active_class: 'bg-gray-900'%>
             <%= active_link_to  t('global.menu.contact'), contact_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium", active_class: 'bg-gray-900'%>
+            
           </div>
         </div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
         <% if @user.present? %>
+
+        <% if @user.is_admin? %>
+        <%= active_link_to  t('global.menu.admin'), admin_dashboard_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium", active_class: 'bg-gray-900'%>
+        <% end %>
+
+         <% if @user.is_manager? %>
+        <%= active_link_to  t('global.menu.manager'), manager_dashboard_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium", active_class: 'bg-gray-900'%>
+        <% end %>
+      
           <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium", active_class: 'bg-gray-900'%>
         <% else %>
           <%= active_link_to  t('global.menu.login'), new_user_session_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium", active_class: 'bg-gray-900'%>
@@ -48,7 +57,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
           </svg>
         </button>
-        <!-- Profile dropdown -->
+  
         <div class="ml-3 relative" x-data="{ dropdown: false }">
           <div>
             <button  x-on:click="dropdown = ! dropdown" type="button" class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="false">
@@ -79,6 +88,7 @@
     <div class="space-y-1 px-2 pb-3 pt-2">
       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
       <%= link_to "Home", root_path, class: "bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"%>
+      <%= link_to 'Rooms', rooms_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium" %>
       <%= link_to 'Contact', contact_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium" %>
       <% if @user.present? %>
         <span data-test="current-user-email" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"><%= @user.email %></span>

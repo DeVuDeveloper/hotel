@@ -2,7 +2,10 @@ en:
   global:
     menu:
       home: "Home"
+      rooms: "Rooms"
       contact: "Contact"
+      admin: "Admin"
+      manager: "Manager"
       login: "Login"
 
   

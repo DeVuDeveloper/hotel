@@ -2,5 +2,6 @@ sr:
   global:
     menu:
       home: "Početna"
-      contact: "Kontakt"
+      rooms: "Sobe"
+      contact: "Contact"
       login: "Prijavi se"
