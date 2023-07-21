@@ -1,2 +1,26 @@
-<h2>Rooms List</h2>
-<%= render @rooms %>
+<div class="py-8 px-4">
+  <h1 class="text-4xl font-bold mb-8">Admin - Rooms</h1>
+
+  <div class="overflow-x-auto">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="py-4 px-6 text-left">Name</th>
+          <th class="py-4 px-6 text-left">Room Type</th>
+          <th class="py-4 px-6 text-left">Number of Beds</th>
+          <th class="py-4 px-6 text-left">Price per Night</th>
+          <th class="py-4 px-6 text-left">Description</th>
+          <th class="py-4 px-6"></th>
+          <th class="py-4 px-6"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @rooms %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-8">
+    <%= link_to 'New Room', new_admin_room_path, class: 'bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700' %>
+  </div>
+</div>

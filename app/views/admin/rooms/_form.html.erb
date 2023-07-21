@@ -1,0 +1,49 @@
+<section class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="w-full max-w-md px-6 py-8 bg-white rounded-lg shadow-md">
+    <%= simple_form_for(room, html: { class: 'w-full', multipart: true }) do |form| %>
+      <% if room.errors.any? %>
+        <div id="error_explanation" class="mb-4">
+          <h2 class="text-red-600 font-bold"><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
+
+          <ul class="list-disc list-inside text-red-600">
+            <% room.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-4">
+        <%= form.input :name, label: 'Name', class: 'w-full' %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.input :room_type, label: 'Room Type', class: 'w-full' %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.input :number_of_beds, label: 'Number of Beds', class: 'w-full' %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.input :price_per_night, label: 'Price per Night', class: 'w-full' %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.input :description, label: 'Description', class: 'w-full', input_html: { rows: 4 } %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :image, 'Room Image', class: 'block font-medium text-gray-700' %>
+        <%= form.file_field :image, class: 'mt-1 block w-full' %>
+      </div>
+
+      <div class="flex justify-center">
+        <%= form.submit 'Save', class: 'bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700' %>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+
+
