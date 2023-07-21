@@ -2,6 +2,11 @@
   <h1 class="text-3xl font-bold mb-4">New User</h1>
 
   <%= simple_form_for(@user, url: admin_users_path) do |form| %>
+   <% if @user.errors.any? %>
+      <div class="text-red-500">
+        <%= @user.errors.full_messages.to_sentence.capitalize %>
+      </div>
+    <% end %>
     <%= form.input :email, label: "Email", class: "border rounded py-2 px-3 w-full" %>
 
     <%= form.input :password, label: "Password", class: "border rounded py-2 px-3 w-full" %>

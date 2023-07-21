@@ -1,0 +1,38 @@
+<%= simple_form_for [:admin, hotel], url: hotel.persisted? ? admin_hotel_path(hotel) : admin_hotels_path, html: { class: "max-w-md mx-auto bg-white p-6 rounded-lg shadow-md" } do |f| %>
+  <% if hotel.errors.any? %>
+    <div class="bg-red-100 text-red-500 px-4 py-2 mb-4 rounded">
+      <%= hotel.errors.full_messages.to_sentence.capitalize %>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= f.label :name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= f.input :name, label: false, class: "form-input w-full rounded-md border-gray-300" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :image, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= f.file_field :image, class: "form-input w-full rounded-md border-gray-300" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :address, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= f.input :address, label: false, class: "form-input w-full rounded-md border-gray-300" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :description, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= f.input :description, label: false, class: "form-input w-full rounded-md border-gray-300" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :contact, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= f.input :contact, label: false, class: "form-input w-full rounded-md border-gray-300" %>
+  </div>
+
+  <div class="flex justify-center">
+    <%= f.button :submit, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+<% end %>
+
+

@@ -4,8 +4,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'
-    resources :rooms
     resources :users
+    resources :hotels, except: [:show]
+    resources :rooms
   end
 
   namespace :manager do

@@ -48,6 +48,7 @@ gem "vite_ruby"
 gem "simple_form", "~> 5.1.0"
 gem "view_component"
 gem "rufo"
+gem 'htmlbeautifier'
 gem 'devise', '~> 4.9', '>= 4.9.2'
 gem 'cancancan'
 

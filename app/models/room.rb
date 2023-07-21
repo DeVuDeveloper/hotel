@@ -2,6 +2,7 @@ class Room < ApplicationRecord
   belongs_to :hotel
   has_many :reservations, dependent: :destroy
   has_many :calendars, dependent: :destroy
+  has_one_attached :image
 
   validates :name, presence: true
   validates :room_type, presence: true
