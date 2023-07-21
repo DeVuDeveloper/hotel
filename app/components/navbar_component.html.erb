@@ -39,7 +39,7 @@
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
         <% if @user.present? %>
 
-        <% if @user.is_admin? %>
+        <% if @user.is_admin? || @user.is_superadmin? %>
         <%= active_link_to  t('global.menu.admin'), admin_dashboard_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium", active_class: 'bg-gray-900'%>
         <% end %>
 

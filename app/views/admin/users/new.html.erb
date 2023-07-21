@@ -1,0 +1,16 @@
+<div class="container mx-auto">
+  <h1 class="text-3xl font-bold mb-4">New User</h1>
+
+  <%= simple_form_for(@user, url: admin_users_path) do |form| %>
+    <%= form.input :email, label: "Email", class: "border rounded py-2 px-3 w-full" %>
+
+    <%= form.input :password, label: "Password", class: "border rounded py-2 px-3 w-full" %>
+
+    <%= form.input :password_confirmation, label: "Confirm Password", class: "border rounded py-2 px-3 w-full" %>
+
+    <%= form.hidden_field :role, value: params[:role] %>
+
+    <%= form.submit "Create User", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" %>
+  <% end %>
+</div>
+

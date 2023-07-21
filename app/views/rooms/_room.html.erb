@@ -1,0 +1,10 @@
+<div class="w-64 lg:w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400">
+  <div class="p-4">
+    <h2 class="text-xl font-bold"><%= room.name %></h2>
+    <p><strong>Type:</strong> <%= room.room_type %></p>
+    <p><strong>Number of Beds:</strong> <%= room.number_of_beds %></p>
+    <p><strong>Price per Night:</strong> <%= room.price_per_night %></p>
+    <p><strong>Description:</strong> <%= room.description %></p>
+    <%= link_to "View Details", room_path(room), class: "btn btn-primary" %>
+  </div>
+</div>
