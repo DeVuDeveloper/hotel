@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+    :recoverable, :rememberable, :validatable
 
-         enum role: { guest: 0, user: 1, manager: 2, admin: 3, super_admin: 4 }
-  
+  enum role: {guest: 0, user: 1, manager: 2, admin: 3, super_admin: 4}
+
   has_many :reservations, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_one_attached :image
@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates :role, presence: true
 
   def is_superadmin?
-    self.role == "super_admin"
+    role == "super_admin"
   end
 
   def is_admin?
@@ -23,4 +23,3 @@ class User < ApplicationRecord
     manager?
   end
 end
-

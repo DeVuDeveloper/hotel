@@ -3,7 +3,7 @@ module ApplicationHelper
     if object.errors.any?
       tag.div class: "error-message" do
         object.errors.full_messages.to_sentence.capitalize
+      end
     end
-   end
   end
 end

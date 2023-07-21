@@ -5,7 +5,7 @@ class ContactForm
   attr_accessor :current_user, *FIELDS
 
   validates_format_of :email, with: Devise.email_regexp
-  validates :text, length: { minimum: 50 }
+  validates :text, length: {minimum: 50}
   validates(*FIELDS, presence: true)
 
   def save

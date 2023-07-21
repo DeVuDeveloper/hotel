@@ -1,10 +1,7 @@
 class HomeController < ApplicationController
- 
-
   def index
     @hotels = Hotel.all
   end
-
 
   def contact_new
     @contact_form = if current_user
