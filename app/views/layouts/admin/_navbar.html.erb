@@ -3,7 +3,11 @@
     <div class="flex items-center justify-between">
       <div class="flex items-center space-x-4">
         <span class="text-white font-semibold text-lg">Admin Dashboard</span>
-        <%= link_to "Rooms", admin_rooms_path, class: "text-white hover:text-gray-200" %>
+        <% if @hotel.present? %>
+          <%= link_to "Rooms", admin_hotel_rooms_path(hotel_id: Hotel.first.id), class: "text-white hover:text-gray-200" %>
+        <% else %>
+          <%= link_to "Rooms", "#", class: "text-white hover:text-gray-200" %>
+        <% end %>
         <%= link_to "Users", admin_users_path, class: "text-white hover:text-gray-200" %>
         <%= link_to "Hotel", admin_hotels_path, class: "text-white hover:text-gray-200" %>
       </div>
@@ -13,6 +17,5 @@
     </div>
   </div>
 </nav>
-
 
 

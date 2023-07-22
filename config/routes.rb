@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   namespace :admin do
     get "dashboard", to: "dashboard#index"
     resources :users
-    resources :hotels, except: [:show]
+    resources :hotels do
     resources :rooms
   end
-
+end
   namespace :manager do
     get "dashboard", to: "dashboard#index"
   end

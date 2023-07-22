@@ -5,6 +5,7 @@ class Admin::HotelsController < ApplicationController
 
   def index
     @hotels = Hotel.all
+    
   end
 
   def new

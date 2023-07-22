@@ -1,6 +1,4 @@
 <div class="py-8 px-4">
-  <h1 class="text-4xl font-bold mb-8">Admin - Rooms</h1>
-
   <div class="overflow-x-auto">
     <table class="w-full border-collapse">
       <thead>
@@ -15,12 +13,11 @@
         </tr>
       </thead>
       <tbody>
-        <%= render @rooms %>
+        <%= render @rooms, hotel: @hotel%>
       </tbody>
     </table>
   </div>
-
   <div class="mt-8">
-    <%= link_to 'New Room', new_admin_room_path, class: 'bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700' %>
+    <%= link_to 'New Room', new_admin_hotel_room_path(hotel_id: @hotel.id), class: 'bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700' %>
   </div>
 </div>

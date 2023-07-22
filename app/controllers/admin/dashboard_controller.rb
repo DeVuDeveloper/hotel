@@ -4,6 +4,7 @@ class Admin::DashboardController < ApplicationController
   layout "admin"
 
   def index
+    @hotel = Hotel.first
   end
 
   private

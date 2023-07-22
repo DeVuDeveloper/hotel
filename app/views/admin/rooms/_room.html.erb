@@ -5,9 +5,9 @@
   <td class="py-4 px-6 text-left"><%= room.price_per_night %></td>
   <td class="py-4 px-6 text-left"><%= room.description %></td>
   <td class="py-4 px-6">
-    <%= link_to 'Edit', edit_admin_room_path(room), class: 'text-blue-600 hover:text-blue-800' %>
+    <%= link_to 'Edit', edit_admin_hotel_room_path(hotel_id: hotel.id, id: room.id), class: 'text-blue-600 hover:text-blue-800' %>
   </td>
   <td class="py-4 px-6">
-    <%= link_to 'Delete', admin_room_path(room), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-red-600 hover:text-red-800' %>
-  </td>
+   <%= button_to 'Delete', admin_hotel_room_path(hotel_id: hotel.id, id: room.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-red-600 hover:text-red-800' %>
+</td>
 </tr>
