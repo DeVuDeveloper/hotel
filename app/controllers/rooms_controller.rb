@@ -3,7 +3,7 @@ class RoomsController < ApplicationController
   load_and_authorize_resource except: :create
 
   def index
-    @rooms = Room.all
+    @rooms = Room.ordered
   end
 
   def show

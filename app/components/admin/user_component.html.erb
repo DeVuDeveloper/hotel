@@ -1,0 +1,36 @@
+<tr class="bg-gray-800">
+  <td class="p-3">
+    <div class="flex">
+      <div class="ml-3">
+        <div class="text-gray-500"><%= @user.email %></div>
+      </div>
+    </div>
+  </td>
+  <td class="p-3">
+    <% if @user.super_admin? %>
+      Super Admin
+    <% elsif @user.admin? %>
+      Admin
+    <% elsif @user.manager? %>
+      Manager
+    <% else %>
+      User
+    <% end %>
+  </td>
+  <td class="flex p-3 rounded-r-lg">
+    <% if @current_user.super_admin? %>
+      <a href="#" class="text-gray-400 hover:text-gray-100 mr-2">
+        <i class="material-icons-outlined text-base">visibility</i>
+      </a>
+      <%= link_to  edit_admin_dashboard_user_path(@user), class: "text-gray-400 hover:text-gray-100 mr-2" do %>
+        <i class="material-icons-outlined text-base">edit</i>
+      <% end %>
+      <%=  button_to  admin_dashboard_user_path(@user), method: :delete, class: "text-gray-400 hover:text-gray-100 mx-2" do %>
+        <i class="material-icons-round text-base">delete_outline</i>
+      <% end %>
+    <% end %>
+  </td>
+</tr>
+
+
+

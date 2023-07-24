@@ -1,0 +1,35 @@
+<div class="container mx-auto">
+  <div class="flex justify-center">
+    <div class="w-full">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="bg-gray-200 text-gray-700">
+            <th class="py-2 px-4 border">Name</th>
+            <th class="py-2 px-4 border">Address</th>
+            <th class="py-2 px-4 border">Description</th>
+            <th class="py-2 px-4 border">Contact</th>
+            <th class="py-2 px-4 border">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @hotels.each do |hotel| %>
+            <tr class="<%= cycle('bg-white', 'bg-gray-100') %> text-gray-900">
+              <td class="py-2 px-4 border"><%= hotel.name %></td>
+              <td class="py-2 px-4 border"><%= hotel.address %></td>
+              <td class="py-2 px-4 border"><%= hotel.description %></td>
+              <td class="py-2 px-4 border"><%= hotel.contact %></td>
+              <td class="py-2 px-4 border">
+                <%= link_to 'Edit', edit_admin_dashboard_hotel_path(hotel), class: "text-blue-500 hover:underline" %>
+                |
+                <%= button_to 'Delete', admin_dashboard_hotel_path(hotel), method: :delete, data: { confirm: 'Are you sure?' }, class: "text-red-500 hover:underline" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="mt-4 flex justify-center">
+        <%= link_to 'New Hotel', new_admin_dashboard_hotel_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+      </div>
+    </div>
+  </div>
+</div>

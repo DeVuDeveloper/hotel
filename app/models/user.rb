@@ -6,10 +6,12 @@ class User < ApplicationRecord
 
   has_many :reservations, dependent: :destroy
   has_many :reviews, dependent: :destroy
-  has_one_attached :image
+  has_many_attached :images
 
   validates :email, presence: true
   validates :role, presence: true
+
+  after_create_commit -> { broadcast_prepend_to "users", partial: "admin/dashboard/users/user", locals: { user: self }, target: "users" }
 
   def is_superadmin?
     role == "super_admin"

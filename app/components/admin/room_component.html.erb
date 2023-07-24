@@ -1,0 +1,13 @@
+<tr class="border-b border-gray-200">
+  <td class="py-4 px-6 text-left"><%= @room.name %></td>
+  <td class="py-4 px-6 text-left"><%= @room.room_type %></td>
+  <td class="py-4 px-6 text-left"><%= @room.number_of_beds %></td>
+  <td class="py-4 px-6 text-left"><%= @room.price_per_night %></td>
+  <td class="py-4 px-6 text-left"><%= @room.description %></td>
+  <td class="py-4 px-6">
+    <%= link_to 'Edit', edit_admin_dashboard_hotel_room_path(hotel_id: @hotel.id, id: @room.id), class: 'text-blue-600 hover:text-blue-800' %>
+  </td>
+  <td class="py-4 px-6">
+   <%= button_to 'Delete', admin_dashboard_hotel_room_path(hotel_id: @hotel.id, id: @room.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-red-600 hover:text-red-800' %>
+</td>
+</tr>

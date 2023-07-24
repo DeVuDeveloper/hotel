@@ -1,18 +1,20 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  root "home#index"
+
   namespace :admin do
-    get "dashboard", to: "dashboard#index"
-    resources :users
-    resources :hotels do
-    resources :rooms
+    namespace :dashboard do
+      resources :hotels do
+      resources :rooms
+      end
+      resources :users
+    end
   end
-end
+
   namespace :manager do
     get "dashboard", to: "dashboard#index"
   end
-
-  root "home#index"
 
   resources :home, only: :index
   get "contact", to: "home#contact_new"

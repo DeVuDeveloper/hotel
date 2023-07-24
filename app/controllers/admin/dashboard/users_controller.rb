@@ -1,0 +1,72 @@
+class Admin::Dashboard::UsersController < ApplicationController
+  layout "admin"
+  before_action :authenticate_user!
+  before_action :authorize_super_admin!
+  before_action :set_user, only: [:edit, :update, :destroy]
+
+  def index
+    @users = User.where.not(role: User.roles[:super_admin])
+    @page_title = "Users"
+  end
+
+  def show
+    @user = User.find(params[:id])
+  end
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      respond_to do |format|
+        format.html { redirect_to admin_dashboard_users_path, notice: "User was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "User was successfully created." }
+      end
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+ 
+
+  def edit
+   
+  end
+
+  def update
+    if @user.update(user_params)
+      respond_to do |format|
+        format.html { redirect_to admin_dashboard_users_path, notice: "User was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "User was successfully updated." }
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @user.destroy
+      respond_to do |format|
+        format.html { redirect_to admin_dashboard_hotel_users_path, notice: "User was successfully destroyed." }
+        format.turbo_stream { flash.now[:notice] = "User was successfully destroyed." }
+    end
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+  
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :role)
+  end
+
+  def authorize_super_admin!
+    unless current_user.super_admin?
+      redirect_to root_path, alert: "You are not authorized to access this page."
+    end
+  end
+end

@@ -1,0 +1,25 @@
+<div class="py-8 px-4">
+  <div class="overflow-x-auto">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="py-4 px-6 text-left">Name</th>
+          <th class="py-4 px-6 text-left">Room Type</th>
+          <th class="py-4 px-6 text-left">Number of Beds</th>
+          <th class="py-4 px-6 text-left">Price per Night</th>
+          <th class="py-4 px-6 text-left">Description</th>
+          <th class="py-4 px-6"></th>
+          <th class="py-4 px-6"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rooms.each do |room| %>
+          <%= render Admin::RoomComponent.new(hotel: @hotel, room: room) %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-8">
+    <%= link_to 'New Room', new_admin_dashboard_hotel_room_path(hotel_id: @hotel.id), class: 'bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700' %>
+  </div>
+</div>

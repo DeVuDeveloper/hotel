@@ -2,14 +2,21 @@
 <html>
   <head>
     <title>Hotel</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> 
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
 
       <%= vite_client_tag %>
       <%= vite_stylesheet_tag 'application', data: { "turbo-track": "reload" } %>
       <%= vite_javascript_tag 'application' %>
-  </head>
+      
 
   <body>
      <main class="h-screen w-full bg-white relative flex overflow-hidden">
@@ -25,5 +32,6 @@
   
     </main>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.min.js" defer></script>
+
   </body>
 </html>

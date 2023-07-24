@@ -7,7 +7,6 @@ html {
   height: 100%;
 }
 
-
 .bg-gradient-black-transparent {
   background: rgb(0, 0, 0);
   background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
@@ -22,4 +21,16 @@ html {
       rgba(0, 0, 0, 0.1) 100%
     );
   }
+}
+
+.flex-wrap {
+  max-height: calc(100vh - 8rem);
+}
+
+.scroll-hotel {
+  max-height: calc(100vh - 8rem);
+}
+
+ul.user-list li:not(:last-child) {
+  border-bottom: 1px solid #ccc;
 }
