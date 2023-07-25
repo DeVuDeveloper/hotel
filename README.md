@@ -2,6 +2,8 @@
 
 The Hotel App is a Ruby on Rails web application that allows users to register, log in, and book hotel rooms. Additionally, it includes an admin panel to manage hotels, rooms, and bookings.
 
+![Screenshot of Hotel App](https://example.com/screenshot.png)
+
 ## Features
 
 - **User Registration:** Users can sign up for an account using their email and password.
@@ -27,6 +29,7 @@ The Hotel App is a Ruby on Rails web application that allows users to register, 
 
 ```bash
  bundle install
+bin/setup
 ```
 
 3. Set up the database:
@@ -40,7 +43,7 @@ The Hotel App is a Ruby on Rails web application that allows users to register, 
 4. Run the server:
 
 ```bash
-  rails server
+  bin/dev
 ```
 
 ## Dependencies
