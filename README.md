@@ -2,6 +2,15 @@
 
 The Hotel App is a Ruby on Rails web application that allows users to register, log in, and book hotel rooms. Additionally, it includes an admin panel to manage hotels, rooms, and bookings.
 
+![Screenshot of Hotel App]()
+
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="app/assets/images/hotel1.png" alt="hotel 1" width="30%">
+  <img src="app/assets/images/hotel2.png" alt="hotel 2" width="30%">
+  <img src="app/assets/images/hotel3.png" alt="hotel 3" width="30%">
+</div>
+
 ## Features
 
 - **User Registration:** Users can sign up for an account using their email and password.
