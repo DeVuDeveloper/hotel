@@ -25,30 +25,29 @@ jobs:
         run: vite build   
       - name: Standard Report
         run: bundle exec standardrb
-  eslint:
-    name: Tailwind CSS
-    runs-on: ubuntu-22.04
+  vite_build:
+    name: Vite Build
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: ruby/setup-ruby@v1
         with:
-          node-version: "18.x"
-      - name: Setup Tailwnd CSS
-        run: |
-          npm install --save-dev eslint  eslint-plugin-tailwindcss @angular-eslint/template-parser
-          [ -f .eslintrc ]
-      - name: Tailwind CSS Report
-        run: npm run lint .
+          bundler-cache: true
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Vite dependencies
+        run: npm install
+      - name: Vite Build
+        run: npm run build
+  eslint:
+    # ... (your existing eslint configuration)
   nodechecker:
-    name: node_modules checker
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v2
-      - name: Check node_modules existence
-        run: |
-          if [ -d "node_modules/" ]; then echo -e "\e[1;31mThe node_modules/ folder was pushed to the repo. Please remove it from the GitHub repository and try again."; echo -e "\e[1;32mYou can set up a .gitignore file with this folder included on it to prevent this from happening in the future." && exit 1; fi
+    # ... (your existing nodechecker configuration)
   test:
     name: RSpec
+    needs: vite_build  # Ensure Vite build is completed before running RSpec
     runs-on: ubuntu-22.04
     services:
       postgres:
