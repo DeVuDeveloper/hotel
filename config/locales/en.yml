@@ -5,6 +5,7 @@ en:
       rooms: "Rooms"
       contact: "Contact"
       admin: "Admin"
+      super_admin: "SuperAdmin"
       manager: "Manager"
       login: "Login"
     admin_sidebar:

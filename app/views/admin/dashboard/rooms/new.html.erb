@@ -1,2 +1,5 @@
-<%= render(Admin::RoomFormComponent.new(hotel: @hotel, room: @room)) %>
-
+<%= turbo_frame_tag @room do %>
+<div class="container flex justify-center">
+  <%= render(Admin::RoomFormComponent.new(hotel: @hotel, room: @room)) %>
+</div>
+<% end %>

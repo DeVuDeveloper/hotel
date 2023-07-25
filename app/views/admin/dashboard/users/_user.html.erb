@@ -8,7 +8,9 @@
           <div>Admin</div>
         <% elsif user.manager? %>
           <div>Manager</div>
-        <% else %>
+        <% elsif user.guest? %>
+          <div>Guest</div>
+           <% else %>
           <div>User</div>
         <% end %>
       </div>
@@ -16,12 +18,14 @@
         <a href="#" class="text-gray-400 hover:text-gray-100 mr-2">
           <i class="material-icons-outlined text-base">visibility</i>
         </a>
+      
         <%= link_to edit_admin_dashboard_user_path(user), class: "text-gray-400 hover:text-gray-100 mr-2" do %>
           <i class="material-icons-outlined text-base">edit</i>
         <% end %>
         <%= button_to admin_dashboard_user_path(user), method: :delete, class: "text-gray-400 hover:text-gray-100 mx-2" do %>
           <i class="material-icons-round text-base">delete_outline</i>
         <% end %>
+         
       </div>
     </li>
   <% end %>

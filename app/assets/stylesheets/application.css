@@ -34,3 +34,46 @@ html {
 ul.user-list li:not(:last-child) {
   border-bottom: 1px solid #ccc;
 }
+
+@media (max-width: 640px) {
+  .flex-container {
+    flex-direction: column;
+  }
+  .flex-item {
+    width: 100%;
+  }
+  .user-list li {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  .user-list div {
+    flex: 1;
+  }
+  .actions {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  min-width: 100%;
+}
+

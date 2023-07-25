@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :admin do
     namespace :dashboard do
       resources :hotels do
-      resources :rooms
+        resources :rooms
       end
       resources :users
     end

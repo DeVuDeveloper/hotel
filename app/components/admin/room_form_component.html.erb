@@ -1,49 +1,34 @@
-<section class="w-full max-w-md mx-auto p-6 bg-white shadow-md rounded-md">
-  <%= simple_form_for([:admin, :dashboard, @hotel, @room], html: { class: 'w-full', multipart: true }) do |form| %>
+<div class="block max-w-md rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+  <%= simple_form_for([:admin, :dashboard, @hotel, @room], html: { class: 'w-full', multipart: true }) do |f| %>
     <% if @room.errors.any? %>
-      <div id="error_explanation" class="mb-4">
-        <h2 class="text-red-600 font-bold"><%= pluralize(@room.errors.count, "error") %> prohibited this room from being saved:</h2>
-
-        <ul class="list-disc list-inside text-red-600">
-          <% @room.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+      <div class="bg-red-100 text-red-500 px-4 py-2 mb-4 rounded">
+        <%= @room.errors.full_messages.to_sentence.capitalize %>
       </div>
     <% end %>
-
-    <div class="mb-4">
-      <%= form.input :name, placeholder: 'Name', class: 'w-full p-2 border rounded focus:outline-none focus:border-blue-500', label: false %>
+    <div class="relative mb-6" data-te-input-wrapper-init>
+      <%= f.input :name, label: false, class: "peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none  motion-reduce:transition-none dark:text-neutral-200", placeholder:"Name" %>
     </div>
-
-    <div class="mb-4">
-      <%= form.input :room_type, placeholder: 'Room Type', class: 'w-full p-2 border rounded focus:outline-none focus:border-blue-500', label: false %>
+    <div class="relative mb-6" data-te-input-wrapper-init>
+      <%= f.file_field :images, multiple: true, class: "peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none  motion-reduce:transition-none dark:text-neutral-200" %>
     </div>
-
-    <div class="mb-4">
-      <%= form.input :number_of_beds, placeholder: 'Number of Beds', class: 'w-full p-2 border rounded focus:outline-none focus:border-blue-500', label: false %>
+    <div class="relative mb-6" data-te-input-wrapper-init>
+      <%= f.input :room_type, label: false, class: "peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none  motion-reduce:transition-none dark:text-neutral-200", placeholder:"Room Type" %>
     </div>
-
-    <div class="mb-4">
-      <%= form.input :price_per_night, placeholder: 'Price per Night', class: 'w-full p-2 border rounded focus:outline-none focus:border-blue-500', label: false %>
+    <div class="relative mb-6" data-te-input-wrapper-init>
+      <%= f.input :number_of_beds, label: false, class: "peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none  motion-reduce:transition-none dark:text-neutral-200", placeholder:"Beds" %>
     </div>
-
-    <div class="mb-4">
-      <%= form.text_area :description, placeholder: 'Description', class: 'w-full p-2 border rounded focus:outline-none focus:border-blue-500', rows: 4, label: false %>
+    <div class="relative mb-6" data-te-input-wrapper-init>
+      <%= f.input :price_per_night, label: false, class: "peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none  motion-reduce:transition-none dark:text-neutral-200", placeholder:"Price" %>
     </div>
-
-    <div class="mb-4">
-      <%= form.collection_select :hotel_id, Hotel.all, :id, :name, { include_blank: 'Select Hotel' }, class: 'w-full p-2 border rounded focus:outline-none focus:border-blue-500', label: false %>
+    <div class="relative mb-6" data-te-input-wrapper-init>
+      <%= f.input :description, label: false, class: "peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none  motion-reduce:transition-none dark:text-neutral-200", placeholder:"Description" %>
     </div>
-
-    <div class="mb-4">
-      <%= form.file_field :image, class: 'mt-1 block w-full', label: 'Room Image' %>
+    <div class="relative mb-6" data-te-input-wrapper-init>
+       <%= f.collection_select :hotel_id, Hotel.all, :id, :name, { include_blank: 'Select Hotel' }, class: "peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none  motion-reduce:transition-none dark:text-neutral-200", placeholder:"Price" %>
     </div>
-
-    <div class="flex justify-center">
-      <%= form.submit 'Save', class: 'bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700' %>
-    </div>
+     
+    <%= f.button :submit, class: "dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]] inline-block w-full rounded bg-blue-500 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]" %>
+    <%= link_to "Cancel", admin_dashboard_hotel_rooms_path, class: "text-center dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]] inline-block w-full rounded bg-red-500 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]" %>
   <% end %>
-    <%= link_to 'Back', admin_dashboard_hotel_rooms_path, class: "bg-gray-500 mt-8 hover:bg-gray-600 text-white px-4 py-2 rounded-md shadow-md " %>
-</section>
+</div>
 

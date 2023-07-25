@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :role, presence: true
 
-  after_create_commit -> { broadcast_prepend_to "users", partial: "admin/dashboard/users/user", locals: { user: self }, target: "users" }
+  after_create_commit -> { broadcast_prepend_to "users", partial: "admin/dashboard/users/user", locals: {user: self}, target: "users" }
 
   def is_superadmin?
     role == "super_admin"

@@ -26,19 +26,24 @@ class Admin::Dashboard::RoomsController < ApplicationController
     @room = @hotel.rooms.build(room_params)
 
     if @room.save
-      redirect_to admin_dashboard_hotel_rooms_path, notice: "Room was successfully created."
+      respond_to do |format|
+        format.html { redirect_to admin_dashboard_hotel_rooms_path, notice: "Room was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Room was successfully created." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @hotel = Hotel.find(params[:hotel_id])
   end
 
   def update
     if @room.update(room_params)
-      redirect_to admin_dashboard_hotel_rooms_path, notice: "Room was successfully updated."
+      respond_to do |format|
+        format.html { redirect_to admin_dashboard_hotel_rooms_path, notice: "Room was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Room was successfully updated." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -46,13 +51,16 @@ class Admin::Dashboard::RoomsController < ApplicationController
 
   def destroy
     @room.destroy
-    redirect_to admin_dashboard_hotel_rooms_path, notice: "Room was successfully deleted."
+    respond_to do |format|
+      format.html { redirect_to admin_dashboard_hotel_rooms_path, notice: "Room was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Room was successfully destroyed." }
+    end
   end
 
   private
 
   def room_params
-    params.require(:room).permit(:name, :room_type, :number_of_beds, :price_per_night, :description , :image)
+    params.require(:room).permit(:name, :room_type, :number_of_beds, :price_per_night, :description, :image)
   end
 
   def set_hotel

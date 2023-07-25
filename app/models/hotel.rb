@@ -6,4 +6,6 @@ class Hotel < ApplicationRecord
   validates :address, presence: true
   validates :description, presence: true
   validates :contact, presence: true
+
+  after_create_commit -> { broadcast_prepend_to "hotels", partial: "admin/dashboard/hotels/hotel", locals: {hotel: self}, target: "hotels" }
 end

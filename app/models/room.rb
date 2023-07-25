@@ -11,4 +11,6 @@ class Room < ApplicationRecord
   validates :description, presence: true
 
   scope :ordered, -> { order(id: :desc) }
+
+  after_create_commit -> { broadcast_prepend_to "rooms", partial: "admin/dashboard/rooms/room", locals: {room: self}, target: "rooms" }
 end
