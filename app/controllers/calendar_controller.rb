@@ -1,4 +1,4 @@
-class CalendarsController < ApplicationController
+class CalendarController < ApplicationController
   before_action :set_room, only: [:index, :new, :create]
 
   def index
