@@ -15,10 +15,10 @@ class Admin::Dashboard::HotelsController < ApplicationController
 
   def create
     @hotel = Hotel.new(hotel_params)
-    if @room.save
+    if @hotel.save
       respond_to do |format|
-        format.html { redirect_to admin_dashboard_rooms_path, notice: "Room was successfully created." }
-        format.turbo_stream { flash.now[:notice] = "Room was successfully created." }
+        format.html { redirect_to admin_dashboard_hotels_path, notice: "Hotel was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Hotel was successfully created." }
       end
     else
       render :new, status: :unprocessable_entity

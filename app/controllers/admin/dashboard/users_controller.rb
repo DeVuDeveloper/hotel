@@ -5,6 +5,7 @@ class Admin::Dashboard::UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
+    @hotel = Hotel.first
     @users = User.where.not(role: User.roles[:super_admin])
     @page_title = "Users"
   end

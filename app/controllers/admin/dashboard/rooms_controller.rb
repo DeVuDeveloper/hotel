@@ -23,6 +23,7 @@ class Admin::Dashboard::RoomsController < ApplicationController
   end
 
   def create
+    @hotel = Hotel.first
     @room = @hotel.rooms.build(room_params)
 
     if @room.save
@@ -71,7 +72,6 @@ class Admin::Dashboard::RoomsController < ApplicationController
   def set_room
     @hotel = Hotel.find_by(id: params[:hotel_id])
     @room = @hotel.rooms.find_by(id: params[:id])
-    redirect_to admin_dashboard_hotel_rooms_path(@hotel), alert: "Room not found." unless @room
   end
 
   def authorize_admin!

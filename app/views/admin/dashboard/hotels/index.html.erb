@@ -1,7 +1,6 @@
-  
-<div class="bg-gray-800 pt-3">
+  <div class="bg-gray-800 pt-3">
   <div class="rounded-tl-3xl bg-gradient-to-r from-gray-900 to-gray-800 p-4 shadow text-white">
-    <div class="flex items-center justify-between"> <!-- Use flex container for header and buttons -->
+    <div class="flex items-center justify-between">
       <h2 class="font-bold pl-2 text-2xl"><%= @page_title %></h2>
       <div class="mt-4 flex justify-center">
         <%= link_to 'New Hotel', new_admin_dashboard_hotel_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded", data: { turbo_frame: dom_id(Hotel.new) } %>
