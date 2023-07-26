@@ -30,7 +30,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "faker"
-  gem 'pry'
+  gem "pry"
 end
 
 group :development do
@@ -39,7 +39,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 3.35', '>= 3.35.3'
+  gem "capybara", "~> 3.35", ">= 3.35.3"
   gem "selenium-webdriver"
   gem "webdrivers"
 end

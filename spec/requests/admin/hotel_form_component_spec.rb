@@ -21,17 +21,17 @@ RSpec.describe "Admin Hotel Form", type: :request do
 
     it "creates a new hotel when valid information is submitted" do
       expect {
-        post admin_dashboard_hotels_path, params: { hotel: { name: "Test Hotel", address: "Test Address", description: "Test Description", contact: "Test Contact" } }
+        post admin_dashboard_hotels_path, params: {hotel: {name: "Test Hotel", address: "Test Address", description: "Test Description", contact: "Test Contact"}}
       }.to change(Hotel, :count).by(1)
 
-      expect(response).to redirect_to(admin_dashboard_hotels_path(locale: 'en'))
+      expect(response).to redirect_to(admin_dashboard_hotels_path(locale: "en"))
       follow_redirect!
       expect(response.body).to include("Test Hotel")
     end
 
     it "displays error messages when invalid information is submitted" do
       expect {
-        post admin_dashboard_hotels_path, params: { hotel: { name: "", address: "" } }
+        post admin_dashboard_hotels_path, params: {hotel: {name: "", address: ""}}
       }.not_to change(Hotel, :count)
 
       expect(response).to have_http_status(:unprocessable_entity)
@@ -40,7 +40,3 @@ RSpec.describe "Admin Hotel Form", type: :request do
     end
   end
 end
-
-
-
-

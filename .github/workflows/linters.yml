@@ -74,6 +74,9 @@ jobs:
         with:
           bundler: default
           bundler-cache: true
+
+      - name: npm install
+        run: npm install
   
       - name: Create database tables
         run: bin/rails db:create
