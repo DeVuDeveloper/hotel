@@ -2,7 +2,6 @@ require "rails_helper"
 
 RSpec.describe "Admin Hotel Form", type: :request do
   let(:admin_user) { create(:admin_user) }
-  let!(:hotel) { create(:hotel) }
 
   describe "GET /admin/dashboard/hotels" do
     before do
@@ -21,7 +20,19 @@ RSpec.describe "Admin Hotel Form", type: :request do
 
     it "creates a new hotel when valid information is submitted" do
       expect {
-        post admin_dashboard_hotels_path, params: {hotel: {name: "Test Hotel", address: "Test Address", description: "Test Description", contact: "Test Contact"}}
+        post admin_dashboard_hotels_path, params: {
+          hotel: {
+            name: "Test Hotel",
+            address: "Test Address",
+            description: "Test Description",
+            contact: "Test Contact",
+            # Include multiple images as part of the request
+            images: [
+              Rack::Test::UploadedFile.new(Rails.root.join("spec", "images", "hotel1.jpg"), "image/jpeg"),
+              Rack::Test::UploadedFile.new(Rails.root.join("spec", "images", "hotel2.jpg"), "image/jpeg")
+            ]
+          }
+        }
       }.to change(Hotel, :count).by(1)
 
       expect(response).to redirect_to(admin_dashboard_hotels_path(locale: "en"))
@@ -37,6 +48,7 @@ RSpec.describe "Admin Hotel Form", type: :request do
       expect(response).to have_http_status(:unprocessable_entity)
       expect(CGI.unescapeHTML(response.body)).to include("Name can't be blank")
       expect(CGI.unescapeHTML(response.body)).to include("address can't be blank")
+      expect(CGI.unescapeHTML(response.body)).to include("images can't be blank")
     end
   end
 end

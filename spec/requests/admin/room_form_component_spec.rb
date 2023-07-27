@@ -2,8 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Admin Room Form", type: :request do
   let(:admin_user) { create(:admin_user) }
-  let(:hotel) { create(:hotel) }
-  let(:room) { create(:room, hotel: @hotel) }
+  let(:hotel) { FactoryBot.create(:hotel) }
 
   describe "GET /admin/dashboard/hotels/:hotel_id/rooms/new" do
     before do
@@ -24,7 +23,17 @@ RSpec.describe "Admin Room Form", type: :request do
 
     it "creates a new room when valid information is submitted" do
       expect {
-        post admin_dashboard_hotel_rooms_path(hotel), params: {room: {name: "Test Room", room_type: "Single", number_of_beds: 1, price_per_night: 100, description: "Test Description", hotel_id: hotel.id}}
+        post admin_dashboard_hotel_rooms_path(hotel), params: {
+          room: {
+            name: "Test Room",
+            room_type: "Single",
+            number_of_beds: 1,
+            price_per_night: 100,
+            description: "Test Description",
+            hotel_id: hotel.id,
+            image: Rack::Test::UploadedFile.new(Rails.root.join("spec", "images", "room1.jpg"), "image/jpeg")
+          }
+        }
       }.to change(Room, :count).by(1)
 
       expect(response).to redirect_to(admin_dashboard_hotel_rooms_path(hotel, locale: "en"))
@@ -43,6 +52,7 @@ RSpec.describe "Admin Room Form", type: :request do
       expect(CGI.unescapeHTML(response.body)).to include("number of beds is not a number")
       expect(CGI.unescapeHTML(response.body)).to include("price per night is not a number")
       expect(CGI.unescapeHTML(response.body)).to include("description can't be blank")
+      expect(CGI.unescapeHTML(response.body)).to include("image can't be blank")
     end
   end
 end

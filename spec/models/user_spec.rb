@@ -36,6 +36,6 @@ RSpec.describe User, type: :model do
 
   it "has the correct default role" do
     user = create(:user)
-    expect(user.role).to eq("user")
+    expect(user.role).to eq("super_admin")
   end
 end

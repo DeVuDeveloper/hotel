@@ -1,26 +1,26 @@
-  <div class="relative items-center justify-center scroll-hotel w-full overflow-x-hidden py-8 md:py-16">
-    <div class="container flex flex-col items-center justify-between max-w-6xl px-4 mx-auto md:-mt-32 lg:flex-row xl:px-0 rounded-lg">
-      <div class="z-30 flex flex-col items-center w-full max-w-xl pt-8 text-center lg:items-start lg:w-1/2 lg:pt-20 xl:pt-40 lg:text-left">
-        <h1 class="relative mb-4 text-4xl font-bold leading-tight text-cyan-600 sm:text-5xl xl:mb-8 font-heading"><%= @hotel.name %></h1>
-        <p class="pr-4 mb-6 text-sm font-medium text-stone-500 sm:text-base md:text-lg lg:text-base xl:text-lg lg:pr-20">
+  <div class="scroll-hotel relative w-full items-center justify-center overflow-x-hidden py-8 md:py-16">
+    <div class="container mx-auto flex max-w-6xl flex-col items-center justify-between rounded-lg px-4 md:-mt-32 lg:flex-row xl:px-0">
+      <div class="z-30 flex w-full max-w-xl flex-col items-center pt-8 text-center lg:w-1/2 lg:items-start lg:pt-20 lg:text-left xl:pt-40">
+        <h1 class="font-heading relative mb-4 text-4xl font-bold leading-tight text-cyan-600 sm:text-5xl xl:mb-8"><%= @hotel.name %></h1>
+        <p class="mb-6 pr-4 text-sm font-medium text-stone-500 sm:text-base md:text-lg lg:pr-20 lg:text-base xl:text-lg">
           <strong class="text-stone-700">Location:</strong><br><%= @hotel.address %>
         </p>
-        <p class="pr-4 mb-6 text-sm font-medium text-stone-500 sm:text-base md:text-lg lg:text-base xl:text-lg lg:pr-20">
+        <p class="mb-6 pr-4 text-sm font-medium text-stone-500 sm:text-base md:text-lg lg:pr-20 lg:text-base xl:text-lg">
           <strong class="text-stone-700">Description:</strong><br><%= @hotel.description %>
         </p>
-        <a href="#_" class="relative self-start inline-block w-auto px-4 py-2 mx-auto mt-0 text-base font-bold text-white bg-cyan-600 border-t border-gray-200 rounded-md shadow-xl sm:mt-1 fold-bold lg:mx-0
-          sm:px-2 sm:py-1 
-          md:px-4 md:py-2 md:text-base
+        <a href="#_" class="fold-bold relative mx-auto mt-0 inline-block w-auto self-start rounded-md border-t border-gray-200 bg-cyan-600 px-4 py-2 text-base font-bold text-white shadow-xl sm:mt-1 sm:px-2
+          sm:py-1 md:px-4 
+          md:py-2 md:text-base lg:mx-0
           lg:px-4 lg:py-2 lg:text-base
           xl:px-4 xl:py-2 xl:text-base">
           Reserve Room Today!
         </a>
       
-        <div class="flex-col hidden mt-8 sm:flex lg:mt-12">
-          <p class="mb-3 text-xs font-medium tracking-widest text-stone-500 uppercase">Integrates With</p>
+        <div class="mt-8 hidden flex-col sm:flex lg:mt-12">
+          <p class="mb-3 text-xs font-medium uppercase tracking-widest text-stone-500">Integrates With</p>
           <div class="flex">
         
-                        <svg class="h-8 mr-4 text-gray-500 duration-150 cursor-pointer fill-current transition-color hover:text-gray-600"
+                        <svg class="transition-color mr-4 h-8 cursor-pointer fill-current text-gray-500 duration-150 hover:text-gray-600"
                             viewBox="0 0 2499 1037" xmlns="http://www.w3.org/2000/svg">
                             <g stroke="none" stroke-width="1">
                                 <g>
@@ -29,7 +29,7 @@
                                 </g>
                             </g>
                         </svg>
-                        <svg class="h-8 mr-4 text-gray-500 duration-150 cursor-pointer fill-current transition-color hover:text-gray-600"
+                        <svg class="transition-color mr-4 h-8 cursor-pointer fill-current text-gray-500 duration-150 hover:text-gray-600"
                             viewBox="0 0 2350 2315" xmlns="http://www.w3.org/2000/svg">
                             <g stroke="none" stroke-width="1"></g>
                             <g>
@@ -38,7 +38,7 @@
                             </g>
                            
                         </svg>
-                        <svg class="h-8 mr-4 text-gray-500 duration-150 cursor-pointer fill-current transition-color hover:text-gray-600"
+                        <svg class="transition-color mr-4 h-8 cursor-pointer fill-current text-gray-500 duration-150 hover:text-gray-600"
                             viewBox="0 0 2500 2158" xmlns="http://www.w3.org/2000/svg">
                             <g stroke="none" stroke-width="1">
                                 <g transform="translate(-.157)">
@@ -47,7 +47,7 @@
                                 </g>
                             </g>
                         </svg>
-                        <svg class="h-8 mr-4 text-gray-500 duration-150 cursor-pointer fill-current transition-color hover:text-gray-600"
+                        <svg class="transition-color mr-4 h-8 cursor-pointer fill-current text-gray-500 duration-150 hover:text-gray-600"
                             viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg">
                             <g stroke="none" stroke-width="1">
                                 <g transform="translate(-401 -701)">
@@ -69,14 +69,14 @@
         </div>
 
         <div class="carousel-container">
-          <div class="relative max-w-xl w-full h-auto rounded-lg overflow-hidden mt-4">
+          <div class="relative mt-4 h-auto w-full max-w-xl overflow-hidden rounded-lg">
             <%= image_tag url_for(@hotel.images.first), alt: @hotel.name, class: "rounded-lg shadow-lg large-image w-full", id: "largeImage" %>
           </div>
 
-       <div class="flex flex-row mt-4 overflow-x-auto ml-4 overflow-y-auto max-h-32 sm:max-h-60 md:max-h-80 lg:max-h-96" data-gallery-target="thumbnails">
+       <div class="ml-4 mt-4 flex max-h-32 flex-row overflow-auto sm:max-h-60 md:max-h-80 lg:max-h-96" data-gallery-target="thumbnails">
             <% @hotel.images.each_with_index do |image, index| %>
             <% next if index == 0 %>
-            <div class="relative w-16 h-12 cursor-pointer thumbnail-image mr-2  md:w-32 md:h-24">
+            <div class="thumbnail-image relative mr-2 h-12 w-16 cursor-pointer  md:h-24 md:w-32">
                 <%= image_tag url_for(image), alt: @hotel.name, class: "rounded-lg shadow-lg w-full h-full" %>
             </div>
             <% end %>

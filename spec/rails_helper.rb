@@ -14,13 +14,9 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :feature
-
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include FactoryBot::Syntax::Methods
   config.include Capybara::DSL
-
-  config.define_derived_metadata(file_path: Regexp.new("/spec/components/")) do |metadata|
-    metadata[:type] ||= :component
-  end
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
