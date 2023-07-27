@@ -35,7 +35,7 @@ The Hotel App is a Ruby on Rails web application that allows users to register, 
 
 ```bash
  bundle install
-bin/setup
+ bin/setup
 ```
 
 3. Set up the database:
@@ -43,14 +43,16 @@ bin/setup
 ```bash
   rails db:create
   rails db:migrate
+  rails db:seed
 ```
 
 
-4. Run the server:
+4. Run the server(Open your Browser and navigate to url: http://localhost:5100/): 
 
 ```bash
   bin/dev
 ```
+
 
 ## Dependencies
 
@@ -59,6 +61,15 @@ The Hotel App relies on the following main dependencies:
 - Ruby on Rails: The web application framework used to build the app.
 - Devise: A flexible authentication solution for Rails.
 - Tailwind CSS: A utility-first CSS framework for styling the app.
+
+## Linter
+
+The Hotel App includes a linter. You can run the linter with the following command:
+
+```bash
+  rake standard && rake standard
+  npm run lint && npm run lint:fix
+```
 
 ## Tests
 
