@@ -10,4 +10,13 @@ module ApplicationHelper
   def render_turbo_stream_flash_messages
     turbo_stream.prepend "flash", partial: "layouts/flash"
   end
+
+  USER_ROLES = {
+    'super_admin' => "Super Admin",
+    'admin' => "Admin",
+    'manager' => "Manager",
+    'user' => "User"
+  }.freeze
+
+  ROLE_LABEL = ->(user) { USER_ROLES[user.role] || USER_ROLES['user'] }
 end

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :hotel do
-    name { "Poseidon The Beach HotelOpens in new window" }
+    name { "Poseidon The Beach Hotel" }
     address { "Beach Jaz, 85310 Budva, Montenegro" }
     description { "Situated in Budva, a few steps from Jaz Beach, Poseidon The Beach Hotel features accommodation with a garden, free private parking, a terrace and a restaurant." }
     contact { "info@poseidon-jaz.com" }
