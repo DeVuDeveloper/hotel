@@ -1,8 +1,8 @@
-class CalendarController < ApplicationController
-  before_action :set_room, only: [:index, :new, :create]
+class CalendarsController < ApplicationController
+  before_action :set_room
 
   def index
-    @calendars = @room.calendars.order(:date)
+    @calendars = @room.calendars
   end
 
   def new
@@ -11,8 +11,7 @@ class CalendarController < ApplicationController
 
   def create
     @calendar = @room.calendars.new(calendar_params)
-
-    if @calendar.save
+    if @calendar.save!
       redirect_to room_calendars_path(@room), notice: "Calendar entry was successfully created."
     else
       render :new

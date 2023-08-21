@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     namespace :dashboard do
       resources :hotels do
         resources :rooms
+          resources :calendars, only: [:new, :create]
       end
       resources :users
     end
@@ -28,10 +29,14 @@ Rails.application.routes.draw do
   end
 
   resources :rooms do
-    resources :reservations
+    resources :reservations do
+      get 'reservation_total_price', on: :collection
+    end
+    
     resources :calendars, only: [:index, :new, :create]
   end
 
+  get 'calculate_total_price', to: 'reservations#calculate_total_price'
   resources :reservations do
     resources :payments
   end
