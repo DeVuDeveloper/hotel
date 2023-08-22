@@ -6,4 +6,3 @@ import '../gallery'
 import "../hamburger"
 import "../dropdown"
 import "../calendar"
-import "../total_price"

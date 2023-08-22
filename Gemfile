@@ -53,3 +53,4 @@ gem "htmlbeautifier"
 gem "devise", "~> 4.9", ">= 4.9.2"
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'importmap-rails'

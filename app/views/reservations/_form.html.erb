@@ -1,39 +1,26 @@
 <h2 class="text-2xl font-semibold mb-4">Create Reservation</h2>
-<%= form_for([@room, @reservation]) do |f| %>
-  <% if @reservation.errors.any? %>
-    <div class="bg-red-100 text-red-500 px-4 py-2 mb-4 rounded">
-      <%= @reservation.errors.full_messages.to_sentence.capitalize %>
+<div data-reservation-price-per-night-value="<%= @room.price_per_night %>" data-controller="reservation">
+  <%= simple_form_for [@room, @reservation], remote: true do |f| %>
+    <div class="mb-4">
+      <label for="reservation_start_date" class="block text-gray-700 font-semibold">Start Date</label>
+      <%= f.date_field :start_date, class: "form-input mt-1 w-full", id: "reservation_start_date",  data: { 'reservation-target': "startDate" } %>
+    </div>
+    <div class="mb-4">
+      <label for="reservation_end_date" class="block text-gray-700 font-semibold">End Date</label>
+      <%= f.date_field :end_date, class: "form-input mt-1 w-full", id: "reservation_end_date", data: { 'reservation-target': "endDate" }  %>
+    </div>
+    <div class="mb-4">
+      <label for="reservation_number_of_guests" class="block text-gray-700 font-semibold">Number of Guests</label>
+      <%= f.number_field :number_of_guests, class: "form-input mt-1 w-full", id: "reservation_number_of_guests", data: { 'reservation-target': "guests" }  %>
+    </div>
+    <div class="mb-4">
+      <p class="form-input mt-1 w-full">
+        <label class="block text-gray-700 font-semibold">Total Price</label>
+        <span id="total-price" data-reservation-target= "totalPrice"></span>
+      </p>
+    </div>
+    <div class="mt-4">
+      <%= f.submit "Create Reservation", class: "px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600" %>
     </div>
   <% end %>
-
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.hidden_field :status, value: "pending" %>
-
-  <div class="mb-4">
-    <%= f.label :start_date, class: "block text-gray-700 font-semibold" %>
-    <%= f.date_select :start_date, class: "form-input mt-1 w-full", id: "reservation_start_date" %>
-  </div>
-
-  <div class="mb-4">
-    <%= f.label :end_date, class: "block text-gray-700 font-semibold" %>
-    <%= f.date_select :end_date, class: "form-input mt-1 w-full", id: "reservation_end_date" %>
-  </div>
-
-  <div class="mb-4">
-    <%= f.label :number_of_guests, class: "block text-gray-700 font-semibold" %>
-    <%= f.number_field :number_of_guests, class: "form-input mt-1 w-full", id: "reservation_number_of_guests" %>
-  </div>
-
-  <div class="mb-4">
-    <%= f.label :total_price, class: "block text-gray-700 font-semibold" %>
-    <p class="form-input mt-1 w-full">
-      <span id="total-price"></span>
-    </p>
-  </div>
-
-  <div class="mt-4">
-    <%= f.submit "Create Reservation", class: "px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600" %>
-  </div>
-<% end %>
-
- <span id="price"><%= @room.price_per_night %></span>
+</div>

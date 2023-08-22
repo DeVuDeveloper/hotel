@@ -115,6 +115,9 @@ GEM
     htmlbeautifier (1.4.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    importmap-rails (1.2.1)
+      actionpack (>= 6.0.0)
+      railties (>= 6.0.0)
     io-console (0.6.0)
     irb (1.7.4)
       reline (>= 0.3.6)
@@ -328,6 +331,7 @@ DEPENDENCIES
   faker
   fullcalendar-rails
   htmlbeautifier
+  importmap-rails
   jbuilder
   momentjs-rails
   pg (~> 1.1)

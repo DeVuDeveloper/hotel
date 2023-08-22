@@ -3,4 +3,4 @@ import "controllers"
 import "./gallery"
 import "./hamburger"
 import "./calendar"
-import "./total_price"
+
