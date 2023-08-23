@@ -1,7 +1,7 @@
 module ApplicationHelper
   def form_error_notification(object)
     if object.errors.any?
-      tag.div class: "error-message" do
+      tag.div class: "text-red-500" do
         object.errors.full_messages.to_sentence.capitalize
       end
     end
@@ -12,11 +12,11 @@ module ApplicationHelper
   end
 
   USER_ROLES = {
-    'super_admin' => "Super Admin",
-    'admin' => "Admin",
-    'manager' => "Manager",
-    'user' => "User"
+    "super_admin" => "Super Admin",
+    "admin" => "Admin",
+    "manager" => "Manager",
+    "user" => "User"
   }.freeze
 
-  ROLE_LABEL = ->(user) { USER_ROLES[user.role] || USER_ROLES['user'] }
+  ROLE_LABEL = ->(user) { USER_ROLES[user.role] || USER_ROLES["user"] }
 end

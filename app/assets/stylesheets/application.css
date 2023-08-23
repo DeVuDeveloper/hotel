@@ -1,3 +1,6 @@
+/*
+ *= require fullcalendar
+ */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
@@ -10,6 +13,10 @@ html {
 .bg-gradient-black-transparent {
   background: rgb(0, 0, 0);
   background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.scroll-hotel {
+  max-height: calc(100vh - 8rem);
 }
 
 @media screen and (min-width: 640px) {
@@ -27,9 +34,6 @@ html {
   max-height: calc(100vh - 8rem);
 }
 
-.scroll-hotel {
-  max-height: calc(100vh - 8rem);
-}
 
 ul.user-list li:not(:last-child) {
   border-bottom: 1px solid #ccc;
@@ -77,3 +81,47 @@ table {
   min-width: 100%;
 }
 
+#price {
+  display: none;
+}
+
+#rooms-frame {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.room-card {
+  flex: 0 0 calc(33.33% - 1rem);
+  margin: 0.5rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.pagination a,
+.pagination span {
+  padding: 0.5rem 1rem;
+  margin: 0.25rem;
+  border: 1px solid #ddd;
+  background-color: #1f2937;
+  color: #fffefd;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.pagination a:hover,
+.pagination span.current {
+  background-color: #3b82f6;
+  color: #fff;
+  border-color: #333;
+}
+
+.scroll-room {
+  max-height: 78%;
+  overflow-y: scroll;
+}

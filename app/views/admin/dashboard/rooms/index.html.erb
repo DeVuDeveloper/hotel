@@ -1,3 +1,5 @@
+  <%= turbo_stream_from "rooms" %>
+  
 <div class="bg-gray-800 pt-3">
   <div class="rounded-tl-3xl bg-gradient-to-r from-gray-900 to-gray-800 p-4 shadow text-white">
     <div class="flex items-center justify-between">
@@ -27,7 +29,7 @@
           <tbody>
            
           <%= turbo_frame_tag 'rooms' do %>
-            <%= turbo_stream_from "rooms" %>
+          
               <%= render @rooms %>
             <% end %>
              

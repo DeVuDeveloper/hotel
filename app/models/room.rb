@@ -13,5 +13,9 @@ class Room < ApplicationRecord
 
   scope :ordered, -> { order(id: :desc) }
 
-  after_create_commit -> { broadcast_prepend_to "rooms", partial: "admin/dashboard/rooms/room", locals: {room: self}, target: "rooms" }
+  broadcasts_to ->(room) { "rooms" }, inserts_by: :prepend
+
+  def booked_by_user?(user)
+    reservations.where(user: user).exists?
+  end
 end

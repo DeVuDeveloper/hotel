@@ -1,0 +1,35 @@
+<div data-reservation-price-per-night-value="<%= @room.price_per_night %>" data-controller="reservation" class="flex flex-wrap gap-4">
+  <% if current_user %>
+    <%= simple_form_for [@room, @reservation], data: { turbo_frame: "room-#{room.id}-reservation", controller: "flatpickr" }, remote: true do |f| %>
+      <%= form_error_notification(@reservation) %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.hidden_field :status, value: "pending" %>
+      <div class="flex mb-4">
+        <div class="flex-grow mr-4">
+          <label for="reservation_start_date" class="block text-gray-700 font-semibold">Start Date</label>
+          <%= f.date_field :start_date, class: "start_date form-input mt-1 w-full", id: "reservation_start_date",  data: { 'reservation-target': "startDate" }, placeholder: "Select start date" %>
+        </div>
+        <div class="flex-grow">
+          <label for="reservation_end_date" class="block text-gray-700 font-semibold">End Date</label>
+          <%= f.date_field :end_date, class: "end_date form-input mt-1 w-full", id: "reservation_end_date", data: { 'reservation-target': "endDate" }, placeholder: "Select end date" %>
+        </div>
+      </div>
+      <div class="flex mb-4">
+        <div class="flex-grow mr-4">
+          <label for="reservation_number_of_guests" class="block text-gray-700 font-semibold">Number of Guests</label>
+          <%= f.number_field :number_of_guests, min: 0, class: "form-input mt-1 w-full", id: "reservation_number_of_guests", data: { 'reservation-target': "guests" }, placeholder: "Enter number of guests" %>
+        </div>
+        <div class="flex-grow">
+          <label class="block text-gray-700 font-semibold">Total Price</label>
+          <span id="total-price" data-reservation-target="totalPrice"></span>
+        </div>
+      </div>
+      <div class="flex mb-4">
+        <%= link_to "Cancel", rooms_path, class: "px-4 py-2 bg-red-500 text-white font-semibold rounded hover:bg-red-600 mr-4" %>
+        <%= f.submit "Create Reservation", class: "px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600" %>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="text-red-500">You must be logged in to create a reservation.</p>
+  <% end %>
+</div>

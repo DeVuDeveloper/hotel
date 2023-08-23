@@ -5,10 +5,9 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> 
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
@@ -16,9 +15,8 @@
       <%= vite_client_tag %>
       <%= vite_stylesheet_tag 'application', data: { "turbo-track": "reload" } %>
       <%= vite_javascript_tag 'application' %>
-      
-
-  <body>
+   
+    <body>
      <main class="h-screen w-full bg-white relative flex overflow-hidden">
       <div class="fixed top-4rem right-1/2 transform translate-x-1/2 flex-col max-w-[100%] w-max gap-5rem px-0 py-4">
         <%= render(FlashComponent.new(notice: notice, alert: alert)) %>

@@ -134,11 +134,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_081213) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.string "name"
-    t.string "room_type"
-    t.integer "number_of_beds"
-    t.decimal "price_per_night"
-    t.text "description"
+    t.string "name", default: ""
+    t.string "room_type", default: "Standard"
+    t.integer "number_of_beds", default: 1
+    t.decimal "price_per_night", default: "0.0"
+    t.text "description", default: ""
     t.bigint "hotel_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
