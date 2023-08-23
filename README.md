@@ -4,10 +4,9 @@ The Hotel App is a Ruby on Rails web application that allows users to register, 
 
 ## Screenshots
 
-<div style="display: flex; justify-content: space-between;">
-  <img src="app/assets/images/hotel1.png" alt="hotel 1" width="30%">
-  <img src="app/assets/images/hotel2.png" alt="hotel 2" width="30%">
-  <img src="app/assets/images/hotel3.png" alt="hotel 3" width="30%">
+<div style="">
+  <img src="app/assets/images/screenshot.jpg" alt="hotel 1" width="30%">
+
 </div>
 
 ## Features

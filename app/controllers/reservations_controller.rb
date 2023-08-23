@@ -8,10 +8,10 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = @room.reservations.new(reservation_params)
-    
+
     price_calculator = PriceCalculatorService.new(@room, @reservation.start_date, @reservation.end_date, @reservation.number_of_guests)
     @reservation.total_price = price_calculator.call
-  
+
     if @reservation.save
       @room.calendars.create(date: @reservation.start_date, available: false)
       redirect_to rooms_path, notice: "Reservation was successfully created."
@@ -19,7 +19,7 @@ class ReservationsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  
+
   private
 
   def set_room

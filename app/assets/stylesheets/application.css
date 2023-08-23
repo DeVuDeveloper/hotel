@@ -122,6 +122,6 @@ table {
 }
 
 .scroll-room {
-  max-height: 80%;
+  max-height: 78%;
   overflow-y: scroll;
 }

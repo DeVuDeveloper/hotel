@@ -1,6 +1,5 @@
- <%= turbo_frame_tag @room do %>
-
- <div class="room-card bg-white shadow-lg sm:flex p-8">
+ <%= turbo_frame_tag room do %>
+  <div class="room-card bg-white shadow-lg sm:flex p-8 ">
     <div class="room-cover relative h-48 w-full border bg-cover bg-center shadow-inner sm:h-auto sm:w-1/4" style="background-image: url('<%= url_for(room.image) %>');">
       <div class="bg-gradient-black-transparent absolute bottom-0 flex w-full justify-center">
         <ul class="my-2 flex w-full justify-around text-xs text-white sm:block sm:w-auto sm:font-semibold">
@@ -56,28 +55,22 @@
       </div>
 
       <%= turbo_frame_tag "room-#{room.id}-reservation" do %>
+        <div class="mt-3 items-center justify-between sm:flex">
+          <% if room.booked_by_user?(current_user) %>
+            <div class="flex mb-4">
+              <div class="bg-green-500 text-white py-2 px-4 rounded-full">
+                <p>Booked from <%= room.reservations.first.start_date %> to <%= room.reservations.first.end_date %></p>
+                <p>Paid: $<%= room.reservations.first.total_price %></p>
+              </div>
+            <% else %>
+              <%= link_to "Book Now", new_room_reservation_path(room), id: "book-now-link", class: "inline-block bg-blue-500 px-4 py-2 font-bold text-blue-100 shadow hover:shadow-md", target: "reservation.bookButton" %>
+              <%= turbo_frame_tag "room-#{room.id}-reservation"%>
+              <%= link_to 'Availability', room_calendars_path(room), class: "inline-block bg-blue-500 px-4 py-2 font-bold text-blue-100 shadow hover:shadow-md", data: { "reservation-target": "availabilityButton" } %>
+            <% end %>
+          </div>
+        <% end %>
 
-      <div class="mt-3 items-center justify-between sm:flex">
-
-
-   <% if room.booked_by_user?(current_user) %>
-   <div class="flex mb-4">
-   <div class="bg-green-500 text-white py-2 px-4 rounded-full">
-      <p>Booked from <%= room.reservations.first.start_date %> to <%= room.reservations.first.end_date %></p>
-      <p>Paid: $<%= room.reservations.first.total_price %></p>
-    </div>
-  <% else %>
-  
-         <%= link_to "Book Now", new_room_reservation_path(room), id: "book-now-link", class: "inline-block bg-blue-500 px-4 py-2 font-bold text-blue-100 shadow hover:shadow-md", target: "reservation.bookButton" %>
-         <%= turbo_frame_tag "room-#{room.id}-reservation"%>
-         <%= link_to 'Availability', room_calendars_path(room), class: "inline-block bg-blue-500 px-4 py-2 font-bold text-blue-100 shadow hover:shadow-md", data: { "reservation-target": "availabilityButton" } %>
- <% end %>
-        </div>
- <% end %>
-
-        
       </div>
     </div>
   </div>
-
-  <% end %>
+<% end %>

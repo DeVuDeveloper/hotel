@@ -15,7 +15,7 @@ module SeedData
     "Large and accommodating room with four beds, suitable for families or friends traveling together.",
     "The studio room offers a spacious open layout that seamlessly combines a comfortable sleeping area, a cozy living space, and a well-equipped kitchenette. "
   ]
-  
+
   4.times do |i|
     room = FactoryBot.create(:room, hotel: hotel, name: room_names[i], room_type: room_type[i], number_of_beds: number_of_beds[i], price_per_night: price_per_night[i], description: descriptions[i])
     room.image.attach(io: File.open(Rails.root.join("spec", "images", room_images[i])), filename: room_images[i], content_type: "image/jpeg")

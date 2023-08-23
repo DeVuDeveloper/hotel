@@ -1,6 +1,6 @@
 <div data-reservation-price-per-night-value="<%= @room.price_per_night %>" data-controller="reservation" class="flex flex-wrap gap-4">
   <% if current_user %>
-    <%= simple_form_for [@room, @reservation], data: { controller: "flatpickr" }, remote: true do |f| %>
+    <%= simple_form_for [@room, @reservation], data: { turbo_frame: "room-#{room.id}-reservation", controller: "flatpickr" }, remote: true do |f| %>
       <%= form_error_notification(@reservation) %>
       <%= f.hidden_field :user_id, value: current_user.id %>
       <%= f.hidden_field :status, value: "pending" %>
