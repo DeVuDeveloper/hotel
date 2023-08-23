@@ -1,0 +1,4 @@
+<%= turbo_frame_tag @user do %>
+  <%= render Admin::UserFormComponent.new(user: @user) %>
+<% end %>
+

@@ -1,3 +1,79 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+body,
+html {
+  height: 100%;
+}
+
+.bg-gradient-black-transparent {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+@media screen and (min-width: 640px) {
+  .bg-gradient-black-transparent {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+  }
+}
+
+.flex-wrap {
+  max-height: calc(100vh - 8rem);
+}
+
+.scroll-hotel {
+  max-height: calc(100vh - 8rem);
+}
+
+ul.user-list li:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+@media (max-width: 640px) {
+  .flex-container {
+    flex-direction: column;
+  }
+  .flex-item {
+    width: 100%;
+  }
+  .user-list li {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  .user-list div {
+    flex: 1;
+  }
+  .actions {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  min-width: 100%;
+}
+

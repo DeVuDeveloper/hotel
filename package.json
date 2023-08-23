@@ -11,14 +11,19 @@
     "autoprefixer": "^10.4.14",
     "tailwindcss": "^3.3.3"
   },
-  "scripts": {},
+  "scripts": {
+    "lint": "eslint app --ext .erb",
+    "lint:fix": "eslint ./app/**/*.erb --fix"
+  },
   "devDependencies": {
+    "@angular-eslint/template-parser": "^16.1.0",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-tailwindcss": "^3.13.0",
     "path": "^0.12.7",
     "prettier": "^3.0.0",
+    "stimulus-vite-helpers": "^3.0.1",
     "vite": "^4.3.0",
     "vite-plugin-full-reload": "^1.0.5",
     "vite-plugin-ruby": "^3.2.0",

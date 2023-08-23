@@ -1,0 +1,32 @@
+<%= turbo_frame_tag room do %>
+  <tr class="bg-gray-800 border-b border-gray-200 text-gray-400">
+    <td class="py-4 px-6 border-r border-gray-400">
+      <%= room.name %>
+    </td>
+    <td class="py-4 px-6 border-r border-gray-400">
+      <%= room.room_type %>
+    </td>
+    <td class="py-4 px-6 border-r border-gray-400">
+      <%= room.number_of_beds %>
+    </td>
+    <td class="py-4 px-6 border-r border-gray-400">
+      <%= room.price_per_night %>
+    </td>
+    <td class="py-4 px-6 border-r border-gray-400">
+      <%= room.description %>
+    </td>
+
+    <td class="py-4 px-6">
+      <%= link_to edit_admin_dashboard_hotel_room_path(room, hotel_id: room.hotel.id), class: 'text-blue-600 hover:text-blue-800' do %>
+        <i class="material-icons-outlined text-base">edit</i>
+      <% end %>
+    </td>
+
+    <td class="py-4 px-6">
+      <%= button_to admin_dashboard_hotel_room_path(room, hotel_id: 4), method: :delete, class: 'text-red-600 hover:text-red-800' do %>
+        <i class="material-icons-outlined text-base">delete</i>
+      <% end %>
+    </td>
+
+  </tr>
+<% end %>

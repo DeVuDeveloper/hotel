@@ -1,0 +1,7 @@
+<div class="flex flex-wrap justify-around overflow-scroll max-h-screen">
+  <% @rooms.each do |room| %>
+    <%= render RoomComponent.new(room: room) %>
+  <% end %>
+</div>
+
+

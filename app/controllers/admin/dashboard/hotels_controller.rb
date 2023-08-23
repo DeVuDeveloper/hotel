@@ -1,0 +1,73 @@
+class Admin::Dashboard::HotelsController < ApplicationController
+  layout "admin"
+  before_action :authenticate_user!
+  before_action :authorize_admin!
+  before_action :set_hotel, only: [:edit, :update, :destroy]
+
+  def index
+    @hotels = Hotel.all
+    @page_title = "Hotel"
+  end
+
+  def new
+    @hotel = Hotel.new
+  end
+
+  def create
+    @hotel = Hotel.new(hotel_params)
+    if @hotel.save
+      respond_to do |format|
+        format.html { redirect_to admin_dashboard_hotels_path, notice: "Hotel was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Hotel was successfully created." }
+      end
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if params[:hotel][:images]
+      images = @hotel.images
+
+      new_images = params[:hotel][:images].map { |img| img.is_a?(String) ? nil : img }
+      images.attach(new_images.compact) if new_images.any?
+    end
+    @hotel.name = params[:hotel][:name]
+
+    if @hotel.update(hotel_params)
+      respond_to do |format|
+        format.html { redirect_to admin_dashboard_hotels_path, notice: "Hotel was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Hotel was successfully updated." }
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @hotel.destroy
+    respond_to do |format|
+      format.html { redirect_to admin_dashboard_hotels_path, notice: "Hotel was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Hotel was successfully destroyed." }
+    end
+  end
+
+  private
+
+  def set_hotel
+    @hotel = Hotel.find(params[:id])
+  end
+
+  def hotel_params
+    params.require(:hotel).permit(:name, :address, :description, :contact, images: [])
+  end
+
+  def authorize_admin!
+    unless current_user.is_admin? || current_user.super_admin?
+      redirect_to root_path, alert: "You are not authorized to access this page."
+    end
+  end
+end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -19,23 +21,33 @@ gem "jbuilder"
 
 gem "redis", "~> 4.0"
 
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "bootsnap", require: false
 
 group :development, :test do
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker"
+  gem "pry"
 end
 
 group :development do
+  gem "standard"
   gem "web-console"
 end
 
 group :test do
-  gem "capybara"
+  gem "capybara", "~> 3.35", ">= 3.35.3"
   gem "selenium-webdriver"
   gem "webdrivers"
 end
 
 gem "vite_rails"
 gem "vite_ruby"
+gem "simple_form", "~> 5.1.0"
+gem "view_component"
+gem "rufo"
+gem "htmlbeautifier"
+gem "devise", "~> 4.9", ">= 4.9.2"

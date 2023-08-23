@@ -1,0 +1,7 @@
+sr:
+  global:
+    menu:
+      home: "Početna"
+      rooms: "Sobe"
+      contact: "Contact"
+      login: "Prijavi se"
