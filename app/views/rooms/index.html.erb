@@ -1,5 +1,7 @@
-<div class="flex flex-wrap justify-around overflow-scroll max-h-screen">
-  <% @rooms.each do |room| %>
-    <%= render RoomComponent.new(room: room) %>
-  <% end %>
+<%= turbo_stream_from "rooms" %>
+<%= will_paginate @rooms, class: "pagination flex justify-center mt-6" %>
+<div class="flex flex-col scroll-room">
+    <%= turbo_frame_tag "rooms" do %>
+    <%= render @rooms %>
+<% end %>
 </div>

@@ -7,12 +7,18 @@ class PriceCalculatorService
   end
 
   def call
-    calculate_total_price
+    return calculate_total_price if all_fields_present?
+
+    0.0
   end
 
   private
 
   attr_reader :room, :start_date, :end_date, :number_of_guests
+
+  def all_fields_present?
+    !room.nil? && start_date.present? && end_date.present? && number_of_guests.present?
+  end
 
   def calculate_total_price
     room_price_per_night = room.price_per_night
@@ -21,3 +27,4 @@ class PriceCalculatorService
     total_price
   end
 end
+

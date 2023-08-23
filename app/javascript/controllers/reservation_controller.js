@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
+import moment from "moment";
 
 export default class extends Controller {
   static targets = [
@@ -11,7 +12,6 @@ export default class extends Controller {
   static values = { pricePerNight: Number };
 
   connect() {
-    console.log("Controller connected");
     this.updateTotalPrice();
 
     const guestsInput = this.guestsTarget;
@@ -26,18 +26,14 @@ export default class extends Controller {
   updateTotalPrice() {
     const startDateString = this.startDateTarget.value;
     const endDateString = this.endDateTarget.value;
-    const startDate = new Date(startDateString + "T00:00:00Z");
-    const endDate = new Date(endDateString + "T00:00:00Z");
     const numberOfGuests = parseInt(this.guestsTarget.value);
-
-    const totalPrice = this.calculateTotalPrice(
-      startDate,
-      endDate,
-      numberOfGuests
-    );
-
+    const startDate = moment(startDateString, "MMMM D, YYYY h:mm A");
+    const endDate = moment(endDateString, "MMMM D, YYYY h:mm A");
+    const days = endDate.diff(startDate, "days") || 1;
+    const totalPrice = this.calculateTotalPrice(startDate, endDate, numberOfGuests);
     const formattedTotalPrice = isNaN(totalPrice) ? 0.0 : totalPrice.toFixed(2);
 
+  
     this.totalPriceTarget.textContent = `$ ${formattedTotalPrice}`;
   }
 
