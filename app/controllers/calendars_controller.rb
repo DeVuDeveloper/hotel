@@ -3,6 +3,7 @@ class CalendarsController < ApplicationController
 
   def index
     @calendars = @room.calendars
+    @rooms = Room.all
   end
 
   def new
@@ -18,6 +19,12 @@ class CalendarsController < ApplicationController
     end
   end
 
+  def availability
+    @room = Room.find(params[:room_id])
+    availability_data = @room.availability_data
+    render json: availability_data
+  end
+
   private
 
   def set_room
@@ -28,3 +35,4 @@ class CalendarsController < ApplicationController
     params.require(:calendar).permit(:date, :price, :available)
   end
 end
+

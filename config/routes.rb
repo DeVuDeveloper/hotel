@@ -6,8 +6,13 @@ Rails.application.routes.draw do
   namespace :admin do
     namespace :dashboard do
       resources :hotels do
-        resources :rooms
-        resources :calendars, only: [:new, :create]
+        resources :rooms do
+          member do
+            get :edit_seasonal_prices
+            patch :update_seasonal_prices
+            resources :calendars
+          end
+        end
       end
       resources :users
     end
@@ -32,7 +37,7 @@ Rails.application.routes.draw do
     resources :reservations do
       get "reservation_total_price", on: :collection
     end
-
+    get :availability, on: :member
     resources :calendars, only: [:index, :new, :create]
   end
 

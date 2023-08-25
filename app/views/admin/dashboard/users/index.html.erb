@@ -1,6 +1,6 @@
 <%= turbo_stream_from "users" %>
 
-  <div class="bg-gray-800 pt-3">
+<div class="bg-gray-800 pt-3">
   <div class="rounded-tl-3xl bg-gradient-to-r from-gray-900 to-gray-800 p-4 shadow text-white">
     <div class="flex items-center justify-between">
       <h2 class="font-bold pl-2 text-2xl"><%= @page_title %></h2>
@@ -14,24 +14,19 @@
   </div>
 </div>
 
-<div class="flex flex-col sm:flex-row justify-center sm:justify-around w-full mt-8 flex-container">
+<div class="flex flex-col sm:flex-row justify-center sm:justify-around w-full mt-1 flex-container">
   <div class="w-full sm:w-1/2 flex-item md:mx-8">
     <ul class="w-full user-list"> 
-      <li class="bg-gray-800 text-gray-500 p-3 flex font-bold flex-col sm:flex-row gap-4 sm:justify-between border-b border-gray-700">
-        <div class="w-full sm:w-1/3">
-          Email
-        </div>
-        <div class="w-full sm:w-1/3 text-center">
-          Role
-        </div>
-        <div class="w-full sm:w-1/3 flex justify-end">
-          Actions
-        </div>
+      <li class="bg-gray-900 text-gray-500 p-3 flex font-bold flex-col sm:flex-row gap-4 sm:justify-between border-b border-gray-700">
+        <span class="w-1/3">Email</span>
+        <span class="w-1/3 text-center">Role</span>
+        <span class="w-1/3 flex justify-end">Actions</span>
       </li>
       <%= turbo_frame_tag 'users' do %>
         <%= turbo_stream_from "users" %>
         <%= render @users %>
       <% end %>
-       <%= turbo_frame_tag User.new %>
+      <%= turbo_frame_tag User.new %>
     </ul>
   </div>
+</div>

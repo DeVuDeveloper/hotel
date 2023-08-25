@@ -1,0 +1,24 @@
+<%= turbo_frame_tag calendar do %>
+  <li class="bg-gray-800 text-gray-500 p-3 flex font-bold flex-col sm:flex-row gap-4 sm:justify-between border-b border-gray-200">
+    <div class="w-full sm:w-1/3">
+      <%= calendar.date %>
+    </div>
+    <div class="w-full sm:w-1/3">
+      <%= calendar.price %>
+    </div>
+    <div class="w-full sm:w-1/3">
+      <%= calendar.available %>
+    </div>
+    <div class="w-full sm:w-1/3 flex justify-end space-x-4">
+      <%= link_to edit_admin_dashboard_hotel_calendar_path(calendar, hotel_id: Hotel.first, room_id: calendar.room_id), class: "text-blue-500 hover:underline" do %>
+        <i class="material-icons-outlined text-base">edit</i>
+      <% end %>
+      <%= button_to admin_dashboard_hotel_calendar_path(calendar, hotel_id: Hotel.first, room_id: calendar.room_id), method: :delete, class: "text-red-500 hover:underline" do %>
+        <i class="material-icons-round text-base">delete_outline</i>
+      <% end %>
+    </div>
+  </li>
+<% end %>
+
+
+

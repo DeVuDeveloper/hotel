@@ -1,19 +1,15 @@
 <%= turbo_frame_tag hotel do %>
-<tr class="bg-gray-800 text-gray-400">
-  <td class="py-2 px-4 border"><%= hotel.name %></td>
-  <td class="py-2 px-4 border"><%= hotel.address %></td>
-  <td class="py-2 px-4 border"><%= hotel.description %></td>
-  <td class="py-2 px-4 border"><%= hotel.contact %></td>
-  <td class="py-2 px-4 border">
-
-    <%= link_to edit_admin_dashboard_hotel_path(hotel), class: "text-blue-500 hover:underline" do %>
-     <i class="material-icons-outlined text-base">edit</i>
-    <% end %>
-
-    <%= button_to admin_dashboard_hotel_path(hotel), method: :delete, data: { confirm: 'Are you sure?' }, class: "text-red-500 hover:underline" do %>
-      <i class="material-icons-outlined text-base">delete</i>
-     <% end %>
-  </td>
-  
-</tr>
+  <li class="bg-gray-800 border-b border-gray-200 text-gray-400 flex items-center py-3 px-4 pl-8">
+    <span class="w-1/4"><%= hotel.name %></span>
+    <span class="w-1/4"><%= hotel.address %></span>
+    <span class="w-1/4"><%= hotel.contact %></span>
+    <span class="w-1/4 flex items-center justify-start space-x-4 pl-8">
+      <%= link_to edit_admin_dashboard_hotel_path(id: hotel.id), class: "text-blue-500 hover:underline" do %>
+        <i class="material-icons-outlined text-base">edit</i>
+      <% end %>
+      <%= button_to admin_dashboard_hotel_path(id: hotel.id), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-500 hover:underline" do %>
+        <i class="material-icons-outlined text-base">delete</i>
+      <% end %>
+    </span>
+  </li>
 <% end %>

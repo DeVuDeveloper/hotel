@@ -23,7 +23,9 @@
       </div>
       <%= render(SidebarComponent.new(user: current_user)) %>
       <section class="w-full h-full">
+   
         <%= render(NavbarComponent.new(user: current_user)) %>
+      
         <%= yield %>
              <%= render(FooterComponent.new) %>
       </section>

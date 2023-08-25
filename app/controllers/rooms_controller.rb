@@ -9,6 +9,13 @@ class RoomsController < ApplicationController
   def show
   end
 
+  def availability
+    room = Room.find(params[:id])
+    availability_data = room.availability_data
+    puts availability_data.inspect
+    render json: availability_data
+  end
+
   private
 
   def set_room
