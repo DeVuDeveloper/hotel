@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root "home#index"
+  post '/generate_calendars', to: 'rooms#generate_calendars', as: :generate_calendars
 
   namespace :admin do
     namespace :dashboard do
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
             get :edit_seasonal_prices
             patch :update_seasonal_prices
             resources :calendars
+            post '/generate_calendars', to: 'rooms#generate_calendars', as: :generate_calendars
           end
         end
       end
@@ -38,7 +40,9 @@ Rails.application.routes.draw do
       get "reservation_total_price", on: :collection
     end
     get :availability, on: :member
-    resources :calendars, only: [:index, :new, :create]
+    resources :calendars do
+      resources :calendar_entries, only: :index
+    end
   end
 
   get "calculate_total_price", to: "reservations#calculate_total_price"

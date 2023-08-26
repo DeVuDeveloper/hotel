@@ -1,9 +1,10 @@
 class CalendarsController < ApplicationController
   before_action :set_room
-
+  
   def index
-    @calendars = @room.calendars
+    @calendar = @room.calendar
     @rooms = Room.all
+    entries = CalendarEntry.all
   end
 
   def new
@@ -19,10 +20,19 @@ class CalendarsController < ApplicationController
     end
   end
 
-  def availability
-    @room = Room.find(params[:room_id])
-    availability_data = @room.availability_data
-    render json: availability_data
+  def events
+    room = Room.find(params[:room_id])
+    entries = room.calendar_entries
+    events = entries.map do |entry|
+      {
+        title: entry.available ? "Available" : "Booked",
+        start: entry.date,
+        backgroundColor: entry.background_color,
+        price: entry.price
+      }
+    end
+
+    render json: events
   end
 
   private
@@ -35,4 +45,3 @@ class CalendarsController < ApplicationController
     params.require(:calendar).permit(:date, :price, :available)
   end
 end
-

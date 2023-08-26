@@ -7,11 +7,7 @@ export default class extends Controller {
     flatpickr(".start_date", {
       enableTime: true,
       dateFormat: "F j, Y h:i K",
-      disable: [
-        function (date) {
-          return date.getDay() === 0 || date.getDay() === 6;
-        },
-      ],
+      minDate: "today",
       locale: {
         firstDayOfWeek: 0,
       },
@@ -19,11 +15,7 @@ export default class extends Controller {
     flatpickr(".end_date", {
       enableTime: true,
       dateFormat: "F j, Y h:i K",
-      disable: [
-        function (date) {
-          return date.getDay() === 0 || date.getDay() === 6;
-        },
-      ],
+      minDate: "today",
       locale: {
         firstDayOfWeek: 0,
       },

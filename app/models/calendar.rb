@@ -1,29 +1,31 @@
 class Calendar < ApplicationRecord
   belongs_to :room
+  has_many :calendar_entries, dependent: :destroy
 
-  validates :date, presence: true
-  validates :price, numericality: { greater_than_or_equal_to: 0 }
-  validates :available, inclusion: { in: [true, false] }
+  validates :room, presence: true
 
   after_create_commit -> { broadcast_prepend_to "calendars", partial: "admin/dashboard/calendars/calendar", locals: {calendar: self}, target: "calendars" }
 
-  def availability_data
-    current_season_price = case date.month
-                           when 6..8
-                             room.summer_price
-                           when 12, 1, 2
-                             room.winter_price
-                           when 3..5
-                             room.spring_price
-                           else
-                             room.autumn_price
-                           end
+  def generate_default_entries
+    calendar_entries.find_or_create_by do |entry|
+      entry.date = date
+      entry.price = calculate_seasonal_price(date)
+      entry.available = true
+    end
+  end
+  
+  private
 
-    {
-      title: available ? "Available" : "Booked",
-      start: date,
-      price: available ? current_season_price : nil,
-      backgroundColor: available ? "green" : "red",
-    }
+  def calculate_seasonal_price(date)
+    case date.month
+    when 6..8
+      room.summer_price
+    when 12, 1, 2
+      room.winter_price
+    when 3..5
+      room.spring_price
+    else
+      room.autumn_price
+    end
   end
 end

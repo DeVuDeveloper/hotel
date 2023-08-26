@@ -1,3 +1,11 @@
 <%= turbo_frame_tag "room-#{@room.id}-reservation" do %>
-  <div class="h-96" data-controller="calendar" data-calendar-room-id="<%= @room.id %>"></div>
+  <% if @calendar.present? && @room.present? %>
+    <div data-controller="calendar"
+      class="calendar"
+      data-calendar-room-id="<%= @room.id %>"
+      data-calendar-calendar-id="<%= @calendar.id %>">
+    </div>
+  <% else %>
+    <h4 class="text-red-500">Calendar is not set yet for this room</h4>
+  <% end %>
 <% end %>

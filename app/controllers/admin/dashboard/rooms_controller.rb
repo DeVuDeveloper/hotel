@@ -1,8 +1,8 @@
 class Admin::Dashboard::RoomsController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_admin!
-  before_action :set_hotel, only: [:index, :new, :create, :edit]
-  before_action :set_room, only: [:edit, :update, :destroy, :edit_seasonal_prices, :update_seasonal_prices]
+  before_action :set_hotel, only: [:index, :new, :create, :edit, :edit_seasonal_prices, :update_seasonal_prices]
+  before_action :set_room, only: [:edit, :update, :destroy, :edit_seasonal_prices, :update_seasonal_prices, :generate_calendars]
 
   layout "admin"
 
@@ -69,6 +69,16 @@ class Admin::Dashboard::RoomsController < ApplicationController
       end
     else
       render :edit_seasonal_prices, status: :unprocessable_entity
+    end
+  end
+
+  def generate_calendars
+    room = Room.find(params[:room_id])
+    room.generate_calendar_entries_for_seasonal_prices
+    
+    respond_to do |format|
+      format.html { redirect_to admin_dashboard_hotel_rooms_path, notice: "Calendar entries were successfully updated." }
+      format.turbo_stream { flash.now[:notice] = "Calendar entries were successfully updated." }
     end
   end
 

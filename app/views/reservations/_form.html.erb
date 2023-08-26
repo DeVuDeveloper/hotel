@@ -7,7 +7,7 @@
       <div class="flex mb-4">
         <div class="flex-grow mr-4">
           <label for="reservation_start_date" class="block text-gray-700 font-semibold">Start Date</label>
-          <%= f.date_field :start_date, class: "start_date form-input mt-1 w-full", id: "reservation_start_date",  data: { 'reservation-target': "startDate" }, placeholder: "Select start date" %>
+          <%= f.date_field :start_date, class: "start_date form-input mt-1 w-full", id: "reservation_start_date",  data: { 'reservation-target': "startDate", flatpickr_min_date: Time.zone.now  }, placeholder: "Select start date" %>
         </div>
         <div class="flex-grow">
           <label for="reservation_end_date" class="block text-gray-700 font-semibold">End Date</label>

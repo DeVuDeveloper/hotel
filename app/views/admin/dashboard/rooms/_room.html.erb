@@ -17,7 +17,9 @@
       <%= button_to admin_dashboard_hotel_room_path(room, hotel_id: room.hotel_id), method: :delete, class: 'text-red-600 hover:text-red-800' do %>
         <i class="material-icons-outlined text-base">delete</i>
       <% end %>
+      <%= button_to generate_calendars_admin_dashboard_hotel_room_path(room, hotel_id: room.hotel_id, room_id: room.id), method: :post, class: 'text-green-600 hover:text-green-800' do %>
+        <i class="material-icons-outlined text-base">add_circle</i>
+      <% end %>
     </span>
   </li>
 <% end %>
-
