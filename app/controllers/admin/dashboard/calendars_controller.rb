@@ -47,7 +47,7 @@ class Admin::Dashboard::CalendarsController < ApplicationController
     def destroy
       @calendar.destroy
       respond_to do |format|
-        format.html { redirect_to admin_dashboard_calendars_path, notice: "Calendar was successfully destroyed." }
+        format.html { redirect_to admin_dashboard_hotel_calendars_path, notice: "Calendar was successfully destroyed." }
         format.turbo_stream { flash.now[:notice] = "Calendar was successfully destroyed." }
       end
     end

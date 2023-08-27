@@ -17,6 +17,8 @@ class Reservation < ApplicationRecord
     cancelled: "Cancelled"
   }
 
+  after_create_commit -> { broadcast_prepend_to "reservations", partial: "admin/dashboard/reservations/reservation", locals: {reservation: self}, target: "reservations" }
+
   def dates
     (start_date..end_date).to_a
   end

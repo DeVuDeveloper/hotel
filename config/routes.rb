@@ -13,6 +13,7 @@ Rails.application.routes.draw do
             patch :update_seasonal_prices
             resources :calendars
             post '/generate_calendars', to: 'rooms#generate_calendars', as: :generate_calendars
+            resources :reservations
           end
         end
       end
