@@ -19,6 +19,5 @@ class CalendarEntriesController < ApplicationController
 
   def set_calendar_entries
     @calendar_entries = CalendarEntry.where(calendar_id: params[:calendar_id])
-    puts "Calendar entries: #{@calendar_entries}"
   end
 end

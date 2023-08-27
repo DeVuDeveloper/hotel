@@ -2,15 +2,15 @@ class ReservationsController < ApplicationController
   before_action :set_room
 
   def new
-    @reservation = @room.reservations.new
+    @room = Room.find(params[:room_id])
+    @reservation = Reservation.new
   end
 
   def create
     @reservation = @room.reservations.new(reservation_params)
-
+ 
     price_calculator = PriceCalculatorService.new(@room, @reservation.start_date, @reservation.end_date, @reservation.number_of_guests)
     @reservation.total_price = price_calculator.call
-
     if @reservation.save
       @reservation.dates.each do |date|
         calendar_entry = @room.calendar.calendar_entries.find_by(date: date)

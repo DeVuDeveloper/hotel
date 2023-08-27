@@ -9,7 +9,7 @@ class Room < ApplicationRecord
   validates :number_of_beds, numericality: { greater_than: 0 }
   validates :description, presence: true
   validates :image, presence: true
-
+ 
   broadcasts_to ->(room) { "rooms" }, inserts_by: :prepend
   scope :ordered, -> { order(id: :desc) }
 

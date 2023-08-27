@@ -3,6 +3,7 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = Room.all.paginate(page: params[:page], per_page: 2)
+    @room_reservations = get_room_reservations(@rooms)
   end
 
   def show
@@ -12,5 +13,10 @@ class RoomsController < ApplicationController
 
   def set_room
     @room = Room.find(params[:id])
+  end
+
+  def get_room_reservations(rooms)
+    reservations = current_user.reservations.where(room_id: rooms.pluck(:id))
+    reservations.group_by(&:room_id)
   end
 end

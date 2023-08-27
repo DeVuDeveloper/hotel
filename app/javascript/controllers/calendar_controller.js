@@ -20,7 +20,7 @@ export default class extends Controller {
       plugins: [dayGridPlugin],
       events: eventsUrl,
       validRange: {
-        start: new Date().toISOString().split('T')[0], // Start from today's date
+        start: new Date().toISOString().split('T')[0],
       },
       eventContent: this.eventContentCallback.bind(this)
     });
@@ -29,15 +29,16 @@ export default class extends Controller {
   }
 
   eventContentCallback(arg) {
-    const { price, bg_color, season, title } = arg.event.extendedProps;
+    const { price, bg_color, season } = arg.event.extendedProps;
     
     const eventContent = document.createElement("div");
     eventContent.classList.add('custom-event');
     eventContent.innerHTML = `
-      <div class="event-price">Price: ${price}</div>
-      <div class="event-season">Season: ${season}</div>
+      <div class="event-price">${price}</div>
+      <div class="event-season">${season}</div>
     `;
     eventContent.style.backgroundColor = bg_color;
+    eventContent.style.padding = '1.5rem';
   
     return { domNodes: [eventContent] };
   }

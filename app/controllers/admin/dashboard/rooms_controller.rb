@@ -104,6 +104,6 @@ class Admin::Dashboard::RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:name, :room_type, :number_of_beds, :price_per_night, :description, :image)
+    params.require(:room).permit(:name, :room_type, :number_of_beds, :description, :image)
   end
 end

@@ -15,11 +15,11 @@ class Admin::Dashboard::CalendarsController < ApplicationController
   end
 
   def new
-    @calendar = @room.calendars.new
+    @calendar = @room.build_calendar
   end
 
   def create
-    @calendar = @room.calendars.new(calendar_params)
+    @calendar = @room.build_calendar(calendar_params)
     if @calendar.save
         respond_to do |format|
           format.html { redirect_to admin_dashboard_hotel_rooms_path, notice: "Calendar was successfully created." }

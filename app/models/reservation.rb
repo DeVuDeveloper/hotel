@@ -1,7 +1,7 @@
 class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :room
-  has_one :calendar, through: :room
+  has_one :calendar, through: :room, dependent: :destroy
 
   validates :start_date, presence: true
   validates :end_date, presence: true
@@ -9,6 +9,7 @@ class Reservation < ApplicationRecord
   validates :total_price, numericality: {greater_than_or_equal_to: 0}
   validates :status, presence: true
   validate :end_date_is_after_start_date
+  validate :dates_available, on: :create
 
   enum status: {
     pending: "Pending",
@@ -27,6 +28,18 @@ class Reservation < ApplicationRecord
 
     if end_date < start_date
       errors.add(:end_date, "must be after start date")
+    end
+  end
+
+  private
+
+  def dates_available
+    if start_date.present? && end_date.present?
+      conflicting_entries = room.calendar.calendar_entries.where(date: start_date..end_date, available: false)
+      if conflicting_entries.any?
+        conflicting_dates = conflicting_entries.pluck(:date)
+        errors.add(:base, "The following dates are not available: #{conflicting_dates.join(', ')}")
+      end
     end
   end
 end
