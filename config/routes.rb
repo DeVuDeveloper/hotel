@@ -37,9 +37,12 @@ Rails.application.routes.draw do
 
   resources :rooms do
     resources :reservations do
+      member do
+        put :cancel
+        get :availability
+      end
       get "reservation_total_price", on: :collection
     end
-    get :availability, on: :member
     resources :calendars do
       resources :calendar_entries, only: :index
     end

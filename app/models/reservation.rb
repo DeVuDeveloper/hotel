@@ -16,6 +16,10 @@ class Reservation < ApplicationRecord
     cancelled: "Cancelled"
   }
 
+  def dates
+    (start_date..end_date).to_a
+  end
+
   private
 
   def end_date_is_after_start_date

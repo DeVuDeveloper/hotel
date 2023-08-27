@@ -26,7 +26,7 @@ class CalendarEntry < ApplicationRecord
         title: available ? "Available" : "Booked",
         start: date,
         backgroundColor: bg_color,
-        price: available ? current_season_price : nil,
+        price: available ? current_season_price : '--',
         season: season_name(date.month),
       }
     end

@@ -8,7 +8,10 @@ module SeedData
   room_type = ["Double room", "Triple room", "Quad room", "Studio"]
   room_images = ["room2.jpg", "room1.jpg", "room3.jpg", "room4.jpg"]
   number_of_beds = ["2", "2", "4", "5"]
-  price_per_night = ["165", "279", "364", "420"]
+  autumn_price = ["165", "279", "364", "420"]
+  winter_price = ["169", "289", "369", "430"]
+  spring_price = ["159", "279", "357", "418"]
+  summer_price = ["169", "297", "374", "442"]
   descriptions = [
     "A cozy room with a comfortable double bed, perfect for couples or solo travelers",
     "Spacious room featuring three beds, ideal for small families or groups of friends.",
@@ -17,7 +20,7 @@ module SeedData
   ]
 
   4.times do |i|
-    room = FactoryBot.create(:room, hotel: hotel, name: room_names[i], room_type: room_type[i], number_of_beds: number_of_beds[i], price_per_night: price_per_night[i], description: descriptions[i])
+    room = FactoryBot.create(:room, hotel: hotel, name: room_names[i], room_type: room_type[i], number_of_beds: number_of_beds[i], autumn_price: autumn_price[i], winter_price: winter_price[i], spring_price: spring_price[i], summer_price: summer_price[i], description: descriptions[i])
     room.image.attach(io: File.open(Rails.root.join("spec", "images", room_images[i])), filename: room_images[i], content_type: "image/jpeg")
   end
 end

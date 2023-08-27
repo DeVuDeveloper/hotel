@@ -21,7 +21,7 @@ class PriceCalculatorService
   end
 
   def calculate_total_price
-    room_price_per_night = room.price_per_night
+    room_price_per_night = SeasonalPriceComponent.new(room).call
     total_nights = (end_date - start_date).to_i + 1
     room_price_per_night * total_nights
   end
