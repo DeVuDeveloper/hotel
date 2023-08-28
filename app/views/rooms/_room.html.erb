@@ -78,14 +78,14 @@
                     </div>
                     <% if last_reservation.confirmed? %>
                     </span>
-                    <span >
+                    <span class="gap-4" >
                       <%= button_to "Cancel", room_reservation_path(room_id: room.id, id: last_reservation.id), method: :put, class: "inline-block bg-red-500 px-4 py-2 font-bold rounded-full text-white shadow hover:shadow-md" %>
                     <% elsif last_reservation.cancelled? %>
                       <%= link_to "Book Now", new_room_reservation_path(room), id: "book-now-link", class: "inline-block text-blue-500 px-4 py-2 rounded-full font-bold text-blue-100 shadow hover:text-blue-600", target: "reservation.bookButton" %>
                     <% end %>
                   </span>
                   <span>
-                    <%= link_to 'Availability', room_calendars_path(room), class: "inline-block bg-green-500 px-4 py-2 font-bold rounded-full text-white shadow hover:shadow-md", data: { "reservation-target": "availabilityButton" } %>
+                    <%= link_to 'Availability', room_calendars_path(room), class: "ml-4 inline-block bg-green-500 px-4 py-2 font-bold rounded-full text-white shadow hover:shadow-md", data: { "reservation-target": "availabilityButton" } %>
                   </span>
                 </div>
               <% end %>

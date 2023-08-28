@@ -3,6 +3,6 @@
 # Load the Rails application.
 require_relative "application"
 require "will_paginate"
-require 'sidekiq-scheduler'
+require "sidekiq-scheduler"
 # Initialize the Rails application.
 Rails.application.initialize!

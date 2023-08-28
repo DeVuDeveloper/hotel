@@ -25,8 +25,8 @@ gem "devise", "~> 4.9", ">= 4.9.2"
 gem "momentjs-rails"
 gem "importmap-rails"
 gem "will_paginate", "~> 4.0"
-gem 'sidekiq'
-gem 'sidekiq-scheduler'
+gem "sidekiq"
+gem "sidekiq-scheduler"
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]

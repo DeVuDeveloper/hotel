@@ -21,36 +21,36 @@ class Admin::Dashboard::CalendarsController < ApplicationController
   def create
     @calendar = @room.build_calendar(calendar_params)
     if @calendar.save
-        respond_to do |format|
-          format.html { redirect_to admin_dashboard_hotel_rooms_path, notice: "Calendar was successfully created." }
-          format.turbo_stream { flash.now[:notice] = "Calendar was successfully created." }
-        end
-      else
-        render :new, status: :unprocessable_entity
-      end
-    end
-
-    def edit
-    end
-  
-    def update
-      if @calendar.update(calendar_params)
-        respond_to do |format|
-          format.html { redirect_to admin_dashboard_hotel_calendars_path, notice: "Calendar was successfully updated." }
-          format.turbo_stream { flash.now[:notice] = "Calendar was successfully updated." }
-        end
-      else
-        render :edit, status: :unprocessable_entity
-      end
-    end
-  
-    def destroy
-      @calendar.destroy
       respond_to do |format|
-        format.html { redirect_to admin_dashboard_hotel_calendars_path, notice: "Calendar was successfully destroyed." }
-        format.turbo_stream { flash.now[:notice] = "Calendar was successfully destroyed." }
+        format.html { redirect_to admin_dashboard_hotel_rooms_path, notice: "Calendar was successfully created." }
+        format.turbo_stream { flash.now[:notice] = "Calendar was successfully created." }
       end
+    else
+      render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @calendar.update(calendar_params)
+      respond_to do |format|
+        format.html { redirect_to admin_dashboard_hotel_calendars_path, notice: "Calendar was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Calendar was successfully updated." }
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @calendar.destroy
+    respond_to do |format|
+      format.html { redirect_to admin_dashboard_hotel_calendars_path, notice: "Calendar was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Calendar was successfully destroyed." }
+    end
+  end
 
   private
 

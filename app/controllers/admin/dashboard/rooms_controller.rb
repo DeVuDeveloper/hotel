@@ -75,7 +75,7 @@ class Admin::Dashboard::RoomsController < ApplicationController
   def generate_calendars
     room = Room.find(params[:room_id])
     room.generate_calendar_entries_for_seasonal_prices
-    
+
     respond_to do |format|
       format.html { redirect_to admin_dashboard_hotel_rooms_path, notice: "Calendar entries were successfully updated." }
       format.turbo_stream { flash.now[:notice] = "Calendar entries were successfully updated." }

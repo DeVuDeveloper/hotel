@@ -61,10 +61,6 @@ class Admin::Dashboard::HotelsController < ApplicationController
 
   def set_hotel
     @hotel = Hotel.find(params[:id])
-  end
-
-  def set_hotel
-    @hotel = Hotel.find(params[:id])
     redirect_to admin_dashboard_hotels_path, alert: "Hotel not found." unless @hotel
   end
 

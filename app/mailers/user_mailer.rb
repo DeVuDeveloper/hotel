@@ -5,6 +5,6 @@ class UserMailer < ApplicationMailer
 
   def send_reminder_email(reservation)
     @reservation = reservation
-    mail(to: @reservation.user.email, subject: 'Vaš boravak u hotelu se približava')
+    mail(to: @reservation.user.email, subject: "Vaš boravak u hotelu se približava")
   end
 end

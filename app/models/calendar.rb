@@ -13,7 +13,7 @@ class Calendar < ApplicationRecord
       entry.available = true
     end
   end
-  
+
   private
 
   def calculate_seasonal_price(date)

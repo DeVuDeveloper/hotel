@@ -6,10 +6,10 @@ class Room < ApplicationRecord
 
   validates :name, presence: true
   validates :room_type, presence: true
-  validates :number_of_beds, numericality: { greater_than: 0 }
+  validates :number_of_beds, numericality: {greater_than: 0}
   validates :description, presence: true
   validates :image, presence: true
- 
+
   broadcasts_to ->(room) { "rooms" }, inserts_by: :prepend
   scope :ordered, -> { order(id: :desc) }
 
@@ -20,16 +20,16 @@ class Room < ApplicationRecord
   def generate_calendar_entries_for_seasonal_prices
     if calendar.blank?
       create_calendar unless calendar
-  
+
       (Date.today..1.year.from_now).each do |date|
         seasonal_price = calculate_seasonal_price(date)
         calendar.calendar_entries.build(date: date, price: seasonal_price, available: true)
       end
-  
+
       calendar.save
     end
   end
-  
+
   def calculate_seasonal_price(date)
     case date.month
     when 6..8

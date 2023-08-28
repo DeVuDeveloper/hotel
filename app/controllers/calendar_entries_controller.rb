@@ -4,12 +4,12 @@ class CalendarEntriesController < ApplicationController
   def index
     events = @calendar_entries.map do |entry|
       {
-            title: entry.availability_data[:title],
-            start: entry.availability_data[:start],
-            backgroundColor: entry.availability_data[:backgroundColor],
-            price: entry.availability_data[:price],
-            season: entry.availability_data[:season],
-          }
+        title: entry.availability_data[:title],
+        start: entry.availability_data[:start],
+        backgroundColor: entry.availability_data[:backgroundColor],
+        price: entry.availability_data[:price],
+        season: entry.availability_data[:season]
+      }
     end
 
     render json: events

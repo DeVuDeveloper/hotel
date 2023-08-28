@@ -1,10 +1,9 @@
 class CalendarsController < ApplicationController
   before_action :set_room
-  
+
   def index
     @calendar = @room.calendar
     @rooms = Room.all
-    entries = CalendarEntry.all
   end
 
   def new

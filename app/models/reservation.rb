@@ -31,7 +31,6 @@ class Reservation < ApplicationRecord
     puts "Searching for reservations..."
     reservations_to_remind = where(start_date: 1.week.from_now.to_date)
     puts "Found #{reservations_to_remind.count} reservations to remind."
-    
 
     reservations_to_remind.each do |reservation|
       UserMailer.send_reminder_email(reservation).deliver_later
@@ -53,7 +52,7 @@ class Reservation < ApplicationRecord
       conflicting_entries = room.calendar.calendar_entries.where(date: start_date..end_date, available: false)
       if conflicting_entries.any?
         conflicting_dates = conflicting_entries.pluck(:date)
-        errors.add(:base, "The following dates are not available: #{conflicting_dates.join(', ')}")
+        errors.add(:base, "The following dates are not available: #{conflicting_dates.join(", ")}")
       end
     end
   end
