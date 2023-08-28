@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_21_081213) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_27_190643) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,11 +59,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_081213) do
     t.index ["hotel_id"], name: "index_amenities_on_hotel_id"
   end
 
+  create_table "calendar_entries", force: :cascade do |t|
+    t.bigint "calendar_id", null: false
+    t.date "date"
+    t.integer "price"
+    t.boolean "available"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["calendar_id"], name: "index_calendar_entries_on_calendar_id"
+  end
+
   create_table "calendars", force: :cascade do |t|
     t.bigint "room_id", null: false
-    t.date "date"
-    t.decimal "price"
-    t.boolean "available"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_calendars_on_room_id"
@@ -118,7 +125,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_081213) do
     t.bigint "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "token"
     t.index ["room_id"], name: "index_reservations_on_room_id"
+    t.index ["token"], name: "index_reservations_on_token"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
@@ -137,7 +146,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_081213) do
     t.string "name", default: ""
     t.string "room_type", default: "Standard"
     t.integer "number_of_beds", default: 1
-    t.decimal "price_per_night", default: "0.0"
+    t.decimal "summer_price"
+    t.decimal "winter_price"
+    t.decimal "spring_price"
+    t.decimal "autumn_price"
     t.text "description", default: ""
     t.bigint "hotel_id", null: false
     t.datetime "created_at", null: false
@@ -162,6 +174,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_21_081213) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "hotels"
   add_foreign_key "amenities", "hotels"
+  add_foreign_key "calendar_entries", "calendars"
   add_foreign_key "calendars", "rooms"
   add_foreign_key "messages", "hotels"
   add_foreign_key "payments", "reservations"

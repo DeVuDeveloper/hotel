@@ -2,7 +2,8 @@ class CalendarsController < ApplicationController
   before_action :set_room
 
   def index
-    @calendars = @room.calendars
+    @calendar = @room.calendar
+    @rooms = Room.all
   end
 
   def new
@@ -16,6 +17,21 @@ class CalendarsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def events
+    room = Room.find(params[:room_id])
+    entries = room.calendar_entries
+    events = entries.map do |entry|
+      {
+        title: entry.available ? "Available" : "Booked",
+        start: entry.date,
+        backgroundColor: entry.background_color,
+        price: entry.price
+      }
+    end
+
+    render json: events
   end
 
   private

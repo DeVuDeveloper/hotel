@@ -21,7 +21,7 @@ RSpec.describe Room, type: :model do
   end
 
   it "is not valid with a negative price_per_night" do
-    room = FactoryBot.build(:room, price_per_night: -100, hotel: @hotel)
+    room = FactoryBot.build(:room, summer_price: -100, hotel: @hotel)
     expect(room).to_not be_valid
   end
 end

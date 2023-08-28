@@ -1,24 +1,11 @@
-<h2>Room Availability Calendar</h2>
-
-<div id="calendar"></div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      events: [
-        <% @calendars.each do |calendar| %>
-          {
-            title: '<%= calendar.available ? "Available" : "Booked" %>',
-            start: '<%= calendar.date %>',
-            color: '<%= calendar.available ? "#00FF00" : "#FF0000" %>',
-          },
-        <% end %>
-      ]
-    });
-
-    calendar.render();
-  });
-</script>
+<%= turbo_frame_tag "room-#{@room.id}-reservation" do %>
+  <% if @calendar.present? && @room.present? %>
+    <div data-controller="calendar"
+      class="calendar"
+      data-calendar-room-id="<%= @room.id %>"
+      data-calendar-calendar-id="<%= @calendar.id %>">
+    </div>
+  <% else %>
+    <h4 class="text-red-500">Calendar is not set yet for this room</h4>
+  <% end %>
+<% end %>

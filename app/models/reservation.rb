@@ -1,7 +1,7 @@
 class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :room
-  has_one :calendar, through: :room
+  has_one :calendar, through: :room, dependent: :destroy
 
   validates :start_date, presence: true
   validates :end_date, presence: true
@@ -9,12 +9,33 @@ class Reservation < ApplicationRecord
   validates :total_price, numericality: {greater_than_or_equal_to: 0}
   validates :status, presence: true
   validate :end_date_is_after_start_date
+  validate :dates_available, on: :create
 
   enum status: {
     pending: "Pending",
     confirmed: "Confirmed",
     cancelled: "Cancelled"
   }
+
+  after_create_commit -> { broadcast_prepend_to "reservations", partial: "admin/dashboard/reservations/reservation", locals: {reservation: self}, target: "reservations" }
+
+  def dates
+    (start_date..end_date).to_a
+  end
+
+  def generate_token
+    self.token ||= SecureRandom.hex(20)
+  end
+
+  def self.send_reminder_emails
+    puts "Searching for reservations..."
+    reservations_to_remind = where(start_date: 1.week.from_now.to_date)
+    puts "Found #{reservations_to_remind.count} reservations to remind."
+
+    reservations_to_remind.each do |reservation|
+      UserMailer.send_reminder_email(reservation).deliver_later
+    end
+  end
 
   private
 
@@ -23,6 +44,16 @@ class Reservation < ApplicationRecord
 
     if end_date < start_date
       errors.add(:end_date, "must be after start date")
+    end
+  end
+
+  def dates_available
+    if start_date.present? && end_date.present? && room&.calendar.present?
+      conflicting_entries = room.calendar.calendar_entries.where(date: start_date..end_date, available: false)
+      if conflicting_entries.any?
+        conflicting_dates = conflicting_entries.pluck(:date)
+        errors.add(:base, "The following dates are not available: #{conflicting_dates.join(", ")}")
+      end
     end
   end
 end

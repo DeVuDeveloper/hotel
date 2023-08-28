@@ -1,6 +1,6 @@
 # Hotel App
 
-The Hotel App is a Ruby on Rails web application that allows users to register, log in, and book hotel rooms. Additionally, it includes an admin panel to manage hotels, rooms, and bookings.
+The Hotel App is a modern Ruby on Rails web application designed for seamless hotel management, efficient user experience, and comprehensive reservation management. It features cutting-edge technologies including Rails Hotwire, Stimulus ad Vite ensuring dynamic interactions and responsiveness. The application includes an intuitive user registration and login system, empowering users to book hotel rooms hassle-free. Notably, the app boasts a robust admin panel for efficient hotel, room, and booking management.
 
 ## Screenshots
 
@@ -11,18 +11,16 @@ The Hotel App is a Ruby on Rails web application that allows users to register, 
 
 ## Features
 
-- **User Registration:** Users can sign up for an account using their email and password.
-- **User Login:** Registered users can log in using their credentials.
-- **User Bookings:** Logged-in users can book hotel rooms.
-- **Hotel Management (Admin):** Admin users can manage hotels, including adding, editing, and deleting hotels.
-- **Room Management (Admin):** Admin users can manage rooms, including adding, editing, and deleting rooms.
-- **Booking Management (Admin):** Admin users can view and manage bookings, including approving, canceling, and updating bookings.
-- **Authentication:** The application uses Devise gem for user authentication.
-- **Authorization:** The application implements authorization using role-based access control, allowing admins to perform management tasks.
-- **Internationalization (i18n):** The application supports multiple locales to provide translations for different languages.
-- **Styling:** The front-end is designed using Tailwind CSS to create a responsive and visually appealing user interface.
+- **User Registration:** Users can effortlessly sign up for an account using their email and password, gaining access to a range of features.
+- **User Login:** Registered users can quickly log in using their credentials, providing a seamless user experience.
+- **User Bookings:** Logged-in users can conveniently browse and book hotel rooms with ease.
+- **Modern Admin Panel:** The application includes a state-of-the-art admin panel, offering efficient management of hotels, rooms, and bookings.
+- **Role-Based Access Control:** Authorization is implemented using role-based access control, granting admin users exclusive management privileges.
+- **Multilingual Support:** The application is equipped with Internationalization (i18n) capabilities, ensuring language translations for diverse user bases.
+- **Sleek Styling:** Tailwind CSS is employed to craft a visually appealing and responsive user interface, elevating the overall user experience.
 
 ## Installation
+
 
 1. Clone the repository:
 
@@ -66,7 +64,7 @@ The Hotel App relies on the following main dependencies:
 The Hotel App includes a linter. You can run the linter with the following command:
 
 ```bash
-  rake standard && rake standard
+  rake standard && rake standard:fix
   npm run lint && npm run lint:fix
 ```
 
@@ -78,10 +76,9 @@ The Hotel App includes a test suite using RSpec. You can run the tests with the 
   rspec spec
 ```
 
-
 ## Usage
 
-1. Open your web browser and navigate to `http://localhost:3000/`.
+1. Open your web browser and navigate to [http://localhost:5100/](http://localhost:3000/).
 2. You will see the homepage with options to register and log in.
 3. Click on "Register" to create a new user account.
 4. After registering, you will be redirected to the login page.
@@ -97,7 +94,7 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 
 ## License
 
-The Hotel App is open-source software licensed under the [MIT License](LICENSE).
+The Hotel App is open-source software licensed under the MIT License.
 
 ## Acknowledgments
 

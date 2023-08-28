@@ -3,10 +3,12 @@ class Admin::Dashboard::HotelsController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_admin!
   before_action :set_hotel, only: [:edit, :update, :destroy]
+  before_action :set_room, only: [:index]
 
   def index
     @hotels = Hotel.all
     @page_title = "Hotel"
+    set_room
   end
 
   def new
@@ -59,6 +61,12 @@ class Admin::Dashboard::HotelsController < ApplicationController
 
   def set_hotel
     @hotel = Hotel.find(params[:id])
+    redirect_to admin_dashboard_hotels_path, alert: "Hotel not found." unless @hotel
+  end
+
+  def set_room
+    @hotel = Hotel.find_by(params[:id])
+    @room = @hotel.rooms.find_by(id: params[:hotel_id])
   end
 
   def hotel_params

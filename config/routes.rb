@@ -1,13 +1,23 @@
+require "sidekiq/web"
+
 Rails.application.routes.draw do
   devise_for :users
 
   root "home#index"
+  post "/generate_calendars", to: "rooms#generate_calendars", as: :generate_calendars
 
   namespace :admin do
     namespace :dashboard do
       resources :hotels do
-        resources :rooms
-        resources :calendars, only: [:new, :create]
+        resources :rooms do
+          member do
+            get :edit_seasonal_prices
+            patch :update_seasonal_prices
+            resources :calendars
+            post "/generate_calendars", to: "rooms#generate_calendars", as: :generate_calendars
+            resources :reservations
+          end
+        end
       end
       resources :users
     end
@@ -30,10 +40,16 @@ Rails.application.routes.draw do
 
   resources :rooms do
     resources :reservations do
+      member do
+        put :cancel
+        get :availability
+        patch :confirm
+      end
       get "reservation_total_price", on: :collection
     end
-
-    resources :calendars, only: [:index, :new, :create]
+    resources :calendars do
+      resources :calendar_entries, only: :index
+    end
   end
 
   get "calculate_total_price", to: "reservations#calculate_total_price"
@@ -42,4 +58,5 @@ Rails.application.routes.draw do
   end
 
   resources :reviews
+  mount Sidekiq::Web => "/sidekiq"
 end
