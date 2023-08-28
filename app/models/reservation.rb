@@ -48,7 +48,7 @@ class Reservation < ApplicationRecord
   end
 
   def dates_available
-    if start_date.present? && end_date.present?
+    if start_date.present? && end_date.present? && room&.calendar.present?
       conflicting_entries = room.calendar.calendar_entries.where(date: start_date..end_date, available: false)
       if conflicting_entries.any?
         conflicting_dates = conflicting_entries.pluck(:date)
