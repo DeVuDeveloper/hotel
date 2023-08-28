@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_room
   protect_from_forgery with: :null_session
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
@@ -35,9 +34,5 @@ class ApplicationController < ActionController::Base
       flash[:alert] = "You are not authorized to access this page."
       redirect_to root_path
     end
-  end
-  
-  def set_current_room
-    @current_room = Room.find(params[:id]) if params[:id]
   end
 end

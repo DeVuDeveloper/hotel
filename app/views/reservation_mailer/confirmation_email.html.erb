@@ -1,0 +1,22 @@
+<div class="bg-blue-500 p-4 rounded-lg shadow-md">
+  <h1 class="text-2xl font-bold mb-2">Thank You for Your Reservation</h1>
+  <p class="mb-4">We appreciate your booking. Please confirm your reservation by clicking the link below:</p>
+
+  <p class="text-gray-600 mb-2">
+    Thank you for choosing our hotel for your stay. You have reserved a room at <span class="font-semibold">Poseidon The Beach Hotel</span> for the following details:
+  </p>
+  
+  <ul class="mb-4">
+    <li>Hotel: <span class="font-semibold">Poseidon The Beach Hotel</span></li>
+    <li>Room: <span class="font-semibold"><%= @reservation.room.name %></span></li>
+    <li>Start Date: <span class="font-semibold"><%= @reservation.start_date %></span></li>
+    <li>End Date: <span class="font-semibold"><%= @reservation.end_date %></span></li>
+  </ul>
+  
+  <p class="mb-4">We are excited to have you as our guest and look forward to serving you!</p>
+
+  <%= button_to "Confirm Reservation", confirm_room_reservation_url(@reservation.room_id, id: @reservation.id), method: :patch, class: "bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800" %>
+</div>
+
+
+

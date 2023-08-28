@@ -23,6 +23,21 @@ class Reservation < ApplicationRecord
     (start_date..end_date).to_a
   end
 
+  def generate_token
+    self.token ||= SecureRandom.hex(20)
+  end
+
+  def self.send_reminder_emails
+    puts "Searching for reservations..."
+    reservations_to_remind = where(start_date: 1.week.from_now.to_date)
+    puts "Found #{reservations_to_remind.count} reservations to remind."
+    
+
+    reservations_to_remind.each do |reservation|
+      UserMailer.send_reminder_email(reservation).deliver_later
+    end
+  end
+
   private
 
   def end_date_is_after_start_date
@@ -32,8 +47,6 @@ class Reservation < ApplicationRecord
       errors.add(:end_date, "must be after start date")
     end
   end
-
-  private
 
   def dates_available
     if start_date.present? && end_date.present?

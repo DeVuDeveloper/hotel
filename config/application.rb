@@ -9,5 +9,6 @@ module HotelApp
     config.assets.paths << Rails.root.join("app", "assets", "stylesheets")
     config.assets.precompile += %w[application.css]
     config.autoload_paths += %W[#{config.root}/app/services]
+    config.action_controller.forgery_protection_origin_check = false
   end
 end

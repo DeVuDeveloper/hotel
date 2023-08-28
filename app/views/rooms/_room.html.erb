@@ -57,39 +57,38 @@
         <div class="mt-3 items-center justify-between sm:flex">
           <% if room.booked_by_user?(current_user) %>
             <div class="flex mb-4">
-        <% @rooms.each do |room| %>
-  <% room_reservations = @room_reservations[room.id] %>
-
-  <% next unless room_reservations.present? %>
-
-  <div class="flex mb-4">
-    <% last_reservation = room_reservations.last %>
-    <div class="flex justify-between gap-8">
-      <span class="text-gray-500 py-2 px-4 rounded-full flex flex-col">
-        <p class="text-gray-600 font-bold">Booked:</p>
-        <p><%= last_reservation.start_date %> to <%= last_reservation.end_date %></p>
-        <p class="text-gray-600 font-bold">Total price:</p>
-        <p>$<%= last_reservation.total_price %></p>
-        <% if last_reservation.cancelled? %>
-          <p class="text-gray-600 font-bold">Status: Canceled</p>
-        <% elsif last_reservation.pending? %>
-          <p class="text-gray-600 font-bold">Status: Pending</p>
-        <% end %>
-      </div>
-        <% if last_reservation.pending? %>
-</span>
-      <span >
-          <%= button_to "Cancel", room_reservation_path(room_id: room.id, id: last_reservation.id), method: :put, class: "inline-block bg-red-500 px-4 py-2 font-bold rounded-full text-white shadow hover:shadow-md" %>
-        <% elsif last_reservation.cancelled? %>
-          <%= link_to "Book Now", new_room_reservation_path(room), id: "book-now-link", class: "inline-block text-blue-500 px-4 py-2 rounded-full font-bold text-blue-100 shadow hover:text-blue-600", target: "reservation.bookButton" %>
-        <% end %>
-      </span>
-    
-    <span>
-      <%= link_to 'Availability', room_calendars_path(room), class: "inline-block bg-green-500 px-4 py-2 font-bold rounded-full text-white shadow hover:shadow-md", data: { "reservation-target": "availabilityButton" } %>
-    </span>
-  </div>
-<% end %>
+              <% @rooms.each do |room| %>
+                <% room_reservations = @room_reservations[room.id] %>
+                <% next unless room_reservations.present? %>
+                <div class="flex mb-4">
+                  <% last_reservation = room_reservations.last %>
+                  <div class="flex justify-between gap-8">
+                    <span class="text-gray-500 py-2 px-4 rounded-full flex flex-col">
+                      <p class="text-gray-600 font-bold">Booked:</p>
+                      <p><%= last_reservation.start_date %> to <%= last_reservation.end_date %></p>
+                      <p class="text-gray-600 font-bold">Total price:</p>
+                      <p>$<%= last_reservation.total_price %></p>
+                      <% if last_reservation.cancelled? %>
+                        <p class="text-gray-600 font-bold">Status: Canceled</p>
+                      <% elsif last_reservation.pending? %>
+                        <p class="text-gray-600 font-bold">Status: Pending</p>
+                      <% else %>
+                        <p class="text-gray-600 font-bold">Status: Confirmed</p>
+                      <% end %>
+                    </div>
+                    <% if last_reservation.confirmed? %>
+                    </span>
+                    <span >
+                      <%= button_to "Cancel", room_reservation_path(room_id: room.id, id: last_reservation.id), method: :put, class: "inline-block bg-red-500 px-4 py-2 font-bold rounded-full text-white shadow hover:shadow-md" %>
+                    <% elsif last_reservation.cancelled? %>
+                      <%= link_to "Book Now", new_room_reservation_path(room), id: "book-now-link", class: "inline-block text-blue-500 px-4 py-2 rounded-full font-bold text-blue-100 shadow hover:text-blue-600", target: "reservation.bookButton" %>
+                    <% end %>
+                  </span>
+                  <span>
+                    <%= link_to 'Availability', room_calendars_path(room), class: "inline-block bg-green-500 px-4 py-2 font-bold rounded-full text-white shadow hover:shadow-md", data: { "reservation-target": "availabilityButton" } %>
+                  </span>
+                </div>
+              <% end %>
             </div>
           <% else %>
             <%= link_to "Book Now", new_room_reservation_path(room), id: "book-now-link", class: "inline-block bg-blue-500 px-4 py-2 rounded-full font-bold text-blue-100 shadow hover:shadow-md", target: "reservation.bookButton" %>

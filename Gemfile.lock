@@ -85,6 +85,7 @@ GEM
       xpath (~> 3.2)
     coderay (1.1.3)
     concurrent-ruby (1.2.2)
+    connection_pool (2.4.1)
     crass (1.0.6)
     date (3.3.3)
     debug (1.8.0)
@@ -99,6 +100,8 @@ GEM
     diff-lcs (1.5.0)
     dry-cli (1.0.0)
     erubi (1.12.0)
+    et-orbi (1.2.7)
+      tzinfo
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -106,6 +109,9 @@ GEM
       railties (>= 5.0.0)
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
+    fugit (1.8.1)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     globalid (1.1.0)
       activesupport (>= 5.0)
     htmlbeautifier (1.4.2)
@@ -122,6 +128,10 @@ GEM
       activesupport (>= 5.0.0)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
     lint_roller (1.1.0)
     loofah (2.21.3)
       crass (~> 1.0.2)
@@ -163,6 +173,7 @@ GEM
     public_suffix (5.0.3)
     puma (5.6.6)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.7.1)
     rack (2.2.7)
     rack-proxy (0.7.6)
@@ -200,6 +211,8 @@ GEM
     rainbow (3.1.1)
     rake (13.0.6)
     redis (4.8.1)
+    redis-client (0.16.0)
+      connection_pool
     regexp_parser (2.8.1)
     reline (0.3.6)
       io-console (~> 0.5)
@@ -242,10 +255,21 @@ GEM
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     rufo (0.16.1)
+    rufus-scheduler (3.9.1)
+      fugit (~> 1.1, >= 1.1.6)
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sidekiq (7.1.2)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.14.0)
+    sidekiq-scheduler (5.0.3)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 6, < 8)
+      tilt (>= 1.4.0)
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -271,6 +295,7 @@ GEM
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     thor (1.2.2)
+    tilt (2.2.0)
     timeout (0.4.0)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
@@ -323,6 +348,7 @@ DEPENDENCIES
   htmlbeautifier
   importmap-rails
   jbuilder
+  letter_opener
   momentjs-rails
   pg (~> 1.1)
   pry
@@ -332,6 +358,8 @@ DEPENDENCIES
   rspec-rails
   rufo
   selenium-webdriver
+  sidekiq
+  sidekiq-scheduler
   simple_form (~> 5.1.0)
   sprockets-rails
   standard

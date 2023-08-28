@@ -16,7 +16,9 @@ class RoomsController < ApplicationController
   end
 
   def get_room_reservations(rooms)
-    reservations = current_user.reservations.where(room_id: rooms.pluck(:id))
-    reservations.group_by(&:room_id)
+    if current_user
+      reservations = current_user.reservations.where(room_id: rooms.pluck(:id))
+      reservations.group_by(&:room_id)
+    end
   end
 end

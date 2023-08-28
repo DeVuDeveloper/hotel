@@ -4,9 +4,6 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 
 export default class extends Controller {
   connect() {
-    console.log('connect  stimulus')
-    console.log('roomId:', this.data.get("room-id"));
-    console.log('calendarId:', this.data.get("calendar-id"));
     this.loadCalendar();
   }
 

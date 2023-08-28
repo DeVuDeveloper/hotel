@@ -1,8 +1,7 @@
 class ReservationsController < ApplicationController
-  before_action :set_room
+  before_action :set_room, only: [:new, :create, :edit, :update]
 
   def new
-    @room = Room.find(params[:room_id])
     @reservation = Reservation.new
   end
 
@@ -12,6 +11,7 @@ class ReservationsController < ApplicationController
     price_calculator = PriceCalculatorService.new(@room, @reservation.start_date, @reservation.end_date, @reservation.number_of_guests)
     @reservation.total_price = price_calculator.call
     if @reservation.save
+      ReservationMailer.confirmation_email(@reservation).deliver_now
       @reservation.dates.each do |date|
         calendar_entry = @room.calendar.calendar_entries.find_by(date: date)
         calendar_entry.update(available: false) if calendar_entry
@@ -40,6 +40,17 @@ class ReservationsController < ApplicationController
     redirect_to rooms_path, notice: "Reservation was successfully canceled."
   else
     redirect_to rooms_path, alert: "Failed to cancel reservation."
+  end
+end
+
+def confirm
+  @reservation = Reservation.find(params[:id])
+  @reservation.generate_token
+
+  if @reservation.update(status: :confirmed)
+    redirect_to rooms_path, notice: 'Reservation was successfully confirmed'
+  else
+    redirect_to rooms_path, alert: 'There are some problems with confirming reservation.'
   end
 end
 
