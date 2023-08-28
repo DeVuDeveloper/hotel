@@ -9,10 +9,10 @@ class Room < ApplicationRecord
   validates :number_of_beds, numericality: {greater_than: 0}
   validates :description, presence: true
   validates :image, presence: true
-  validates :summer_price, numericality: { greater_than_or_equal_to: 0 }
-  validates :winter_price, numericality: { greater_than_or_equal_to: 0 }
-  validates :spring_price, numericality: { greater_than_or_equal_to: 0 }
-  validates :autumn_price, numericality: { greater_than_or_equal_to: 0 }
+  validates :summer_price, numericality: {greater_than_or_equal_to: 0}
+  validates :winter_price, numericality: {greater_than_or_equal_to: 0}
+  validates :spring_price, numericality: {greater_than_or_equal_to: 0}
+  validates :autumn_price, numericality: {greater_than_or_equal_to: 0}
 
   broadcasts_to ->(room) { "rooms" }, inserts_by: :prepend
   scope :ordered, -> { order(id: :desc) }
