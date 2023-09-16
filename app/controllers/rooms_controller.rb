@@ -2,11 +2,11 @@ class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
   def index
-    @rooms = Room.includes(image_attachment: :blob).all.paginate(page: params[:page], per_page: 2)
+    @rooms = Room.includes([image_attachment: :blob]).all.paginate(page: params[:page], per_page: 2)
     @room_reservations = get_room_reservations(@rooms)
   end
-
-  def show
+  
+ def show
   end
 
   private
