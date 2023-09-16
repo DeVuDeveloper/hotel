@@ -17,6 +17,7 @@ class Reservation < ApplicationRecord
     cancelled: "Cancelled"
   }
 
+  after_create_commit :schedule_reminder_email
   after_create_commit -> { broadcast_prepend_to "reservations", partial: "admin/dashboard/reservations/reservation", locals: {reservation: self}, target: "reservations" }
 
   def dates
@@ -27,14 +28,8 @@ class Reservation < ApplicationRecord
     self.token ||= SecureRandom.hex(20)
   end
 
-  def self.send_reminder_emails
-    puts "Searching for reservations..."
-    reservations_to_remind = where(start_date: 1.week.from_now.to_date)
-    puts "Found #{reservations_to_remind.count} reservations to remind."
-
-    reservations_to_remind.each do |reservation|
-      UserMailer.send_reminder_email(reservation).deliver_later
-    end
+  def schedule_reminder_email
+    SendReminderEmailJob.perform_at(2.days.from_now, self.id)
   end
 
   private

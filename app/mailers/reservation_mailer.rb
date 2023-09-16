@@ -3,6 +3,6 @@ class ReservationMailer < ApplicationMailer
 
   def confirmation_email(reservation)
     @reservation = reservation
-    mail(to: @reservation.user.email, subject: "Potvrdite svoju rezervaciju")
+    mail(to: @reservation.user.email, subject: "Confirm your reservation")
   end
 end
