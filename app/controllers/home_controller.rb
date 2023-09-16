@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @hotels = Hotel.all
+    @hotels = Hotel.includes(images_attachments: :blob).all
   end
 
   def contact_new

@@ -40,6 +40,7 @@ group :development do
   gem "standard"
   gem "web-console"
   gem "letter_opener"
+  gem 'bullet'
 end
 
 group :test do
