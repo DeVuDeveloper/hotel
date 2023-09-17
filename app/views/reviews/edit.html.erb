@@ -1,0 +1,17 @@
+<%= turbo_frame_tag @review do %>
+  <%= simple_form_for [@hotel, @review], url: hotel_review_path(@hotel), class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4", method: :put do |form| %>
+  <%= form_error_notification(@review)%>
+    <div class="mb-4">
+      <%= form.label :rating, 'Rating (1-5)', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.input :rating, as: :numeric, in: 1..5, input_html: { class: "w-full py-2 px-3 leading-tight border border-gray-300 rounded focus:outline-none focus:bg-white focus:border-blue-500" } %>
+    </div>
+    <div class="mb-6">
+      <%= form.label :comment, 'Comment', class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.input :comment, as: :text, input_html: { class: "w-full h-32 py-2 px-3 leading-tight border border-gray-300 rounded resize-none focus:outline-none focus:bg-white focus:border-blue-500" } %>
+    </div>
+    <div class="flex flex-col items-center justify-between">
+      <%= form.button :submit, 'Submit Review', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <%= link_to "Cancel", root_path, class: "text-red-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+  <% end %>
+<% end %>

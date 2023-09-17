@@ -1,8 +1,10 @@
-class HomeController < ApplicationController
-  caches_action :index
-  
+class HotelsController < ApplicationController
+
   def index
     @hotels = Hotel.includes(images_attachments: :blob).all
+    @hotel = Hotel.first
+    @reviews = Review.includes(:user).all
+    @average_rating = RatingCalculatorService.calculate_average_rating(@reviews)
   end
 
   def contact_new

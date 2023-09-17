@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
   def index
-    all_rooms = Room.all
+    all_rooms = Room.includes(image_attachment: :blob).all
     @rooms = all_rooms.paginate(page: params[:page], per_page: 2)
 
     Rails.cache.fetch("all_rooms", expires_in: 1.hour) do

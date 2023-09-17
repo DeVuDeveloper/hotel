@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     sessions: 'sessions',
   }
 
-  root "home#index"
+  root "hotels#index"
   post "/generate_calendars", to: "rooms#generate_calendars", as: :generate_calendars
 
   namespace :admin do
@@ -30,8 +30,8 @@ Rails.application.routes.draw do
   end
 
   resources :home, only: :index
-  get "contact", to: "home#contact_new"
-  post "contact", to: "home#contact_create"
+  get "contact", to: "hotels#contact_new"
+  post "contact", to: "hotels#contact_create"
 
   resources :hotels do
     resources :rooms
