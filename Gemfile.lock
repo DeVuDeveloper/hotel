@@ -33,7 +33,7 @@ GEM
       rack-test (>= 0.6.3)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.2.0)
-    actionpack-page_caching (1.2.4)
+    actionpack-action_caching (1.2.2)
       actionpack (>= 4.0.0)
     actiontext (7.0.6)
       actionpack (= 7.0.6)
@@ -345,7 +345,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  actionpack-page_caching
+  actionpack-action_caching
   bootsnap
   bullet
   capybara (~> 3.35, >= 3.35.3)

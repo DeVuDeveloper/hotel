@@ -6,7 +6,7 @@ class Admin::Dashboard::ReservationsController < ApplicationController
   layout "admin"
 
   def index
-    @reservations = Reservation.all
+    @reservations = Reservation.includes(:user).all
     @page_title = "Reservations"
   end
 

@@ -1,7 +1,9 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'sessions',
+  }
 
   root "home#index"
   post "/generate_calendars", to: "rooms#generate_calendars", as: :generate_calendars
@@ -36,6 +38,7 @@ Rails.application.routes.draw do
     resources :amenities
     resources :activities
     resources :messages
+    resources :reviews
   end
 
   resources :rooms do
@@ -57,6 +60,5 @@ Rails.application.routes.draw do
     resources :payments
   end
 
-  resources :reviews
   mount Sidekiq::Web => "/sidekiq"
 end

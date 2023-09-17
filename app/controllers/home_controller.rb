@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-  caches_page :index
-
+  caches_action :index
+  
   def index
     @hotels = Hotel.includes(images_attachments: :blob).all
   end

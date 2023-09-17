@@ -27,7 +27,9 @@ gem "importmap-rails"
 gem "will_paginate", "~> 4.0"
 gem "sidekiq"
 gem "sidekiq-scheduler"
-gem "actionpack-page_caching"
+
+gem 'actionpack-action_caching'
+
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
