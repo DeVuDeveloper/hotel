@@ -7,7 +7,7 @@
             <i class="fas fa-user text-gray-500"></i>
           </div>
           <div>
-            <p class="text-sm font-semibold text-gray-700"><%= review.user.email %></p>
+            <p class="text-sm font-medium text-gray-700"><%= review.user.email %></p>
             <div class="flex items-center text-yellow-400">
               <% review.rating.times do %>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline fill-current">
@@ -17,6 +17,7 @@
             </div>
           </div>
         </div>
+<% if review.user == current_user %>
         <div class="flex space-x-2 mt-4">
           <%= link_to edit_hotel_review_path(@hotel, review), class: "text-blue-500 hover:underline", remote: true do %>
             <i class="fas fa-edit"></i>
@@ -25,6 +26,7 @@
             <i class="fas fa-trash-alt"></i>
           <% end %>
         </div>
+<% end %>
       </div>
       <p class="text-gray-600 whitespace-pre-wrap text-start"><%= review.comment %></p>
     </div>

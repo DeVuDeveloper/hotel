@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_hotel
   before_action :set_review, only: [:edit, :update, :destroy]
-
+  
   def new
     @review = @hotel.reviews.build
   end
@@ -62,4 +62,5 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:rating, :comment, :hotel_id, :user_id)
   end
+
 end

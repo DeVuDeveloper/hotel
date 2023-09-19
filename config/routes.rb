@@ -22,6 +22,7 @@ Rails.application.routes.draw do
         end
       end
       resources :users
+      resources :user_messages
     end
   end
 
@@ -60,5 +61,6 @@ Rails.application.routes.draw do
     resources :payments
   end
 
+  post '/chatbot/receive_message', to: 'chatbot#receive_message'
   mount Sidekiq::Web => "/sidekiq"
 end

@@ -33,6 +33,13 @@
               <span class="block pb-1 text-xs text-gray-400 md:inline-block md:pb-0 md:text-base md:text-gray-200"><%= t('global.admin_sidebar.reservations') %></span>
             <% end %>
           </li>
+
+          <li class="mr-3 flex-1">
+            <%= active_link_to admin_dashboard_user_messages_path, class: "block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-blue-500", active_class: "border-blue-400" do %>
+              <i class="fa fa-exclamation pr-0 md:pr-3"></i>
+              <span class="block pb-1 text-xs text-gray-400 md:inline-block md:pb-0 md:text-base md:text-gray-200"><%= t('global.admin_sidebar.tickets') %></span>
+            <% end %>
+          </li>
         
       </ul>
     </div>

@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many_attached :images
+  has_many :user_messages, dependent: :destroy
 
   validates :email, presence: true
   validates :role, presence: true
