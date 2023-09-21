@@ -1,10 +1,10 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
-    sessions: 'sessions',
-  }
 
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
   root "hotels#index"
   post "/generate_calendars", to: "rooms#generate_calendars", as: :generate_calendars
 
@@ -60,7 +60,6 @@ Rails.application.routes.draw do
   resources :reservations do
     resources :payments
   end
-
   post '/chatbot/receive_message', to: 'chatbot#receive_message'
   mount Sidekiq::Web => "/sidekiq"
 end

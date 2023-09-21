@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :validatable
+    :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   enum role: {guest: 0, user: 1, manager: 2, admin: 3, super_admin: 4}
 
@@ -13,6 +13,13 @@ class User < ApplicationRecord
   validates :role, presence: true
 
   after_create_commit -> { broadcast_prepend_to "users", partial: "admin/dashboard/users/user", locals: {user: self}, target: "users" }
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+    end
+  end
 
   def is_superadmin?
     role == "super_admin"

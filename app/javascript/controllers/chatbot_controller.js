@@ -72,7 +72,7 @@ export default class extends Controller {
     const welcomeMessage = document.createElement("p");
     welcomeMessage.innerHTML = `
       <span class="font-bold text-blue-500"><i class="fas fa-robot"></i></span>
-      <span class="ml-2 text-gray-600">Hello, how can I assist you?</span>
+      <span class="ml-2 text-gray-600">Hello, here you can ask about your reservations and create issue tickets?</span>
     `;
     this.chatContentTarget.appendChild(welcomeMessage);
     this.chatContentTarget.scrollTop = this.chatContentTarget.scrollHeight;

@@ -1,17 +1,19 @@
 <div data-controller="chatbot" class="fixed bottom-24 right-24">
-  <button data-action="click->chatbot#toggleChat" class=" text-blue-500 font-bold py-2 px-2 rounded-full">
-   <i class="fas fa-robot fa-2x"></i>
+  <button data-action="click->chatbot#toggleChat" class="text-blue-500 font-bold py-2 px-2 rounded-full">
+    <i class="fas fa-robot fa-2x"></i>
   </button>
  
-<div data-controller="chat" data-chatbot-target="chatWindow" class="fixed bottom-24 right-4 hidden bg-white border border-gray-300 rounded w-64 h-80">
-  <button data-action="click->chatbot#toggleChat" class="absolute top-2 right-2 text-red-500 hover:text-red-700">
-    X
-  </button>
-  <div data-chatbot-target="chatContent" class="p-4 h-64 overflow-y-auto"></div>
-  <input type="text" data-chatbot-target="messageInput" class="border rounded p-2 w-full mt-2">
-  <button data-action="click->chatbot#sendMessage" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full mt-2">
-    Send
-  </button>
+  <div data-controller="chat" data-chatbot-target="chatWindow" class="fixed bottom-24 right-4 hidden bg-white border border-gray-300 rounded w-64 h-80">
+    <button data-action="click->chatbot#toggleChat" class="absolute top-2 right-2 text-red-500 hover:text-red-700">
+      X
+    </button>
+    <div data-chatbot-target="chatContent" class="p-4 h-64 overflow-y-auto"></div>
+    <input type="text" data-chatbot-target="messageInput" class="border rounded p-2 w-full mt-2" 
+           id="messageInputField">
+    <button data-action="click->chatbot#sendMessage" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full mt-2">
+      Send
+    </button>
+  </div>
 </div>
 
 

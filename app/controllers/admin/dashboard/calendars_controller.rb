@@ -9,7 +9,7 @@ class Admin::Dashboard::CalendarsController < ApplicationController
 
   def index
     if @hotel
-      @calendars = Calendar.all
+      @calendars = Calendar.includes(:room).all
     end
     @page_title = "Calendars"
   end

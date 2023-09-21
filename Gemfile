@@ -27,9 +27,9 @@ gem "importmap-rails"
 gem "will_paginate", "~> 4.0"
 gem "sidekiq"
 gem "sidekiq-scheduler"
-
-gem 'actionpack-action_caching'
-
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
@@ -37,6 +37,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
   gem "pry"
+  gem 'dotenv-rails'
 end
 
 group :development do

@@ -5,6 +5,7 @@ class HotelsController < ApplicationController
     @hotel = Hotel.first
     @reviews = Review.includes(:user).all
     @average_rating = RatingCalculatorService.calculate_average_rating(@reviews)
+    session[:cookies_accepted] = nil
   end
 
   def contact_new
