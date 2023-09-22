@@ -1,6 +1,8 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  get 'notifications/index'
+  resources :notification_messages
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks'
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
       end
       resources :users
       resources :user_messages
+      resources :notification_messages
     end
   end
 
@@ -61,5 +64,6 @@ Rails.application.routes.draw do
     resources :payments
   end
   post '/chatbot/receive_message', to: 'chatbot#receive_message'
+  resources :notifications, only: [:index]
   mount Sidekiq::Web => "/sidekiq"
 end

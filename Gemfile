@@ -30,6 +30,7 @@ gem "sidekiq-scheduler"
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
+gem "noticed", "~> 1.6"
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]

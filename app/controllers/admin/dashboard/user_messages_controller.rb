@@ -9,6 +9,7 @@ class Admin::Dashboard::UserMessagesController < ApplicationController
   end
 
   def show
+    @page_title = "Ticket Details"
   end
 
   def destroy

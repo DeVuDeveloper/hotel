@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many_attached :images
   has_many :user_messages, dependent: :destroy
+  has_many :notifications, as: :recipient, dependent: :destroy
+  has_many :notification_messages
 
   validates :email, presence: true
   validates :role, presence: true
