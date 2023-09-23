@@ -1,6 +1,9 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  get 'newsletter_subscribers/new'
+  get 'newsletter_subscribers/create'
+  get 'newsletter_subscribers/destroy'
   get 'notifications/index'
   resources :notification_messages
 
@@ -26,8 +29,14 @@ Rails.application.routes.draw do
       resources :users
       resources :user_messages
       resources :notification_messages
+      resources :newsletters do
+        post 'subscribe', on: :collection
+      end
     end
   end
+
+  get 'admin/dashboard/newsletters/unsubscribe/:user_id/:token', to: 'admin/dashboard/newsletters#unsubscribe', as: 'unsubscribe_newsletter'
+
 
   namespace :manager do
     get "dashboard", to: "dashboard#index"
@@ -65,5 +74,6 @@ Rails.application.routes.draw do
   end
   post '/chatbot/receive_message', to: 'chatbot#receive_message'
   resources :notifications, only: [:index]
+  resources :newsletter_subscribers, only: [:new, :create, :destroy]
   mount Sidekiq::Web => "/sidekiq"
 end

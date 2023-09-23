@@ -119,9 +119,10 @@ table {
 }
 
 .scroll-room {
-  max-height: 78%;
+  max-height: 85%;
   overflow-y: scroll;
 }
+
 
 .flash__message {
   font-size: 0.875rem;

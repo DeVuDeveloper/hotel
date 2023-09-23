@@ -7,8 +7,7 @@ class Admin::Dashboard::NotificationMessagesController < ApplicationController
   def index
     @notification_messages = NotificationMessage.includes(:user).all
     @page_title = "Notifications"
-   
-    @notification = Notification.find_by(params[:notification_message])
+    @notification = current_user.notifications.find_by(params[:notification_message])
   end
 
   def show

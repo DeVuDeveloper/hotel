@@ -35,7 +35,6 @@ document.addEventListener("turbo:load", function() {
 
     thumbnails.forEach((thumbnail, index) => {
       thumbnail.addEventListener("click", function() {
-        console.log("Thumbnail clicked. Index:", index);
         showImage(index);
         resetSlideshow();
       });

@@ -21,11 +21,12 @@
         <%= render(SidebarComponent.new(user: current_user)) %>
         <section class="w-full h-full">
           <%= render(NavbarComponent.new(user: current_user)) %>
-         
+          
           <%= yield %>
            <% if cookies[:allow_cookies].blank? %>
             <%= render 'layouts/cookies_bar' %>
           <% end %>
+         
           <%= render(FooterComponent.new) %>
         </section>
         <%= render 'shared/chatbot' %>

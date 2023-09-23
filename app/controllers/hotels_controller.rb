@@ -1,11 +1,16 @@
 class HotelsController < ApplicationController
 
   def index
+    @user = current_user
     @hotels = Hotel.includes(images_attachments: :blob).all
     @hotel = Hotel.first
     @reviews = Review.includes(:user).all
     @average_rating = RatingCalculatorService.calculate_average_rating(@reviews)
     session[:cookies_accepted] = nil
+    respond_to do |format|
+      format.html
+      format.json { render json: @hotels }
+    end
   end
 
   def contact_new

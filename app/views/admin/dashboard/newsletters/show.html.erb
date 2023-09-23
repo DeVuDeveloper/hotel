@@ -8,10 +8,10 @@
 <div class="container mx-auto mt-1">
   <div class="w-full">
     <li class="bg-gray-800 border-b border-gray-200 text-gray-400 flex flex-col py-3 px-4 pl-8">
-      <p class="text-green-500 font-bold mb-1">Notification Id: <%= @notification_message.id %></p>
-      <p class="text-blue-500 font-bold mb-1">Contact Info: <%= @notification_message.user.email %></p>
+      <p class="text-green-500 font-bold mb-1">Notification Id: <%= @newsletter.id %></p>
       <div class="bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md">
-        <p><%= @notification_message.content %></p>
+        <p><strong>Subject:</strong> <%= @newsletter.subject %></p>
+        <p><strong>Content:<strong> <%= @newsletter.content %></p>
       </div>
     </li>
   </div>

@@ -50,6 +50,12 @@ class CookieBar {
 
         this.cookiesBar.classList.add('hidden');
     }
+
+    setSubscriptionCookie(subscribed) {
+        Cookies.set('subscribed', subscribed ? 'yes' : 'no', {
+          expires: 365
+        });
+      }
 }
 
 window.onload = function () {
