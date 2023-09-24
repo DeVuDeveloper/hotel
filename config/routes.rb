@@ -35,8 +35,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'admin/dashboard/newsletters/unsubscribe/:user_id/:token', to: 'admin/dashboard/newsletters#unsubscribe', as: 'unsubscribe_newsletter'
-
+  get 'unsubscribe/:user_id/:token', to: 'admin/dashboard/newsletters#unsubscribe', as: 'unsubscribe_newsletter'
 
   namespace :manager do
     get "dashboard", to: "dashboard#index"

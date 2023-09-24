@@ -3,14 +3,15 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   initialize() {
     const isSubscribed = this.getSubscriptionCookie() === 'yes';
-    if (!isSubscribed) {
+    const hasDeclined = this.getDeclinedCookie() === 'yes';
+
+    if (!isSubscribed && !hasDeclined) {
       this.openModal();
     }
   }
 
   subscribe() {
     const isSubscribed = this.getSubscriptionCookie() === 'yes';
-    
 
     if (!isSubscribed) {
       fetch('/admin/dashboard/newsletters/subscribe', {
@@ -44,30 +45,10 @@ export default class extends Controller {
     }
   }
 
-  unsubscribe() {
-    const user_id = this.data.get("user-id"); // Dohvatite user_id iz podataka na elementu
-    const token = this.data.get("token"); // Dohvatite token iz podataka na elementu
-  
-    fetch(`/admin/dashboard/newsletters/unsubscribe/${user_id}/${token}`, {
-      method: 'GET',
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data.unsubscribed) {
-        this.setSubscriptionCookie(false); // Postavite kolačić na "no" jer je korisnik odjavljen
-        // Možete dodati dodatne radnje kao što je prikazivanje potvrde odjave
-      } else {
-        console.error('Unsubscription failed');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+  decline() {
+    this.setSubscriptionCookie(false);
+    this.setDeclinedCookie(true);
+    this.closeModal();
   }
 
   openModal() {
@@ -90,6 +71,16 @@ export default class extends Controller {
 
   setSubscriptionCookie(subscribed) {
     Cookies.set('subscribed', subscribed ? 'yes' : 'no', {
+      expires: 365
+    });
+  }
+
+  getDeclinedCookie() {
+    return Cookies.get('declined');
+  }
+
+  setDeclinedCookie(declined) {
+    Cookies.set('declined', declined ? 'yes' : 'no', {
       expires: 365
     });
   }

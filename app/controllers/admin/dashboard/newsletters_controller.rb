@@ -20,12 +20,15 @@ class Admin::Dashboard::NewslettersController < ApplicationController
 
   def create
     @newsletter = Newsletter.new(newsletter_params)
-
+  
     selected_subscribers = User.where(subscribed: true)
-
+  
     if @newsletter.save
-      send_newsletter_to_subscribers(@newsletter)
 
+      unsubscribe_link = unsubscribe_newsletter_url(user_id: current_user.id, token: current_user.unsubscribe_token)
+
+      send_newsletter_to_subscribers(@newsletter, unsubscribe_link)
+  
       respond_to do |format|
         format.html { redirect_to admin_dashboard_newsletters_path, notice: "Newsletter was successfully created and sent to subscribed users." }
         format.turbo_stream { flash.now[:notice] = "Newsletter was successfully created and sent to subscribed users." }
@@ -34,6 +37,15 @@ class Admin::Dashboard::NewslettersController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    @newsletter.destroy
+    respond_to do |format|
+      format.html { redirect_to admin_dashboard_newsletters_path, notice: "Newsletter was successfully destroyed." }
+      format.turbo_stream { flash.now[:notice] = "Newsletter was successfully destroyed." }
+    end
+  end
+  
 
   def subscribe
     if current_user.update(subscribed: true, unsubscribe_token: SecureRandom.hex(20))
@@ -50,7 +62,7 @@ class Admin::Dashboard::NewslettersController < ApplicationController
     user = User.find_by(id: user_id)
   
     if user && user.unsubscribe_token == token
-      user.update(subscribed: false) # Postavite subscribed na false
+      user.update(subscribed: false) 
       flash[:notice] = "You have been successfully unsubscribed from our newsletters."
     else
       flash[:error] = "Invalid unsubscribe link. Please contact support for assistance."
@@ -65,20 +77,21 @@ class Admin::Dashboard::NewslettersController < ApplicationController
 
   private
 
-  def send_newsletter_to_subscribers(newsletter)
+  def send_newsletter_to_subscribers(newsletter, unsubscribe_link)
     selected_subscribers = User.where(subscribed: true)
-
+  
     selected_subscribers.each do |user|
-      NewsletterMailer.send_newsletter(user, newsletter).deliver_now
+      NewsletterMailer.send_newsletter(user, newsletter, unsubscribe_link).deliver_now
     end
   end
+  
 
   def set_newsletter
     @newsletter = Newsletter.find(params[:id])
   end
 
   def newsletter_params
-    params.require(:newsletter).permit(:subject, :content)
+    params.require(:newsletter).permit(:subject)
   end
 
   def authorize_admin!

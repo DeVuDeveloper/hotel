@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_23_110905) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_23_023753) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -95,16 +95,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_23_110905) do
     t.index ["hotel_id"], name: "index_messages_on_hotel_id"
   end
 
-  create_table "newsletter_subscribers", force: :cascade do |t|
-    t.string "email"
-    t.boolean "subscribed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "newsletters", force: :cascade do |t|
     t.string "subject"
-    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -157,9 +149,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_23_110905) do
     t.string "status"
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
+    t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "token"
     t.index ["room_id"], name: "index_reservations_on_room_id"
     t.index ["token"], name: "index_reservations_on_token"
     t.index ["user_id"], name: "index_reservations_on_user_id"
@@ -203,15 +195,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_23_110905) do
     t.integer "role", default: 0, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "unsubscribe_token"
+    t.boolean "subscribed"
+    t.string "uid"
+    t.string "provider"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "uid"
-    t.string "provider"
-    t.boolean "subscribed"
-    t.string "unsubscribe_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unsubscribe_token"], name: "index_users_on_unsubscribe_token", unique: true

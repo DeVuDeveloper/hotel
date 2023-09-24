@@ -1,10 +1,10 @@
 class NewsletterMailer < ApplicationMailer
-  def send_newsletter(user, newsletter)
+  def send_newsletter(user, newsletter, unsubscribe_link)
     @user = user
     @newsletter = newsletter
-    mail(to: @user.email, subject: @newsletter.subject) do |format|
-      format.text { render plain: @newsletter.content }
-      format.html { render html: @newsletter.content }
+    @unsubscribe_link = unsubscribe_link
+    mail(to: user.email, subject: newsletter.subject) do |format|
+      format.html
     end
   end
 end
