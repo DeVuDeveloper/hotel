@@ -14,20 +14,19 @@ class Admin::Dashboard::NewslettersController < ApplicationController
   end
 
   def new
-    @user = current_user
+    @selected_subscribers = User.where(subscribed: true)
     @newsletter = Newsletter.new
   end
-
-  def create
-    @newsletter = Newsletter.new(newsletter_params)
   
+  def create
+    @newsletter = current_user.newsletters.build(newsletter_params)
     selected_subscribers = User.where(subscribed: true)
   
     if @newsletter.save
-
-      unsubscribe_link = unsubscribe_newsletter_url(user_id: current_user.id, token: current_user.unsubscribe_token)
-
-      send_newsletter_to_subscribers(@newsletter, unsubscribe_link)
+      selected_subscribers.each do |user|
+        unsubscribe_link = unsubscribe_newsletter_url(user_id: user.id, token: user.unsubscribe_token)
+        NewsletterMailer.send_newsletter(user, @newsletter, unsubscribe_link).deliver_now
+      end
   
       respond_to do |format|
         format.html { redirect_to admin_dashboard_newsletters_path, notice: "Newsletter was successfully created and sent to subscribed users." }
@@ -37,6 +36,7 @@ class Admin::Dashboard::NewslettersController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+  
 
   def destroy
     @newsletter.destroy
@@ -71,20 +71,7 @@ class Admin::Dashboard::NewslettersController < ApplicationController
     redirect_to root_path
   end
 
-  def unsubscribe_link_for(user, token)
-    unsubscribe_url(user_id: user.id, token: token)
-  end
-
   private
-
-  def send_newsletter_to_subscribers(newsletter, unsubscribe_link)
-    selected_subscribers = User.where(subscribed: true)
-  
-    selected_subscribers.each do |user|
-      NewsletterMailer.send_newsletter(user, newsletter, unsubscribe_link).deliver_now
-    end
-  end
-  
 
   def set_newsletter
     @newsletter = Newsletter.find(params[:id])

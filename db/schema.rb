@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_23_023753) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_25_025634) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -99,6 +99,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_23_023753) do
     t.string "subject"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_newsletters_on_user_id"
   end
 
   create_table "notification_messages", force: :cascade do |t|
@@ -216,6 +218,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_23_023753) do
   add_foreign_key "calendar_entries", "calendars"
   add_foreign_key "calendars", "rooms"
   add_foreign_key "messages", "hotels"
+  add_foreign_key "newsletters", "users"
   add_foreign_key "notification_messages", "users"
   add_foreign_key "payments", "reservations"
   add_foreign_key "payments", "users"

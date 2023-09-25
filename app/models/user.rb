@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :user_messages, dependent: :destroy
   has_many :notifications, as: :recipient, dependent: :destroy
   has_many :notification_messages
+  has_many :newsletters
 
   validates :email, presence: true
   validates :role, presence: true

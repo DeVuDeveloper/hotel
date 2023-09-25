@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Hotel</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
@@ -13,24 +14,24 @@
     <%= vite_client_tag %>
     <%= vite_stylesheet_tag 'application', data: { "turbo-track": "reload" } %>
     <%= vite_javascript_tag 'application' %>
-    <body>
-      <main class="h-screen w-full bg-white relative flex overflow-hidden">
-        <div id="flash" class="fixed top-4rem right-1/2 transform translate-x-1/2 flex-col max-w-[100%] w-max gap-5rem px-0 py-4">
-          <%= render "layouts/flash" %>
-        </div>
-        <%= render(SidebarComponent.new(user: current_user)) %>
-        <section class="w-full h-full">
-          <%= render(NavbarComponent.new(user: current_user)) %>
-          
-          <%= yield %>
-           <% if cookies[:allow_cookies].blank? %>
-            <%= render 'layouts/cookies_bar' %>
-          <% end %>
-         
-          <%= render(FooterComponent.new) %>
-        </section>
-        <%= render 'shared/chatbot' %>
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.min.js" defer></script>
-      </main>
-    </body>
-  </html>
+  </head>
+
+  <body>
+    <main class="h-screen w-full bg-white relative flex overflow-hidden">
+      <div id="flash" class="fixed top-4rem right-1/2 transform translate-x-1/2 flex-col max-w-[100%] w-max gap-5rem px-0 py-4">
+        <%= render "layouts/flash" %>
+      </div>
+      <%= render(SidebarComponent.new(user: current_user)) %>
+      <section class="w-full h-full">
+        <%= render(NavbarComponent.new(user: current_user)) %>
+        <%= yield %>
+        <% if cookies[:allow_cookies].blank? %>
+          <%= render 'layouts/cookies_bar' %>
+        <% end %>
+        <%= render(FooterComponent.new) %>
+      </section>
+      <%= render 'shared/chatbot' %>
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.min.js" defer></script>
+    </main>
+  </body>
+</html>

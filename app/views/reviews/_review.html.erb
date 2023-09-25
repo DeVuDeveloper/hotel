@@ -1,5 +1,5 @@
 <%= turbo_frame_tag review do %>
-  <div class="mt-8 space-y-2 flex flex-col">
+  <div class=" space-y-2 flex flex-col">
     <div class="bg-white shadow-md p-2 rounded-md">
       <div class="flex items-center justify-between mb-2">
         <div class="flex items-center">
@@ -17,19 +17,18 @@
             </div>
           </div>
         </div>
-<% if review.user == current_user %>
-        <div class="flex space-x-2 mt-4">
-          <%= link_to edit_hotel_review_path(@hotel, review), class: "text-blue-500 hover:underline", remote: true do %>
-            <i class="fas fa-edit"></i>
-          <% end %>
-          <%= button_to hotel_review_path(@hotel, review), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-500 hover:underline", remote: true do %>
-            <i class="fas fa-trash-alt"></i>
-          <% end %>
-        </div>
-<% end %>
+        <% if review.user == current_user %>
+          <div class="flex space-x-2 mt-4">
+            <%= link_to edit_hotel_review_path(@hotel, review), class: "text-blue-500 hover:underline", remote: true do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+            <%= button_to hotel_review_path(@hotel, review), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-500 hover:underline", remote: true do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </div>
+        <% end %>
       </div>
       <p class="text-gray-600 whitespace-pre-wrap text-start"><%= review.comment %></p>
     </div>
   </div>
 <% end %>
-

@@ -1,6 +1,6 @@
 <%= turbo_stream_from "reviews" %>
 <% if @user.present? %>
-  <div id="newsletterMeessage" data-controller="newsletter">
+  <div id="newsletterMessage" data-controller="newsletter">
     <div class="modal" data-newsletter-target="modal" style="display: none;">
       <div class="modal-content p-4 bg-white shadow-md rounded-lg">
         <span class="close absolute top-2 right-2 text-gray-600 cursor-pointer" data-action="newsletter#close">&times;</span>
@@ -12,12 +12,12 @@
     </div>
   </div>
 <% end %>
-<div class="scroll-hotel relative w-full items-center justify-center overflow-x-hidden py-8 md:py-2 mt-24 text-center">
+<div class="scroll-hotel relative w-full items-center justify-center overflow-x-hidden py-8 md:py-2 text-center">
   <h1 class="font-heading relative my-4 text-2xl font-bold leading-tight text-cyan-600 md:text-4xl xl:mb-8"><%= @hotel.name %></h1>
-  <div class="container mx-auto flex max-w-6xl flex-col items-center justify-between rounded-lg px-4 md:-mt-48 lg:flex-row xl:px-0">
+  <div class="container mx-auto flex max-w-6xl flex-col items-center justify-between rounded-lg px-4 lg:flex-row xl:px-0">
     <%= render  @hotels, reviews: @reviews %>
     <div class="review-container flex flex-col justify-between mx-4 w-96">
-      <span  class= "mt-16" >
+      <span  class= "mt-4" >
         <%= turbo_frame_tag "reviews" do %>
           <%= render  @reviews %>
         <% end %>

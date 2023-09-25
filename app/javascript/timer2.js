@@ -1,5 +1,5 @@
 function newslettersBanner() {
-    var newsletterBanner = document.getElementById('newsletterMeessage');
+    var newsletterBanner = document.getElementById('newsletterMessage');
     if (newsletterBanner) {
       newsletterBanner.style.display = 'none';
       setTimeout(function () {
