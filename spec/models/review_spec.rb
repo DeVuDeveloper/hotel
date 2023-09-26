@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe Review, type: :model do
@@ -5,7 +7,7 @@ RSpec.describe Review, type: :model do
   let(:hotel) { FactoryBot.create(:hotel) }
 
   it "is valid with valid attributes" do
-    review = FactoryBot.build(:review, user: user, hotel: hotel)
+    review = FactoryBot.build(:review, user:, hotel:)
     expect(review).to be_valid
   end
 

@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  get 'newsletter_subscribers/new'
-  get 'newsletter_subscribers/create'
-  get 'newsletter_subscribers/destroy'
-  get 'notifications/index'
+  get "newsletter_subscribers/new"
+  get "newsletter_subscribers/create"
+  get "newsletter_subscribers/destroy"
+  get "notifications/index"
   resources :notification_messages
 
   devise_for :users, controllers: {
-    omniauth_callbacks: 'users/omniauth_callbacks'
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
   root "hotels#index"
   post "/generate_calendars", to: "rooms#generate_calendars", as: :generate_calendars
@@ -30,12 +32,16 @@ Rails.application.routes.draw do
       resources :user_messages
       resources :notification_messages
       resources :newsletters do
-        post 'subscribe', on: :collection
+        post "subscribe", on: :collection
+      end
+      resources :push_notifications, except: %i[edit update] do
+        post "send_notification", on: :member
+        post "subscribe", on: :collection
       end
     end
   end
 
-  get 'unsubscribe/:user_id/:token', to: 'admin/dashboard/newsletters#unsubscribe', as: 'unsubscribe_newsletter'
+  get "unsubscribe/:user_id/:token", to: "admin/dashboard/newsletters#unsubscribe", as: "unsubscribe_newsletter"
 
   namespace :manager do
     get "dashboard", to: "dashboard#index"
@@ -71,8 +77,8 @@ Rails.application.routes.draw do
   resources :reservations do
     resources :payments
   end
-  post '/chatbot/receive_message', to: 'chatbot#receive_message'
+  post "/chatbot/receive_message", to: "chatbot#receive_message"
   resources :notifications, only: [:index]
-  resources :newsletter_subscribers, only: [:new, :create, :destroy]
+  resources :newsletter_subscribers, only: %i[new create destroy]
   mount Sidekiq::Web => "/sidekiq"
 end

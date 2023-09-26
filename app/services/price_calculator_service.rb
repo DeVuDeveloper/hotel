@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PriceCalculatorService
   def initialize(room, start_date, end_date, number_of_guests)
     @room = room

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AdminDashboardNavbarComponent < ViewComponent::Base
   def initialize(room:)
     @room = room
@@ -8,8 +10,6 @@ class AdminDashboardNavbarComponent < ViewComponent::Base
     active_class = is_active ? options[:active_class] : ""
     is_active ? options[:hover_class] : options[:default_hover_class]
 
-    link_to(path, options.merge(class: "#{options[:class]} #{active_class}")) do
-      yield
-    end
+    link_to(path, options.merge(class: "#{options[:class]} #{active_class}"), &block)
   end
 end

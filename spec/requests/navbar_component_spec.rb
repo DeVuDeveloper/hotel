@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe "Navigation", type: :request do
   describe "GET root_path" do
     it "displays the navigation bar" do

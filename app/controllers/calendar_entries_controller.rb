@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CalendarEntriesController < ApplicationController
   before_action :set_calendar_entries
 

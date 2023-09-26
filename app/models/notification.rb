@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Notification < ApplicationRecord
   include Noticed::Model
   belongs_to :recipient, polymorphic: true
@@ -8,8 +10,8 @@ class Notification < ApplicationRecord
     broadcast_append_later_to(
       recipient,
       :notifications,
-      target: 'notifications-list',
-      partial: 'notifications/notification',
+      target: "notifications-list",
+      partial: "notifications/notification",
       locals: {
         notification: self
       }

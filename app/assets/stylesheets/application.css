@@ -165,7 +165,7 @@ table {
 
 .cookies-bar {
   position: sticky;
-  bottom: 0;
+  bottom: 80px;
 
   border: 1px solid #9CA3AF;
   border-bottom: none;

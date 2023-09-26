@@ -1,4 +1,6 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "notification_messages/new", type: :view do
   before(:each) do
@@ -12,7 +14,6 @@ RSpec.describe "notification_messages/new", type: :view do
     render
 
     assert_select "form[action=?][method=?]", notification_messages_path, "post" do
-
       assert_select "textarea[name=?]", "notification_message[content]"
 
       assert_select "input[name=?]", "notification_message[user_id]"

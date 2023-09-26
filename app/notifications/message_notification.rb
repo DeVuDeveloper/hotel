@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MessageNotification < Noticed::Base
   deliver_by :database
 
@@ -6,7 +8,7 @@ class MessageNotification < Noticed::Base
   def message
     params[:notification_message].content
   end
-  
+
   def url
     message_path(params[:notification_message])
   end

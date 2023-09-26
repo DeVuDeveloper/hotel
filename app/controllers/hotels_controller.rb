@@ -1,5 +1,6 @@
-class HotelsController < ApplicationController
+# frozen_string_literal: true
 
+class HotelsController < ApplicationController
   def index
     @user = current_user
     @hotels = Hotel.includes(images_attachments: :blob).all

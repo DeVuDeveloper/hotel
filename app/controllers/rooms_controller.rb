@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :set_room, only: %i[show edit update destroy]
 
   def index
     all_rooms = Room.includes(image_attachment: :blob).all
@@ -10,8 +12,8 @@ class RoomsController < ApplicationController
     end
     @room_reservations = get_room_reservations(@rooms)
   end
-  
- def show
+
+  def show
   end
 
   private
@@ -21,9 +23,9 @@ class RoomsController < ApplicationController
   end
 
   def get_room_reservations(rooms)
-    if current_user
-      reservations = current_user.reservations.where(room_id: rooms.pluck(:id))
-      reservations.group_by(&:room_id)
-    end
+    return unless current_user
+
+    reservations = current_user.reservations.where(room_id: rooms.pluck(:id))
+    reservations.group_by(&:room_id)
   end
 end

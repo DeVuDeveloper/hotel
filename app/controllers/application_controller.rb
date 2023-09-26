@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -31,15 +33,15 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin!
-    unless current_user&.admin?
-      flash[:alert] = "You are not authorized to access this page."
-      redirect_to root_path
-    end
+    return if current_user&.admin?
+
+    flash[:alert] = "You are not authorized to access this page."
+    redirect_to root_path
   end
-  
+
   def skip_devise_controller_cache
-    if devise_controller?
-      expires_now
-    end
+    return unless devise_controller?
+
+    expires_now
   end
 end

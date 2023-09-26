@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class NotificationsController < ApplicationController
   def index
     @notifications = Notification.includes([:recipient]).where(recipient: current_user)
-     @notifications.mark_as_read!
+    @notifications.mark_as_read!
   end
 end

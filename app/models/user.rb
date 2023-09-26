@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
@@ -15,7 +17,10 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :role, presence: true
 
-  after_create_commit -> { broadcast_prepend_to "users", partial: "admin/dashboard/users/user", locals: {user: self}, target: "users" }
+  after_create_commit lambda {
+                        broadcast_prepend_to "users", partial: "admin/dashboard/users/user", locals: {user: self},
+                          target: "users"
+                      }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

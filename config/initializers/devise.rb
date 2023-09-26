@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Devise.setup do |config|
-
   config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
 
   require "devise/orm/active_record"
@@ -29,6 +28,6 @@ Devise.setup do |config|
   config.responder.error_status = :unprocessable_entity
 
   config.responder.redirect_status = :see_other
-  
-  config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH2_CLIENT_ID'], ENV['GOOGLE_OAUTH2_CLIENT_SECRET']
+
+  config.omniauth :google_oauth2, ENV["GOOGLE_OAUTH2_CLIENT_ID"], ENV["GOOGLE_OAUTH2_CLIENT_SECRET"]
 end

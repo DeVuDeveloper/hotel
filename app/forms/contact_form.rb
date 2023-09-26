@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ContactForm
   include ActiveModel::Model
 
-  FIELDS = %i[email text]
+  FIELDS = %i[email text].freeze
   attr_accessor :current_user, *FIELDS
 
   validates_format_of :email, with: Devise.email_regexp
@@ -10,6 +12,7 @@ class ContactForm
 
   def save
     return false unless valid?
+
     true
   end
 end

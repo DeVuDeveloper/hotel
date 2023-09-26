@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Room < ApplicationRecord
   belongs_to :hotel
   has_many :reservations, dependent: :destroy
@@ -14,24 +16,24 @@ class Room < ApplicationRecord
   validates :spring_price, numericality: {greater_than_or_equal_to: 0}
   validates :autumn_price, numericality: {greater_than_or_equal_to: 0}
 
-  broadcasts_to ->(room) { "rooms" }, inserts_by: :prepend
+  broadcasts_to ->(_room) { "rooms" }, inserts_by: :prepend
   scope :ordered, -> { order(id: :desc) }
 
   def booked_by_user?(user)
-    reservations.where(user: user).exists?
+    reservations.where(user:).exists?
   end
 
   def generate_calendar_entries_for_seasonal_prices
-    if calendar.blank?
-      create_calendar unless calendar
+    return unless calendar.blank?
 
-      (Date.today..1.year.from_now).each do |date|
-        seasonal_price = calculate_seasonal_price(date)
-        calendar.calendar_entries.build(date: date, price: seasonal_price, available: true)
-      end
+    create_calendar unless calendar
 
-      calendar.save
+    (Date.today..1.year.from_now).each do |date|
+      seasonal_price = calculate_seasonal_price(date)
+      calendar.calendar_entries.build(date:, price: seasonal_price, available: true)
     end
+
+    calendar.save
   end
 
   def calculate_seasonal_price(date)

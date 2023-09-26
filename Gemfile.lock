@@ -134,6 +134,7 @@ GEM
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
+    hkdf (1.0.0)
     htmlbeautifier (1.4.2)
     http (5.1.1)
       addressable (~> 2.8)
@@ -219,6 +220,7 @@ GEM
     omniauth-rails_csrf_protection (1.0.1)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
+    openssl (3.2.0)
     orm_adapter (0.5.0)
     parallel (1.23.0)
     parser (3.2.2.3)
@@ -322,6 +324,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    serviceworker-rails (0.6.0)
+      railties (>= 3.1)
     sidekiq (7.1.2)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
@@ -391,6 +395,10 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    web-push (3.0.0)
+      hkdf (~> 1.0)
+      jwt (~> 2.0)
+      openssl (~> 3.0)
     webdrivers (5.2.0)
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
@@ -433,6 +441,7 @@ DEPENDENCIES
   rspec-rails
   rufo
   selenium-webdriver
+  serviceworker-rails
   sidekiq
   sidekiq-scheduler
   simple_form (~> 5.1.0)
@@ -445,6 +454,7 @@ DEPENDENCIES
   vite_rails
   vite_ruby
   web-console
+  web-push
   webdrivers
   will_paginate (~> 4.0)
 

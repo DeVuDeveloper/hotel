@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/factories/reservations.rb
 FactoryBot.define do
   factory :reservation do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUserMessages < ActiveRecord::Migration[6.0]
   def change
     create_table :user_messages do |t|
@@ -7,4 +9,3 @@ class CreateUserMessages < ActiveRecord::Migration[6.0]
     end
   end
 end
-

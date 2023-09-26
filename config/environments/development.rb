@@ -22,7 +22,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
   config.action_controller.enable_fragment_cache_logging = true
 
-  config.cache_store = :redis_cache_store, { url: ENV["REDIS_URL"] }
+  config.cache_store = :redis_cache_store, {url: ENV["REDIS_URL"]}
 
   config.active_storage.service = :local
 
@@ -44,5 +44,5 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: "localhost", port: 5100 }
+  config.action_mailer.default_url_options = {host: "localhost", port: 5100}
 end
