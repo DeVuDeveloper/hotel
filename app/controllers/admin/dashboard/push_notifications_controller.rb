@@ -52,13 +52,13 @@ module Admin
           endpoint: params[:endpoint],
           p256dh: params[:p256dh],
           auth: params[:auth],
-          subscribed: true
+          subscribed: true,
         )
 
         if subscription.save
-          render json: {message: "Subscription successfully saved"}, status: :ok
+          render json: { message: "Subscription successfully saved" }, status: :ok
         else
-          render json: {error: "Error in storing subscription"}, status: :unprocessable_entity
+          render json: { error: "Error in storing subscription" }, status: :unprocessable_entity
         end
       end
 
@@ -79,14 +79,13 @@ module Admin
         message = {
           title: push_notification.title,
           body: push_notification.body,
-          icon: icon_url
+          icon: icon_url,
         }
 
-        WebPush.generate_key
         vapid_details = {
-          subject: "mailto:your@email.com",
-          public_key: "BPbz8vC1xrZ-BqugctqVPwgl6B93NKaiEg-79X03nCaz42Vc7n5NS8XYcReam87IHR9ccxscTVAVd0sBQwDw8wg",
-          private_key: "nMx-qGBhUAqf15QNOwIYlwwRbN7FyBKCLo-TCrzafVs"
+          subject: "mailto:#{ENV["DEFAULT_EMAIL"]}",
+          public_key: ENV["DEFAULT_APPLICATION_SERVER_KEY"],
+          private_key: ENV["DEFAULT_PRIVATE_KEY"],
         }
 
         subscriptions.each do |subscription|
@@ -95,7 +94,7 @@ module Admin
             endpoint: subscription.endpoint,
             p256dh: subscription.p256dh,
             auth: subscription.auth,
-            vapid: vapid_details
+            vapid: vapid_details,
           )
         end
 

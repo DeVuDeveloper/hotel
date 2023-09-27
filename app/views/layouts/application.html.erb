@@ -14,7 +14,7 @@
     <%= vite_stylesheet_tag 'application', data: { "turbo-track": "reload" } %>
     <%= vite_javascript_tag 'application' %>
   </head>
-  <body>
+  <body data-controller="push" data-application-server-key="<%= ENV['DEFAULT_APPLICATION_SERVER_KEY'] %>">
     <main class="h-screen w-full bg-white relative flex overflow-hidden">
       <div id="flash" class="fixed top-4rem right-1/2 transform translate-x-1/2 flex-col max-w-[100%] w-max gap-5rem px-0 py-4">
         <%= render "layouts/flash" %>
