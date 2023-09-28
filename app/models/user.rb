@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :notifications, as: :recipient, dependent: :destroy
   has_many :notification_messages
   has_many :newsletters
+  has_many :likes
+  has_many :liked_rooms, through: :likes, source: :room
 
   validates :email, presence: true
   validates :role, presence: true
@@ -39,5 +41,17 @@ class User < ApplicationRecord
 
   def is_manager?
     manager?
+  end
+
+  def likes_room?(room)
+    liked_rooms.include?(room)
+  end
+
+  def like(room)
+    liked_rooms << room unless likes_room?(room)
+  end
+
+  def unlike(room)
+    liked_rooms.delete(room) if likes_room?(room)
   end
 end

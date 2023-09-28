@@ -71,6 +71,9 @@ Rails.application.routes.draw do
     resources :calendars do
       resources :calendar_entries, only: :index
     end
+    member do
+      post 'like'
+    end
   end
 
   get "calculate_total_price", to: "reservations#calculate_total_price"

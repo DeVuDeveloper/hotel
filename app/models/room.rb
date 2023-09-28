@@ -5,6 +5,7 @@ class Room < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_one :calendar, dependent: :destroy
   has_one_attached :image
+  has_many :likes
 
   validates :name, presence: true
   validates :room_type, presence: true

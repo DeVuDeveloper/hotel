@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class RoomsController < ApplicationController
-  before_action :set_room, only: %i[show edit update destroy]
+  before_action :set_room, only: %i[show edit update destroy like]
+  before_action :authenticate_user!, only: [:like]
 
   def index
+    @user = current_user
     all_rooms = Room.includes(image_attachment: :blob).all
     @rooms = all_rooms.paginate(page: params[:page], per_page: 2)
 
@@ -16,6 +18,27 @@ class RoomsController < ApplicationController
   def show
   end
 
+  def like
+    existing_like = @room.likes.find_by(user_id: current_user.id)
+
+    if existing_like
+      existing_like.destroy
+      notice = "You unliked this room."
+    else
+      like = @room.likes.new(user_id: current_user.id, like: true)
+      if like.save
+        notice = "You liked this room."
+      else
+        notice = "Failed to like this room."
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to rooms_path, notice: notice }
+      format.turbo_stream { flash.now[:notice] = notice }
+    end
+  end
+
   private
 
   def set_room
@@ -24,7 +47,6 @@ class RoomsController < ApplicationController
 
   def get_room_reservations(rooms)
     return unless current_user
-
     reservations = current_user.reservations.where(room_id: rooms.pluck(:id))
     reservations.group_by(&:room_id)
   end

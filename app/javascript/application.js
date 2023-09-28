@@ -8,3 +8,4 @@ import "./custom/main.js";
 import "./timer.js";
 import "./timer2.js";
 import "./service-worker.js";
+import "./hover.js";

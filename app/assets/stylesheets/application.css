@@ -204,3 +204,23 @@ table {
     }
   }
 }
+
+.overlay-icons {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay-icons:hover {
+  opacity: 1;
+}
+
+.like-count-circle {
+  background-color: rgb(66, 66, 63);
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  line-height: 24px;
+  font-size: 12px;
+  margin-left: -16px;
+}
