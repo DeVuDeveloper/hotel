@@ -84,6 +84,6 @@ Rails.application.routes.draw do
   post "/chatbot/receive_message", to: "chatbot#receive_message"
   resources :notifications, only: [:index]
   resources :newsletter_subscribers, only: %i[new create destroy]
-
+  post '/api/send-location', to: 'api#send_location'
   mount Sidekiq::Web => "/sidekiq"
 end

@@ -10,5 +10,5 @@ import "./timer2.js";
 import "./service-worker.js";
 import "./hover.js";
 import "./favorite.js";
-import "./nav.js";
-
+import "./fav-nav.js";
+import "./location.js";
