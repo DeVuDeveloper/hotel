@@ -44,6 +44,4 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Greška prilikom slanja podataka na server:', error);
       });
   }
-  
-  
 });

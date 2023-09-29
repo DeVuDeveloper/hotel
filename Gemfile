@@ -20,6 +20,7 @@ gem "puma", "~> 5.0"
 gem "rails", "~> 7.0.6"
 gem "redis", "~> 4.0"
 gem "rufo"
+gem 'elasticsearch-model'
 gem "serviceworker-rails"
 gem "sidekiq"
 gem "sidekiq-scheduler"

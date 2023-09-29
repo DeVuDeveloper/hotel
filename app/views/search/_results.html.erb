@@ -1,0 +1,10 @@
+
+<h1>Rezultati pretrage</h1>
+<ul>
+  <% @rooms.each do |room| %>
+    <li>
+      <h2><%= room.name %></h2>
+      <p><%= room.description %></p>
+    </li>
+  <% end %>
+</ul>

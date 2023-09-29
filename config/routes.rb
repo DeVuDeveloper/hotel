@@ -85,5 +85,6 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
   resources :newsletter_subscribers, only: %i[new create destroy]
   post '/api/send-location', to: 'api#send_location'
+  get '/search', to: 'search#search_results'
   mount Sidekiq::Web => "/sidekiq"
 end

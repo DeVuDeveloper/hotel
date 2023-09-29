@@ -12,3 +12,4 @@ import "./hover.js";
 import "./favorite.js";
 import "./fav-nav.js";
 import "./location.js";
+import "./search-results.js";
