@@ -74,6 +74,7 @@ Rails.application.routes.draw do
     member do
       post 'like'
     end
+    get 'favorite', on: :collection
   end
 
   get "calculate_total_price", to: "reservations#calculate_total_price"
@@ -83,5 +84,6 @@ Rails.application.routes.draw do
   post "/chatbot/receive_message", to: "chatbot#receive_message"
   resources :notifications, only: [:index]
   resources :newsletter_subscribers, only: %i[new create destroy]
+
   mount Sidekiq::Web => "/sidekiq"
 end

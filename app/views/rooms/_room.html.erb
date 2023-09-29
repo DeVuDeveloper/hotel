@@ -3,8 +3,9 @@
     <div class="room-hover relative h-48 w-full border bg-cover bg-center shadow-inner sm:h-auto sm:w-1/4" style="background-image: url('<%= url_for(room.image) %>');">
       <div class="overlay-icons absolute top-0 left-0 w-full h-full flex justify-around opacity-0 transition-opacity duration-300">
         <span class="flex gap-4 px-4 rounded-full">
-          <p class="text-white font-bold">Dodaj</p>
-          <i class="favorite-icon fas fa-star text-white text-2xl cursor-pointer"></i>
+          <i class="favorite-icon fas fa-star text-yellow-300 text-2xl cursor-pointer"
+     data-room-id="<%= room.id %>"
+     data-room-name="<%= room.name %>"></i>
         </span>
         <span class="flex gap-4 text-red-500">
           <%= button_to like_room_path(room), method: :post, data: { turbo_frame: "_top" } do %>

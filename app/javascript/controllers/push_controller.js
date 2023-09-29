@@ -5,7 +5,6 @@ export default class extends Controller {
     if ("Notification" in window) {
       Notification.requestPermission().then((permission) => {
         if (permission === "granted") {
-          console.log("User allowed notifications.");
           this.registerServiceWorker();
         } else if (permission === "denied") {
           console.warn("User rejected to allow notifications.");
@@ -23,16 +22,10 @@ export default class extends Controller {
       navigator.serviceWorker
         .register("/service-worker.js")
         .then((serviceWorkerRegistration) => {
-          console.log(
-            "Service Worker successfully registered",
-            serviceWorkerRegistration
-          );
           serviceWorkerRegistration.pushManager
             .getSubscription()
             .then((existingSubscription) => {
-              if (existingSubscription) {
-                console.log("There is already an active subscription.");
-              } else {
+              if (!existingSubscription) {
                 serviceWorkerRegistration.pushManager
                   .subscribe({
                     userVisibleOnly: true,
@@ -41,10 +34,6 @@ export default class extends Controller {
                     ),
                   })
                   .then((subscription) => {
-                    console.log(
-                      "Subscription successfully saved",
-                      subscription
-                    );
                     this.saveSubscription(subscription);
                   });
               }

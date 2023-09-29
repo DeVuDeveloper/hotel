@@ -224,3 +224,14 @@ table {
   font-size: 12px;
   margin-left: -16px;
 }
+
+#favorite-rooms-popup {
+  list-style: none;
+  position: absolute;
+  top: 64px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1;
+}
+
