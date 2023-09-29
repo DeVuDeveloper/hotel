@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-      <div class="container h-screen flex justify-center items-center px-4 sm:px-6 lg:px-8">
+      <div class="container flex justify-center items-center px-4 sm:px-6 lg:px-8">
         <div class="relative">
           <form id="search-form" action="/search" method="get">
             <input type="text" class="h-8 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" id="search-query" name="query" placeholder="Search anything...">
@@ -68,7 +68,10 @@
           <% if @user.is_manager? %>
             <%= active_link_to  t('global.menu.manager'), manager_dashboard_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium", active_class: 'bg-gray-900'%>
           <% end %>
-          <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium", active_class: 'bg-gray-900'%>
+          <%= button_to destroy_user_session_path, method: :delete, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium", active_class: 'bg-gray-900' do %>
+  <i class="fas fa-sign-out-alt"></i>
+<% end %>
+
         <% else %>
           <%= active_link_to  t('global.menu.login'), new_user_session_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium", active_class: 'bg-gray-900'%>
         <% end %>

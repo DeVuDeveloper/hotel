@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("turbo:load", function() {
     const searchForm = document.getElementById("search-form");
     const searchInput = document.getElementById("search-query");
     const searchResults = document.getElementById("search-results");
