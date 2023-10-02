@@ -6,9 +6,9 @@ class SearchController < ApplicationController
         query: {
           multi_match: {
             query: query,
-            fields: ["name^3", "description"],
-          },
-        },
+            fields: ["name^3", "description"]
+          }
+        }
       })
       @rooms = results.to_a
     else

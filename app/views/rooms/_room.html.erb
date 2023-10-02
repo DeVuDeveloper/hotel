@@ -3,7 +3,7 @@
     <div class="room-hover relative h-48 w-full border bg-cover bg-center shadow-inner sm:h-auto sm:w-1/4" style="background-image: url('<%= url_for(room.image) %>');">
       <div class="overlay-icons absolute top-0 left-0 w-full h-full flex justify-around opacity-0 transition-opacity duration-300">
         <span class="flex gap-4 px-4 rounded-full">
-          <i class="favorite-icon fas fa-star text-yellow-300 text-2xl cursor-pointer"
+          <i class="favorite-icon text-white fas fa-star text-2xl cursor-pointer"
             data-room-id="<%= room.id %>"
             data-room-name="<%= room.name %>"></i>
         </span>
@@ -102,7 +102,7 @@
                     <span class="gap-4" >
                       <%= button_to "Cancel", room_reservation_path(room_id: room.id, id: last_reservation.id), method: :put, class: "inline-block bg-red-500 px-4 py-2 font-bold rounded-full text-white shadow hover:shadow-md" %>
                     <% elsif last_reservation.cancelled? %>
-                      <%= link_to "Book Now", new_room_reservation_path(room), "javascript:void(0);", id: "book-now-link", class: "inline-block text-blue-500 px-4 py-2 rounded-full font-bold text-blue-100 shadow hover:text-blue-600", target: "reservation.bookButton" %>
+                      <%= link_to "Book Now", new_room_reservation_path(room), id: "book-now-link", class: "inline-block text-blue-500 px-4 py-2 rounded-full font-bold text-blue-100 shadow hover:text-blue-600", target: "reservation.bookButton" %>
                     <% end %>
                   </span>
                   <span>
@@ -113,7 +113,7 @@
             </div>
           <% end %>
         <% else %>
-          <%= link_to "Book Now", new_room_reservation_path(room), id: "book-now-link", class: "inline-block bg-blue-500 px-4 py-2 rounded-full font-bold text-blue-100 shadow hover:shadow-md", target: "reservation.bookButton", data: { user_id: current_user.id }, onclick: "requestLocationPermission()" %>
+          <%= link_to "Book Now", new_room_reservation_path(room), id: "book-now-link", class: "inline-block bg-blue-500 px-4 py-2 rounded-full font-bold text-blue-100 shadow hover:shadow-md", target: "reservation.bookButton", onclick: "requestLocationPermission()" %>
           <%= turbo_frame_tag "room-#{room.id}-reservation" %>
           <%= link_to "Availability", room_calendars_path(room), class: "inline-block bg-green-500 px-4 py-2 font-bold text-white shadow rounded-full hover:shadow-md", data: { "reservation-target": "availabilityButton" } %>
         <% end %>

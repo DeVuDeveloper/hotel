@@ -26,10 +26,10 @@ class RoomsController < ApplicationController
       notice = "You unliked this room."
     else
       like = @room.likes.new(user_id: current_user.id, like: true)
-      if like.save
-        notice = "You liked this room."
+      notice = if like.save
+        "You liked this room."
       else
-        notice = "Failed to like this room."
+        "Failed to like this room."
       end
     end
 

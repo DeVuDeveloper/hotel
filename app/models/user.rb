@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
 
-  enum role: {guest: 0, user: 1, manager: 2, admin: 3, super_admin: 4}
+  enum role: {user: 0, guest: 1, manager: 2, admin: 3, super_admin: 4}
 
   has_many :reservations, dependent: :destroy
   has_many :reviews, dependent: :destroy
@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :notifications, as: :recipient, dependent: :destroy
   has_many :notification_messages
   has_many :newsletters
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :liked_rooms, through: :likes, source: :room
 
   validates :email, presence: true

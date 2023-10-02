@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
   window.requestLocationPermission = function () {
-    console.log('requestLocationPermission() je pozvan.'); 
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(function(position) {
         const latitude = position.coords.latitude;

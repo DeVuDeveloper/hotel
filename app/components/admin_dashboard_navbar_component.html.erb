@@ -8,6 +8,14 @@
             <span class="block pb-1 text-xs text-gray-400 md:inline-block md:pb-0 md:text-base md:text-gray-200"><%= t('global.admin_sidebar.users') %></span>
           <% end %>
         </li>
+          <li class="mr-3 flex-1">
+          <%= active_link_to  admin_dashboard_guests_path, class: "block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500", active_class: "border-pink-400"  do %>
+       
+    <i class="fa fa-user pr-0 md:pr-3"></i>
+
+            <span class="block pb-1 text-xs text-gray-400 md:inline-block md:pb-0 md:text-base md:text-gray-200"><%= t('global.admin_sidebar.guests') %></span>
+          <% end %>
+        </li>
         <li class="mr-3 flex-1">
           <%= active_link_to  admin_dashboard_hotels_path, class: "block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500", active_class: "border-purple-400" do %>
             <i class="fas fa-hotel pr-0 md:pr-3"></i>

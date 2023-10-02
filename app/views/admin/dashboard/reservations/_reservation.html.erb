@@ -1,17 +1,16 @@
 <%= turbo_frame_tag reservation do %>
   <li class="bg-gray-800 border-b border-gray-200 text-gray-400 p-3 flex">
-    <span class="w-full sm:w-1/6 pr-4"><%= reservation.start_date %></span>
-    <span class="w-full sm:w-1/6 pr-4"><%= reservation.end_date %></span>
-    <span class="w-full sm:w-1/6 pr-4"><%= reservation.number_of_guests %></span>
-    <span class="w-full sm:w-1/6 pr-4"><%= reservation.total_price %></span>
-       <span class="w-full sm:w-1/6 pr-4"><%= reservation.user.email.split('@').first %></span>
-    <span class="w-full sm:w-1/6 pr-4"><%= reservation.status %></span>
-    
-    <span class="w-full sm:w-1/6 flex space-x-4">
+    <span class="w-full sm:w-1/7 pr-4"><%= reservation.room.name %></span>
+    <span class="w-full sm:w-1/7 pr-4"><%= reservation.start_date %></span>
+    <span class="w-full sm:w-1/7 pr-4"><%= reservation.end_date %></span>
+    <span class="w-full sm:w-1/7 pr-4"><%= reservation.number_of_guests %></span>
+    <span class="w-full sm:w-1/7 pr-4"><%= reservation.total_price %></span>
+    <span class="w-full sm:w-1/7 pr-4"><%= reservation.user.email.split('@').first %></span>
+    <span class="w-full sm:w-1/7 pr-4"><%= reservation.status %></span>
+    <span class="w-full sm:w-1/7 flex space-x-4">
       <%= button_to admin_dashboard_hotel_reservation_path(reservation, hotel_id: Hotel.first, room_id: reservation.room_id), method: :delete, class: "text-red-500 hover:underline" do %>
         <i class="material-icons-round text-base">delete_outline</i>
       <% end %>
     </span>
   </li>
 <% end %>
-

@@ -38,6 +38,7 @@ Rails.application.routes.draw do
         post "send_notification", on: :member
         post "subscribe", on: :collection
       end
+      resources :guests
     end
   end
 
@@ -72,9 +73,9 @@ Rails.application.routes.draw do
       resources :calendar_entries, only: :index
     end
     member do
-      post 'like'
+      post "like"
     end
-    get 'favorite', on: :collection
+    get "favorite", on: :collection
   end
 
   get "calculate_total_price", to: "reservations#calculate_total_price"
@@ -84,7 +85,7 @@ Rails.application.routes.draw do
   post "/chatbot/receive_message", to: "chatbot#receive_message"
   resources :notifications, only: [:index]
   resources :newsletter_subscribers, only: %i[new create destroy]
-  post '/api/send-location', to: 'api#send_location'
-  get '/search', to: 'search#search_results'
+  post "/api/send-location", to: "api#send_location"
+  get "/search", to: "search#search_results"
   mount Sidekiq::Web => "/sidekiq"
 end

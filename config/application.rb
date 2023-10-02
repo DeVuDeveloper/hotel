@@ -2,7 +2,7 @@
 
 require_relative "boot"
 require "rails/all"
-require 'elasticsearch/model'
+require "elasticsearch/model"
 
 Bundler.require(*Rails.groups)
 

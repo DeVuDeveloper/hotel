@@ -1,0 +1,3 @@
+<%= turbo_stream.update @guest do %>
+  <%= render partial: 'admin/dashboard/guests/guest', locals: { guest: @guest } %>
+<% end %>

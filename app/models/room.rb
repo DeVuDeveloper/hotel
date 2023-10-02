@@ -12,13 +12,13 @@ class Room < ApplicationRecord
 
   validates :name, presence: true
   validates :room_type, presence: true
-  validates :number_of_beds, numericality: { greater_than: 0 }
+  validates :number_of_beds, numericality: {greater_than: 0}
   validates :description, presence: true
   validates :image, presence: true
-  validates :summer_price, numericality: { greater_than_or_equal_to: 0 }
-  validates :winter_price, numericality: { greater_than_or_equal_to: 0 }
-  validates :spring_price, numericality: { greater_than_or_equal_to: 0 }
-  validates :autumn_price, numericality: { greater_than_or_equal_to: 0 }
+  validates :summer_price, numericality: {greater_than_or_equal_to: 0}
+  validates :winter_price, numericality: {greater_than_or_equal_to: 0}
+  validates :spring_price, numericality: {greater_than_or_equal_to: 0}
+  validates :autumn_price, numericality: {greater_than_or_equal_to: 0}
 
   broadcasts_to ->(_room) { "rooms" }, inserts_by: :prepend
   scope :ordered, -> { order(id: :desc) }
@@ -53,16 +53,15 @@ class Room < ApplicationRecord
     end
   end
 
-
-  settings index: { number_of_shards: 1 } do
-    mappings dynamic: 'false' do
-      indexes :name, type: 'text'
-      indexes :room_type, type: 'keyword'
-      indexes :description, type: 'text'
-      indexes :summer_price, type: 'float'
-      indexes :winter_price, type: 'float'
-      indexes :spring_price, type: 'float'
-      indexes :autumn_price, type: 'float'
+  settings index: {number_of_shards: 1} do
+    mappings dynamic: "false" do
+      indexes :name, type: "text"
+      indexes :room_type, type: "keyword"
+      indexes :description, type: "text"
+      indexes :summer_price, type: "float"
+      indexes :winter_price, type: "float"
+      indexes :spring_price, type: "float"
+      indexes :autumn_price, type: "float"
     end
   end
 end

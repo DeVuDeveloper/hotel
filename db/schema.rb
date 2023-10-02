@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_29_044311) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_27_090744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -107,9 +107,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_044311) do
 
   create_table "newsletters", force: :cascade do |t|
     t.string "subject"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_newsletters_on_user_id"
   end
 
@@ -220,20 +220,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_044311) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "role", default: 0, null: false
+    t.string "name"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "unsubscribe_token"
-    t.boolean "subscribed"
     t.string "uid"
     t.string "provider"
+    t.string "id_card"
+    t.integer "role", default: 0, null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.boolean "subscribed"
+    t.boolean "paid", default: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "location_latitude"
-    t.float "location_longitude"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unsubscribe_token"], name: "index_users_on_unsubscribe_token", unique: true

@@ -10,7 +10,7 @@ module Admin
       layout "admin"
 
       def index
-        @reservations = Reservation.includes(:user).all
+        @reservations = Reservation.includes([:user, :room]).all
         @page_title = "Reservations"
       end
 
