@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-module SeedData
   include FactoryBot::Syntax::Methods
 
   FactoryBot.create(:user)
@@ -30,4 +29,3 @@ module SeedData
     room.image.attach(io: File.open(Rails.root.join("spec", "images", room_images[i])), filename: room_images[i],
       content_type: "image/jpeg")
   end
-end
