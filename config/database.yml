@@ -13,4 +13,6 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  database: hotel_production
+  username: hotel
+  password: <%= ENV["HOTEL_DATABASE_PASSWORD"] %>
