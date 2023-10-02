@@ -1,0 +1,68 @@
+{
+  "hash": "3b140ad1",
+  "browserHash": "da67b59e",
+  "optimized": {
+    "@fullcalendar/core": {
+      "src": "../../../../node_modules/@fullcalendar/core/index.js",
+      "file": "@fullcalendar_core.js",
+      "fileHash": "34dd5090",
+      "needsInterop": false
+    },
+    "@fullcalendar/daygrid": {
+      "src": "../../../../node_modules/@fullcalendar/daygrid/index.js",
+      "file": "@fullcalendar_daygrid.js",
+      "fileHash": "ba73954d",
+      "needsInterop": false
+    },
+    "@hotwired/stimulus": {
+      "src": "../../../../node_modules/@hotwired/stimulus/dist/stimulus.js",
+      "file": "@hotwired_stimulus.js",
+      "fileHash": "14c46f03",
+      "needsInterop": false
+    },
+    "@hotwired/turbo": {
+      "src": "../../../../node_modules/@hotwired/turbo/dist/turbo.es2017-esm.js",
+      "file": "@hotwired_turbo.js",
+      "fileHash": "ba6ec7e3",
+      "needsInterop": false
+    },
+    "@hotwired/turbo-rails": {
+      "src": "../../../../node_modules/@hotwired/turbo-rails/app/javascript/turbo/index.js",
+      "file": "@hotwired_turbo-rails.js",
+      "fileHash": "13d0f8d2",
+      "needsInterop": false
+    },
+    "flatpickr": {
+      "src": "../../../../node_modules/flatpickr/dist/esm/index.js",
+      "file": "flatpickr.js",
+      "fileHash": "1dc4c065",
+      "needsInterop": false
+    },
+    "moment": {
+      "src": "../../../../node_modules/moment/dist/moment.js",
+      "file": "moment.js",
+      "fileHash": "03a70714",
+      "needsInterop": false
+    },
+    "stimulus-vite-helpers": {
+      "src": "../../../../node_modules/stimulus-vite-helpers/dist/index.js",
+      "file": "stimulus-vite-helpers.js",
+      "fileHash": "234ccd27",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "src-GATC43CU": {
+      "file": "src-GATC43CU.js"
+    },
+    "chunk-RYNGHELS": {
+      "file": "chunk-RYNGHELS.js"
+    },
+    "chunk-OWJYWRAO": {
+      "file": "chunk-OWJYWRAO.js"
+    },
+    "chunk-IER6VNQZ": {
+      "file": "chunk-IER6VNQZ.js"
+    }
+  }
+}

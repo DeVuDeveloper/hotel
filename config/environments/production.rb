@@ -35,5 +35,4 @@ config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present? || 
   end
 
   config.active_record.dump_schema_after_migration = false
-  config.force_ssl = true
 end
