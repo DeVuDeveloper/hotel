@@ -10,9 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= vite_client_tag %>
-    <%= vite_stylesheet_tag 'application', data: { "turbo-track": "reload" } %>
-    <%= vite_javascript_tag 'application' %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
   <body>
     <section class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">

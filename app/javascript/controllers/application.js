@@ -1,6 +1,7 @@
 import { Application } from "@hotwired/stimulus"
-import "flatpickr"
+
 const application = Application.start()
+import "flatpickr"
 
 application.debug = false
 window.Stimulus   = application

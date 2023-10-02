@@ -1,6 +1,16 @@
-import { Application } from '@hotwired/stimulus'
-import { registerControllers } from 'stimulus-vite-helpers'
+import { application } from "./application"
 
-const application = Application.start()
-const controllers = import.meta.globEager('./**/*_controller.js')
-registerControllers(application, controllers)
+import CalendarController from "./calendar_controller"
+application.register("calendar", CalendarController)
+
+import ChatbotController from "./chatbot_controller"
+application.register("chatbot", ChatbotController)
+
+import NewsletterController from "./newsletter_controller"
+application.register("newsletter", NewsletterController)
+
+import PushController from "./push_controller"
+application.register("push", PushController)
+
+import ReservationController from "./reservation_controller"
+application.register("reservation", ReservationController)
