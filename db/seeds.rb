@@ -27,4 +27,3 @@
     room.image.attach(io: File.open(Rails.root.join("spec", "images", room_images[i])), filename: room_images[i],
       content_type: "image/jpeg")
   end
-end
