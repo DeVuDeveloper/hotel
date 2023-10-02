@@ -1,14 +1,18 @@
-class Manager::DashboardController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authorize_manager!
+# frozen_string_literal: true
 
-  def index
-  end
+module Manager
+  class DashboardController < ApplicationController
+    before_action :authenticate_user!
+    before_action :authorize_manager!
 
-  private
+    def index
+    end
 
-  def authorize_manager!
-    unless current_user.is_manager?
+    private
+
+    def authorize_manager!
+      return if current_user.is_manager?
+
       redirect_to root_path, alert: "You are not authorized to access this page."
     end
   end

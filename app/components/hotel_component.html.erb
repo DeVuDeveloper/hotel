@@ -1,7 +1,9 @@
-<div class="scroll-hotel relative w-full items-center justify-center overflow-x-hidden py-8 md:py-48">
+<div class="scroll-hotel relative w-full items-center justify-center overflow-x-hidden py-8 md:py-2 text-center">
+        <h1 class="font-heading relative mt-4 text-2xl font-bold leading-tight text-cyan-600 md:text-4xl xl:mb-8"><%= @hotel.name %></h1>
     <div class="container mx-auto flex max-w-6xl flex-col items-center justify-between rounded-lg px-4 md:-mt-32 lg:flex-row xl:px-0">
+    
       <div class="z-30 flex w-full max-w-xl flex-col items-center pt-8 text-center lg:w-1/2 lg:items-start lg:pt-20 lg:text-left xl:pt-40">
-        <h1 class="font-heading relative mb-4 text-2xl font-bold leading-tight text-cyan-600 md:text-4xl xl:mb-8"><%= @hotel.name %></h1>
+
         <p class="mb-6 pr-4 text-sm font-medium text-stone-500 sm:text-base md:text-lg lg:pr-20 lg:text-base xl:text-lg">
           <strong class="text-stone-700">Location:</strong><br><%= @hotel.address %>
         </p>
@@ -68,8 +70,8 @@
             </div>
         </div>
 
-        <div class="carousel-container">
-          <div class="relative mt-4 h-auto w-full max-w-xl overflow-hidden rounded-lg">
+        <div class="carousel-container pt-4 md:pt-24">
+          <div class="relative mt-4 md:h-96 w-full max-w-xl overflow-hidden rounded-lg">
             <%= image_tag url_for(@hotel.images.first), alt: @hotel.name, class: "rounded-lg shadow-lg large-image w-full", id: "largeImage" %>
           </div>
 
@@ -82,5 +84,35 @@
             <% end %>
       </div>
     </div>
+
+<div class="mx-4 mt-8 self-start md:mt-36 w-96">
+  <%= link_to new_hotel_review_path(@hotel), class: "bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 hover:text-white", data: { turbo_frame: dom_id(Review.new) } do %>
+    <i class="fas fa-plus-circle mr-2"></i> Create a Review
+  <% end %>
+    <%= turbo_frame_tag Review.new %>
+  <div class="mt-4 space-y-4 flex flex-col">
+    <% @reviews.each do |review| %>
+      <div class="bg-white shadow-md p-4 rounded-md">
+        <div class="flex items-center mb-2">
+          <div class="rounded-full mr-4">
+            <i class="fas fa-user text-gray-500"></i>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-gray-700"><%= review.user.email %></p>
+            <div class="flex items-center text-yellow-400">
+              <% review.rating.times do %>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline fill-current">
+                  <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/>
+                </svg>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-600 whitespace-pre-wrap text-start"><%= review.comment %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
+
   </div>
 </div>

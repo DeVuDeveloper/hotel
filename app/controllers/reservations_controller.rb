@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ReservationsController < ApplicationController
-  before_action :set_room, only: [:new, :create, :edit, :update]
+  before_action :set_room, only: %i[new create edit update]
 
   def new
     @reservation = Reservation.new
@@ -8,12 +10,13 @@ class ReservationsController < ApplicationController
   def create
     @reservation = @room.reservations.new(reservation_params)
 
-    price_calculator = PriceCalculatorService.new(@room, @reservation.start_date, @reservation.end_date, @reservation.number_of_guests)
+    price_calculator = PriceCalculatorService.new(@room, @reservation.start_date, @reservation.end_date,
+      @reservation.number_of_guests)
     @reservation.total_price = price_calculator.call
     if @reservation.save
-      ReservationMailer.confirmation_email(@reservation).deliver_now
+      ReservationConfirmationJob.perform_async(@reservation.id)
       @reservation.dates.each do |date|
-        calendar_entry = @room.calendar.calendar_entries.find_by(date: date)
+        calendar_entry = @room.calendar.calendar_entries.find_by(date:)
         calendar_entry&.update(available: false)
       end
 
@@ -33,7 +36,7 @@ class ReservationsController < ApplicationController
 
     if @reservation.update(status: :cancelled)
       @reservation.dates.each do |date|
-        calendar_entry = @room.calendar.calendar_entries.find_by(date: date)
+        calendar_entry = @room.calendar.calendar_entries.find_by(date:)
         calendar_entry&.update(available: true)
       end
 

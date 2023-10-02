@@ -1,6 +1,7 @@
 <%= turbo_frame_tag user do %>
   <li class="bg-gray-800 border-b border-gray-200 text-gray-400 flex items-center py-3 px-4">
-    <span class="w-1/2"><%= user.email %></span>
+    <span class="w-1/4"><%= user.email %></span>
+     <span class="w-1/4 text-center pr-24"><%= user.id %></span>
     <span class="w-1/4 text-center">
       <% if user.admin? %>
         <div>Admin</div>

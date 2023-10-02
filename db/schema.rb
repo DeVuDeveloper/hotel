@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_27_190643) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_27_090744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -85,6 +85,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_27_190643) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.boolean "like"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_likes_on_room_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -93,6 +103,34 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_27_190643) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["hotel_id"], name: "index_messages_on_hotel_id"
+  end
+
+  create_table "newsletters", force: :cascade do |t|
+    t.string "subject"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_newsletters_on_user_id"
+  end
+
+  create_table "notification_messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notification_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "recipient_type", null: false
+    t.bigint "recipient_id", null: false
+    t.string "type", null: false
+    t.jsonb "params"
+    t.datetime "read_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["read_at"], name: "index_notifications_on_read_at"
+    t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -105,6 +143,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_27_190643) do
     t.datetime "updated_at", null: false
     t.index ["reservation_id"], name: "index_payments_on_reservation_id"
     t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "push_notifications", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "push_subscriptions", force: :cascade do |t|
+    t.string "endpoint"
+    t.string "p256dh"
+    t.string "auth"
+    t.boolean "subscribed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -123,9 +177,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_27_190643) do
     t.string "status"
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
+    t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "token"
     t.index ["room_id"], name: "index_reservations_on_room_id"
     t.index ["token"], name: "index_reservations_on_token"
     t.index ["user_id"], name: "index_reservations_on_user_id"
@@ -157,10 +211,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_27_190643) do
     t.index ["hotel_id"], name: "index_rooms_on_hotel_id"
   end
 
+  create_table "user_messages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_messages_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
-    t.integer "role", default: 0, null: false
+    t.string "name"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "unsubscribe_token"
+    t.string "uid"
+    t.string "provider"
+    t.string "id_card"
+    t.integer "role", default: 0, null: false
+    t.float "latitude"
+    t.float "longitude"
+    t.boolean "subscribed"
+    t.boolean "paid", default: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -168,6 +239,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_27_190643) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["unsubscribe_token"], name: "index_users_on_unsubscribe_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -176,7 +248,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_27_190643) do
   add_foreign_key "amenities", "hotels"
   add_foreign_key "calendar_entries", "calendars"
   add_foreign_key "calendars", "rooms"
+  add_foreign_key "likes", "rooms"
+  add_foreign_key "likes", "users"
   add_foreign_key "messages", "hotels"
+  add_foreign_key "newsletters", "users"
+  add_foreign_key "notification_messages", "users"
   add_foreign_key "payments", "reservations"
   add_foreign_key "payments", "users"
   add_foreign_key "ratings", "hotels"
@@ -185,4 +261,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_27_190643) do
   add_foreign_key "reviews", "hotels"
   add_foreign_key "reviews", "users"
   add_foreign_key "rooms", "hotels"
+  add_foreign_key "user_messages", "users"
 end

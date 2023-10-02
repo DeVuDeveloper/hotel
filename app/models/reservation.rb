@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :room
@@ -17,7 +19,11 @@ class Reservation < ApplicationRecord
     cancelled: "Cancelled"
   }
 
-  after_create_commit -> { broadcast_prepend_to "reservations", partial: "admin/dashboard/reservations/reservation", locals: {reservation: self}, target: "reservations" }
+  after_create_commit :schedule_reminder_email
+  after_create_commit lambda {
+                        broadcast_prepend_to "reservations", partial: "admin/dashboard/reservations/reservation",
+                          locals: {reservation: self}, target: "reservations"
+                      }
 
   def dates
     (start_date..end_date).to_a
@@ -27,14 +33,8 @@ class Reservation < ApplicationRecord
     self.token ||= SecureRandom.hex(20)
   end
 
-  def self.send_reminder_emails
-    puts "Searching for reservations..."
-    reservations_to_remind = where(start_date: 1.week.from_now.to_date)
-    puts "Found #{reservations_to_remind.count} reservations to remind."
-
-    reservations_to_remind.each do |reservation|
-      UserMailer.send_reminder_email(reservation).deliver_later
-    end
+  def schedule_reminder_email
+    SendReminderEmailJob.perform_at(2.days.from_now, id)
   end
 
   private
@@ -42,18 +42,18 @@ class Reservation < ApplicationRecord
   def end_date_is_after_start_date
     return if end_date.blank? || start_date.blank?
 
-    if end_date < start_date
-      errors.add(:end_date, "must be after start date")
-    end
+    return unless end_date < start_date
+
+    errors.add(:end_date, "must be after start date")
   end
 
   def dates_available
-    if start_date.present? && end_date.present? && room&.calendar.present?
-      conflicting_entries = room.calendar.calendar_entries.where(date: start_date..end_date, available: false)
-      if conflicting_entries.any?
-        conflicting_dates = conflicting_entries.pluck(:date)
-        errors.add(:base, "The following dates are not available: #{conflicting_dates.join(", ")}")
-      end
-    end
+    return unless start_date.present? && end_date.present? && room&.calendar.present?
+
+    conflicting_entries = room.calendar.calendar_entries.where(date: start_date..end_date, available: false)
+    return unless conflicting_entries.any?
+
+    conflicting_dates = conflicting_entries.pluck(:date)
+    errors.add(:base, "The following dates are not available: #{conflicting_dates.join(", ")}")
   end
 end

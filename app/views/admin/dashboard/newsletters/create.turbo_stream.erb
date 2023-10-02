@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend "newsletters", @newsletter %>
+<%= turbo_stream.update Newsletter.new, "" %>
+<%= render_turbo_stream_flash_messages %>

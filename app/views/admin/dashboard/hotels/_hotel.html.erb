@@ -7,7 +7,7 @@
       <%= link_to edit_admin_dashboard_hotel_path(id: hotel.id), class: "text-blue-500 hover:underline" do %>
         <i class="material-icons-outlined text-base">edit</i>
       <% end %>
-      <%= button_to admin_dashboard_hotel_path(id: hotel.id), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-500 hover:underline" do %>
+      <%= button_to admin_dashboard_hotel_path(id: hotel.id), method: :delete, class: "text-red-500 hover:underline" do %>
         <i class="material-icons-outlined text-base">delete</i>
       <% end %>
     </span>

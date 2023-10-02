@@ -1,0 +1,12 @@
+<li class="bg-white rounded-lg shadow-md p-4 mb-2">
+  <div class="p-4 border border-gray-300 rounded-lg">
+    <p class="text-gray-700 text-lg font-semibold">
+      <%= notification.to_notification.message %>
+    </p>
+    <div class="flex justify-between mt-2 text-gray-500 text-sm">
+      <p>
+        Received on <%= notification.created_at.to_date %>
+      </p>
+    </div>
+  </div>
+</li>

@@ -1,0 +1,34 @@
+<%= turbo_stream_from "users" %>
+
+<div class="bg-gray-800 pt-3">
+  <div class="rounded-tl-3xl bg-gradient-to-r from-gray-900 to-gray-800 p-4 shadow text-white">
+    <div class="flex items-center justify-between">
+      <h2 class="font-bold pl-2 text-2xl"><%= @page_title %></h2>
+    </div>
+  </div>
+</div>
+
+<div class="container mx-auto mt-1">
+  <div class="flex justify-center">
+    <div class="w-full">
+      <div class="table-container">
+        <ul class="w-full user-list">
+          <li class="bg-gray-900 text-gray-500 p-3 flex font-bold flex-col md:flex-row gap-4 sm:justify-between border-b border-gray-700 text-gray-300">
+            <span class="w-full sm:w-1/8">ID</span>
+            <span class="w-full sm:w-1/8">Name</span>
+            <span class="w-full sm:w-1/8">Id Card</span>
+            <span class="w-full sm:w-1/8">Start</span>
+            <span class="w-full sm:w-1/8">Leave</span>
+            <span class="w-full sm:w-1/8">Price</span>
+            <span class="w-full sm:w-1/8">Paid</span>
+            <span class="w-full sm:w-1/8">Actions</span>
+          </li>
+          <%= turbo_frame_tag 'users' do %>
+            <% @guests.each do |guest| %>
+            <%= render partial: 'guest', locals: { guest: guest } %>
+          <% end %>
+        <% end %>
+        </ul>
+  </div>
+</div>
+

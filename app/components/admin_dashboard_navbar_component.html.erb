@@ -8,6 +8,14 @@
             <span class="block pb-1 text-xs text-gray-400 md:inline-block md:pb-0 md:text-base md:text-gray-200"><%= t('global.admin_sidebar.users') %></span>
           <% end %>
         </li>
+          <li class="mr-3 flex-1">
+          <%= active_link_to  admin_dashboard_guests_path, class: "block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500", active_class: "border-pink-400"  do %>
+       
+    <i class="fa fa-user pr-0 md:pr-3"></i>
+
+            <span class="block pb-1 text-xs text-gray-400 md:inline-block md:pb-0 md:text-base md:text-gray-200"><%= t('global.admin_sidebar.guests') %></span>
+          <% end %>
+        </li>
         <li class="mr-3 flex-1">
           <%= active_link_to  admin_dashboard_hotels_path, class: "block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-purple-500", active_class: "border-purple-400" do %>
             <i class="fas fa-hotel pr-0 md:pr-3"></i>
@@ -33,7 +41,31 @@
               <span class="block pb-1 text-xs text-gray-400 md:inline-block md:pb-0 md:text-base md:text-gray-200"><%= t('global.admin_sidebar.reservations') %></span>
             <% end %>
           </li>
-        
+
+          <li class="mr-3 flex-1">
+            <%= active_link_to admin_dashboard_user_messages_path, class: "block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-blue-500", active_class: "border-blue-400" do %>
+              <i class="fa fa-exclamation pr-0 md:pr-3"></i>
+              <span class="block pb-1 text-xs text-gray-400 md:inline-block md:pb-0 md:text-base md:text-gray-200"><%= t('global.admin_sidebar.tickets') %></span>
+            <% end %>
+          </li>
+        <li class="mr-3 flex-1">
+            <%= active_link_to  admin_dashboard_notification_messages_path, class: "block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-blue-500", active_class: "border-blue-400" do %>
+              <i class="fa fa-bell pr-0 md:pr-3"></i>
+              <span class="block pb-1 text-xs text-gray-400 md:inline-block md:pb-0 md:text-base md:text-gray-200"><%= t('global.admin_sidebar.notifications') %></span>
+            <% end %>
+          </li>
+          <li class="mr-3 flex-1">
+            <%= active_link_to  admin_dashboard_newsletters_path, class: "block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-blue-500", active_class: "border-blue-400" do %>
+              <i class="fa fa-newspaper pr-0 md:pr-3"></i>
+              <span class="block pb-1 text-xs text-gray-400 md:inline-block md:pb-0 md:text-base md:text-gray-200"><%= t('global.admin_sidebar.newsletters') %></span>
+            <% end %>
+          </li>
+            <li class="mr-3 flex-1">
+            <%= active_link_to  admin_dashboard_push_notifications_path, class: "block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-blue-500", active_class: "border-blue-400" do %>
+              <i class="fas fa-sticky-note pr-0 md:pr-3"></i>
+              <span class="block pb-1 text-xs text-gray-400 md:inline-block md:pb-0 md:text-base md:text-gray-200"><%= t('global.admin_sidebar.push_notes') %></span>
+            <% end %>
+          </li>
       </ul>
     </div>
   </div>

@@ -1,0 +1,15 @@
+<%= turbo_frame_tag user_message do %>
+  <li class="bg-gray-800 border-b border-gray-200 text-gray-400 flex items-center py-3 px-4 pl-8">
+    <span class="w-1/4"><%= user_message.id %></span>
+    <span class="w-1/4"><%= user_message.created_at.strftime("%d.%m.%Y %H:%M:%S") %></span>
+    <span class="w-1/4"><%= user_message.user.email %></span>
+    <span class="w-1/4 flex items-center justify-start space-x-4 pl-8">
+      <%= link_to admin_dashboard_user_message_path(user_message), class: "text-green-500 hover:underline", data: { turbo_frame: "_top" } do %>
+        <i class="material-icons-outlined text-base">preview</i>
+      <% end %>
+      <%= button_to admin_dashboard_user_message_path(id: user_message.id), method: :delete, class: "text-red-500 hover:underline" do %>
+        <i class="material-icons-outlined text-base">delete</i>
+      <% end %>
+    </span>
+  </li>
+<% end %>

@@ -2,36 +2,34 @@
 <html>
   <head>
     <title>Hotel</title>
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> 
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-      <%= csrf_meta_tags %>
-      <%= csp_meta_tag %>
-
-      <%= vite_client_tag %>
-      <%= vite_stylesheet_tag 'application', data: { "turbo-track": "reload" } %>
-      <%= vite_javascript_tag 'application' %>
-   
-    <body>
-     <main class="h-screen w-full bg-white relative flex overflow-hidden">
-      <div class="fixed top-4rem right-1/2 transform translate-x-1/2 flex-col max-w-[100%] w-max gap-5rem px-0 py-4">
-          <%= render "layouts/flash" %>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= vite_client_tag %>
+    <%= vite_stylesheet_tag 'application', data: { "turbo-track": "reload" } %>
+    <%= vite_javascript_tag 'application' %>
+  </head>
+  <body data-controller="push" data-application-server-key="<%= ENV['DEFAULT_APPLICATION_SERVER_KEY'] %>">
+    <main class="h-screen w-full bg-white relative flex overflow-hidden">
+      <div id="flash" class="fixed top-4rem right-1/2 transform translate-x-1/2 flex-col max-w-[100%] w-max gap-5rem px-0 py-4">
+        <%= render "layouts/flash" %>
       </div>
       <%= render(SidebarComponent.new(user: current_user)) %>
       <section class="w-full h-full">
-   
         <%= render(NavbarComponent.new(user: current_user)) %>
-      
         <%= yield %>
-             <%= render(FooterComponent.new) %>
+        <% if cookies[:allow_cookies].blank? %>
+          <%= render 'layouts/cookies_bar' %>
+        <% end %>
+        <%= render(FooterComponent.new) %>
       </section>
-  
+      <%= render 'shared/chatbot' %>
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.min.js" defer></script>
     </main>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.min.js" defer></script>
-
   </body>
 </html>

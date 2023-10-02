@@ -1,0 +1,6 @@
+send_reminder_emails:
+  cron: "0 0 * * *"
+  class: "Reservation"
+  queue: default
+  description: "Send reminder emails for reservations"
+

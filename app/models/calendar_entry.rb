@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CalendarEntry < ApplicationRecord
   belongs_to :calendar
 

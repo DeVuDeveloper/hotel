@@ -1,48 +1,56 @@
-class Admin::Dashboard::ReservationsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authorize_admin!
-  before_action :set_reservation_and_room, only: [:edit, :update, :destroy]
+# frozen_string_literal: true
 
-  layout "admin"
+module Admin
+  module Dashboard
+    class ReservationsController < ApplicationController
+      before_action :authenticate_user!
+      before_action :authorize_admin!
+      before_action :set_reservation_and_room, only: %i[edit update destroy]
 
-  def index
-    @reservations = Reservation.all
-    @page_title = "Reservations"
-  end
+      layout "admin"
 
-  def edit
-  end
+      def index
+        @reservations = Reservation.includes([:user, :room]).all
+        @page_title = "Reservations"
+      end
 
-  def update
-    if @reservation.update(reservation_params)
-      redirect_to admin_dashboard_reservations_path, notice: "Reservation was successfully updated."
-    else
-      render :edit
-    end
-  end
+      def edit
+      end
 
-  def destroy
-    @reservation.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_dashboard_hotel_reservations_path, notice: "Reservations was successfully destroyed." }
-      format.turbo_stream { flash.now[:notice] = "Reservations was successfully destroyed." }
-    end
-  end
+      def update
+        if @reservation.update(reservation_params)
+          redirect_to admin_dashboard_reservations_path, notice: "Reservation was successfully updated."
+        else
+          render :edit
+        end
+      end
 
-  private
+      def destroy
+        @reservation.destroy
+        respond_to do |format|
+          format.html do
+            redirect_to admin_dashboard_hotel_reservations_path, notice: "Reservations was successfully destroyed."
+          end
+          format.turbo_stream { flash.now[:notice] = "Reservations was successfully destroyed." }
+        end
+      end
 
-  def set_reservation_and_room
-    @reservation = Reservation.find(params[:id])
-    @room = @reservation.room
-  end
+      private
 
-  def reservation_params
-    params.require(:reservation).permit(:start_date, :end_date, :number_of_guests, :total_price, :status, :user_id)
-  end
+      def set_reservation_and_room
+        @reservation = Reservation.find(params[:id])
+        @room = @reservation.room
+      end
 
-  def authorize_admin!
-    unless current_user.is_admin? || current_user.super_admin?
-      redirect_to root_path, alert: "You are not authorized to access this page."
+      def reservation_params
+        params.require(:reservation).permit(:start_date, :end_date, :number_of_guests, :total_price, :status, :user_id)
+      end
+
+      def authorize_admin!
+        return if current_user.is_admin? || current_user.super_admin?
+
+        redirect_to root_path, alert: "You are not authorized to access this page."
+      end
     end
   end
 end

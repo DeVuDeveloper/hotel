@@ -14,4 +14,7 @@ en:
       rooms: "Rooms"
       calendar: "Calendar"
       reservations: "Reservations"
-  
+      tickets: "Tickets"
+      notifications: "Notifications"
+      newsletters: "Newsletters"
+      push_notifications: "Push Notes"

@@ -1,0 +1,12 @@
+<% favorite_rooms = JSON.parse(cookies[:favorite_rooms] || '[]') %>
+
+<% if favorite_rooms.any? %>
+  <h2>Omiljene sobe:</h2>
+  <ul>
+    <% favorite_rooms.each do |room| %>
+      <li><%= room['name'] %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Nema omiljenih soba.</p>
+<% end %>

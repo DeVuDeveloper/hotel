@@ -1,10 +1,15 @@
+# frozen_string_literal: true
+
 class Calendar < ApplicationRecord
   belongs_to :room
   has_many :calendar_entries, dependent: :destroy
 
   validates :room, presence: true
 
-  after_create_commit -> { broadcast_prepend_to "calendars", partial: "admin/dashboard/calendars/calendar", locals: {calendar: self}, target: "calendars" }
+  after_create_commit lambda {
+                        broadcast_prepend_to "calendars", partial: "admin/dashboard/calendars/calendar", locals: {calendar: self},
+                          target: "calendars"
+                      }
 
   def generate_default_entries
     calendar_entries.find_or_create_by do |entry|

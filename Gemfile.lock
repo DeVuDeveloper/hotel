@@ -69,11 +69,15 @@ GEM
     addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
+    base64 (0.1.1)
     bcrypt (3.1.19)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    bullet (7.0.7)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     capybara (3.39.2)
       addressable
       matrix
@@ -98,7 +102,25 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     dry-cli (1.0.0)
+    elasticsearch (7.4.0)
+      elasticsearch-api (= 7.4.0)
+      elasticsearch-transport (= 7.4.0)
+    elasticsearch-api (7.4.0)
+      multi_json
+    elasticsearch-model (7.2.1)
+      activesupport (> 3)
+      elasticsearch (~> 7)
+      hashie
+    elasticsearch-transport (7.4.0)
+      faraday
+      multi_json
     erubi (1.12.0)
     et-orbi (1.2.7)
       tzinfo
@@ -109,12 +131,31 @@ GEM
       railties (>= 5.0.0)
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
+    faraday (2.7.11)
+      base64
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
+    ffi (1.15.5)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
     fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    hashie (5.0.0)
+    hkdf (1.0.0)
     htmlbeautifier (1.4.2)
+    http (5.1.1)
+      addressable (~> 2.8)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.2)
+      llhttp-ffi (~> 0.4.0)
+    http-cookie (1.0.5)
+      domain_name (~> 0.5)
+    http-form_data (2.3.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.1)
@@ -127,12 +168,16 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.6.3)
+    jwt (2.7.1)
     language_server-protocol (3.17.0.3)
     launchy (2.5.2)
       addressable (~> 2.8)
     letter_opener (1.8.1)
       launchy (>= 2.2, < 3)
     lint_roller (1.1.0)
+    llhttp-ffi (0.4.0)
+      ffi-compiler (~> 1.0)
+      rake (~> 13.0)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -145,10 +190,12 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    minitest (5.18.1)
+    minitest (5.20.0)
     momentjs-rails (2.29.4.1)
       railties (>= 3.1)
     msgpack (1.7.2)
+    multi_json (1.15.0)
+    multi_xml (0.6.0)
     net-imap (0.3.6)
       date
       net-protocol
@@ -161,6 +208,32 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.3-x86_64-linux)
       racc (~> 1.4)
+    noticed (1.6.3)
+      http (>= 4.0.0)
+      rails (>= 5.2.0)
+    oauth2 (2.0.9)
+      faraday (>= 0.17.3, < 3.0)
+      jwt (>= 1.0, < 3.0)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 4)
+      snaky_hash (~> 2.0)
+      version_gem (~> 1.1)
+    omniauth (2.1.1)
+      hashie (>= 3.4.6)
+      rack (>= 2.2.3)
+      rack-protection
+    omniauth-google-oauth2 (1.1.1)
+      jwt (>= 2.0)
+      oauth2 (~> 2.0.6)
+      omniauth (~> 2.0)
+      omniauth-oauth2 (~> 1.8.0)
+    omniauth-oauth2 (1.8.0)
+      oauth2 (>= 1.4, < 3)
+      omniauth (~> 2.0)
+    omniauth-rails_csrf_protection (1.0.1)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
+    openssl (3.2.0)
     orm_adapter (0.5.0)
     parallel (1.23.0)
     parser (3.2.2.3)
@@ -176,6 +249,8 @@ GEM
     raabro (1.4.0)
     racc (1.7.1)
     rack (2.2.7)
+    rack-protection (3.1.0)
+      rack (~> 2.2, >= 2.2.4)
     rack-proxy (0.7.6)
       rack
     rack-test (2.1.0)
@@ -253,6 +328,7 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.13.0)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     rufo (0.16.1)
     rufus-scheduler (3.9.1)
@@ -261,6 +337,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    serviceworker-rails (0.6.0)
+      railties (>= 3.1)
     sidekiq (7.1.2)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
@@ -273,6 +351,9 @@ GEM
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
+    snaky_hash (2.0.1)
+      hashie
+      version_gem (~> 1.1, >= 1.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -303,7 +384,12 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.8.2)
     unicode-display_width (2.4.2)
+    uniform_notifier (1.16.0)
+    version_gem (1.1.3)
     view_component (3.4.0)
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
@@ -322,6 +408,10 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    web-push (3.0.0)
+      hkdf (~> 1.0)
+      jwt (~> 2.0)
+      openssl (~> 3.0)
     webdrivers (5.2.0)
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
@@ -340,9 +430,12 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  bullet
   capybara (~> 3.35, >= 3.35.3)
   debug
   devise (~> 4.9, >= 4.9.2)
+  dotenv-rails
+  elasticsearch-model
   factory_bot_rails
   faker
   htmlbeautifier
@@ -350,6 +443,10 @@ DEPENDENCIES
   jbuilder
   letter_opener
   momentjs-rails
+  noticed (~> 1.6)
+  omniauth
+  omniauth-google-oauth2
+  omniauth-rails_csrf_protection
   pg (~> 1.1)
   pry
   puma (~> 5.0)
@@ -358,6 +455,7 @@ DEPENDENCIES
   rspec-rails
   rufo
   selenium-webdriver
+  serviceworker-rails
   sidekiq
   sidekiq-scheduler
   simple_form (~> 5.1.0)
@@ -370,6 +468,7 @@ DEPENDENCIES
   vite_rails
   vite_ruby
   web-console
+  web-push
   webdrivers
   will_paginate (~> 4.0)
 

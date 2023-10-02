@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SeasonalPriceComponent < ViewComponent::Base
   def initialize(room)
     @room = room

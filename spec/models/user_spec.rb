@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rails_helper"
 
 RSpec.describe User, type: :model do
@@ -29,9 +31,9 @@ RSpec.describe User, type: :model do
   end
 
   it "is not valid with an invalid role" do
-    expect {
+    expect do
       build(:user, role: :invalid_role)
-    }.to raise_error(ArgumentError)
+    end.to raise_error(ArgumentError)
   end
 
   it "has the correct default role" do
