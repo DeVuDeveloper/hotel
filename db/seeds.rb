@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-  include FactoryBot::Syntax::Methods
 
   FactoryBot.create(:user)
   hotel = FactoryBot.create(:hotel)
