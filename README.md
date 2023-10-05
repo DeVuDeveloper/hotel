@@ -19,15 +19,13 @@ The Hotel App is a modern Ruby on Rails web application designed for seamless ho
 - **Multilingual Support:** The application is equipped with Internationalization (i18n) capabilities, ensuring language translations for diverse user bases.
 - **Sleek Styling:** Tailwind CSS is employed to craft a visually appealing and responsive user interface, elevating the overall user experience.
 
-**Additional Features**
+## Additional Features
 
-- `Notification and Push Notification Management`: Admin users can send notifications and push notifications to users.
-
-- `User-Generated Reviews`: Users can create and submit reviews for hotels.
-
-- `Chatbot for Support Tickets`: The app includes a chatbot for handling support tickets and user queries.
-
-- `Newsletter Management`: Admins can send newsletters to users.
+- **Notification and Push Notification Management:** Admin users can send notifications and push notifications to users.
+- **User-Generated Reviews:** Users can create and submit reviews for hotels.
+- **Chatbot for Support Tickets** The app includes a chatbot for handling support tickets and user queries.
+- **Newsletter Management:** Admins can send newsletters to users.
+- **Elastic-Search:** Admins can send newsletters to users.(disabled for production)
 
 
 ## Installation
@@ -119,7 +117,7 @@ The Hotel App includes a test suite using RSpec. You can run the tests with the 
 
 |     | Tools 🛠️                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |     |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
-|     | ![RSpec](https://img.shields.io/badge/RSpec-%23FF5545.svg?style=for-the-badge&logo=ruby&logoColor=white)![Jest](https://img.shields.io/badge/Jest-%23C21325.svg?style=for-the-badge&logo=jest&logoColor=white)![Redis](https://img.shields.io/badge/Redis-%23DC382D.svg?style=for-the-badge&logo=redis&logoColor=white)![Sidekiq](https://img.shields.io/badge/Sidekiq-%23CC0000.svg?style=for-the-badge&logo=sidekiq&logoColor=white)![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white) ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white) |     |
+|     | ![RSpec](https://img.shields.io/badge/RSpec-%23FF5545.svg?style=for-the-badge&logo=ruby&logoColor=white)![Jest](https://img.shields.io/badge/Jest-%23C21325.svg?style=for-the-badge&logo=jest&logoColor=white)![Redis](https://img.shields.io/badge/Redis-%23DC382D.svg?style=for-the-badge&logo=redis&logoColor=white)![Sidekiq](https://img.shields.io/badge/Sidekiq-%23CC0000.svg?style=for-the-badge&logo=sidekiq&logoColor=white)![Elasticsearch](https://img.shields.io/badge/Elasticsearch-%2343B02A.svg?style=for-the-badge&logo=elasticsearch&logoColor=white)![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white) ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white) |     |
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 </div>
