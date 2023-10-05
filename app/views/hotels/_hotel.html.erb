@@ -76,13 +76,13 @@
 
 <div class="carousel-container pt-4 md:pt-4">
   <div class="relative mt-4 md:h-96 w-full max-w-xl overflow-hidden rounded-lg">
-    <%= image_tag url_for(hotel.images.first), alt: hotel.name, class: "rounded-lg shadow-lg large-image w-full", id: "largeImage" %>
+    <%= cl_image_tag url_for(hotel.images.first), alt: hotel.name, class: "rounded-lg shadow-lg large-image w-full", id: "largeImage" %>
   </div>
   <div class="ml-4 mt-4 flex max-h-32 flex-row overflow-auto sm:max-h-60 md:max-h-80 lg:max-h-96" data-gallery-target="thumbnails">
     <% hotel.images.each_with_index do |image, index| %>
       <% next if index == 0 %>
       <div class="thumbnail-image relative mr-2 h-12 w-16 cursor-pointer  md:h-24 md:w-32">
-        <%= image_tag url_for(image), alt: hotel.name, class: "rounded-lg shadow-lg w-full h-full" %>
+        <%= cl_image_tag url_for(image), alt: hotel.name, class: "rounded-lg shadow-lg w-full h-full" %>
       </div>
     <% end %>
   </div>

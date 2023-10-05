@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "room-#{room.id}" do %>
   <div class="room-card bg-white shadow-lg sm:flex p-8 ">
-    <div class="room-hover relative h-48 w-full border bg-cover bg-center shadow-inner sm:h-auto sm:w-1/4" style="background-image: url('<%= url_for(room.image) %>');">
+    <div class="room-hover relative h-48 w-full border bg-cover bg-center shadow-inner sm:h-auto sm:w-1/4" style="background-image: url('<%= url_for(room.image) %>');" loading="lazy">
       <div class="overlay-icons absolute top-0 left-0 w-full h-full flex justify-around opacity-0 transition-opacity duration-300">
         <span class="flex gap-4 px-4 rounded-full">
           <i class="favorite-icon text-white fas fa-star text-2xl cursor-pointer"
