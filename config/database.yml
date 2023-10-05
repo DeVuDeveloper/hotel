@@ -5,12 +5,24 @@ default: &default
 
 development:
   <<: *default
-  database: hotel_development
+  database: dejan_hotel_2uca_development
+  username: dejan_hotel_2uca_user
+  password: U9YVoskDsSjSxYcZltKS8AtVW6jXMImT
+  url: postgres://dejan_hotel_2uca_user:U9YVoskDsSjSxYcZltKS8AtVW6jXMImT@dpg-ckf813mafg7c738l2llg-a.frankfurt-postgres.render.com/dejan_hotel_2uca
 
 test:
   <<: *default
-  database: hotel_test
+
+  database: dejan_hotel_2uca_development
+  username: dejan_hotel_2uca_user
+  password: U9YVoskDsSjSxYcZltKS8AtVW6jXMImT
+  url: postgres://dejan_hotel_2uca_user:U9YVoskDsSjSxYcZltKS8AtVW6jXMImT@dpg-ckf813mafg7c738l2llg-a.frankfurt-postgres.render.com/dejan_hotel_2uca
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  
+   
+  database: dejan_hotel_2uca_development
+  username: dejan_hotel_2uca_user
+  password: U9YVoskDsSjSxYcZltKS8AtVW6jXMImT
+  url: postgres://dejan_hotel_2uca_user:U9YVoskDsSjSxYcZltKS8AtVW6jXMImT@dpg-ckf813mafg7c738l2llg-a.frankfurt-postgres.render.com/dejan_hotel_2uca
