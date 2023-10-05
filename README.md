@@ -5,7 +5,7 @@ The Hotel App is a modern Ruby on Rails web application designed for seamless ho
 ## Screenshots
 
 <div style="">
-  <img src="app/assets/images/screenshot.jpg" alt="hotel 1" width="30%">
+  <img src="app/assets/images/screen1.png" alt="hotel 1" width="30%">
 
 </div>
 
@@ -18,6 +18,17 @@ The Hotel App is a modern Ruby on Rails web application designed for seamless ho
 - **Role-Based Access Control:** Authorization is implemented using role-based access control, granting admin users exclusive management privileges.
 - **Multilingual Support:** The application is equipped with Internationalization (i18n) capabilities, ensuring language translations for diverse user bases.
 - **Sleek Styling:** Tailwind CSS is employed to craft a visually appealing and responsive user interface, elevating the overall user experience.
+
+**Additional Features**
+
+- `Notification and Push Notification Management`: Admin users can send notifications and push notifications to users.
+
+- `User-Generated Reviews`: Users can create and submit reviews for hotels.
+
+- `Chatbot for Support Tickets`: The app includes a chatbot for handling support tickets and user queries.
+
+- `Newsletter Management`: Admins can send newsletters to users.
+
 
 ## Installation
 
@@ -43,8 +54,14 @@ The Hotel App is a modern Ruby on Rails web application designed for seamless ho
   rails db:seed
 ```
 
+4. Start redis and run sidekiq:
 
-4. Run the server(Open your Browser and navigate to url: http://localhost:5100/): 
+```bash
+  redis-server
+  bundle exec sidekiq
+```
+
+5. Run the server(Open your Browser and navigate to url: http://localhost:5100/): 
 
 ```bash
   bin/dev
@@ -86,7 +103,40 @@ The Hotel App includes a test suite using RSpec. You can run the tests with the 
 6. Once logged in, you can view the available hotels, their rooms, and make bookings.
 7. To access the admin panel, you need to have an admin account. You can create an admin account using the Rails console or seeds (if implemented).
 8. Log in with the admin account to access the admin panel.
-9. In the admin panel, you can manage hotels, rooms, and bookings.
+9. In the admin panel, you can manage hotels, rooms, and bookings, newsletters, send notifications and push-notifications and manage guests and payment.
+
+
+## Built With 🔨
+
+<div align="center">
+
+|     | Languages                                                                                                                                                                                                                                                                                                                  |     |
+| --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+|     | ![Ruby](https://img.shields.io/badge/-Ruby-000000?style=flat&logo=ruby&logoColor=red)![Ruby on Rails](https://img.shields.io/badge/-Ruby_on_Rails-000000?style=flat&logo=ruby-on-rails&logoColor=blue)![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)!![JavaScript](https://img.shields.io/badge/javascript-%23316192.svg?style=for-the-badge&logo=javascript&logoColor=white)![Stimulus](https://img.shields.io/badge/Stimulus-%23316192.svg?style=for-the-badge&logo=javascript&logoColor=white) |
+
+<div align="center">
+
+
+|     | Tools 🛠️                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |     |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+|     | ![RSpec](https://img.shields.io/badge/RSpec-%23FF5545.svg?style=for-the-badge&logo=ruby&logoColor=white)![Jest](https://img.shields.io/badge/Jest-%23C21325.svg?style=for-the-badge&logo=jest&logoColor=white)![Redis](https://img.shields.io/badge/Redis-%23DC382D.svg?style=for-the-badge&logo=redis&logoColor=white)![Sidekiq](https://img.shields.io/badge/Sidekiq-%23CC0000.svg?style=for-the-badge&logo=sidekiq&logoColor=white)![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white) ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white) |     |
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+</div>
+
+## Authors ✍️
+
+<div align="center">
+
+| 👤 DeVuDeveloper|
+| -------- |
+
+| <a target="_blank" href="https://github.com/DeVuDeveloper"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="Github profile"></a> <a target="_blank" href="https://www.linkedin.com/in/devuj/"><img src="https://img.shields.io/badge/-LinkedIn-0077b5?style=for-the-badge&logo=LinkedIn&logoColor=white" alt="Linkedin profile"></a> <a target="_blank" href="https://twitter.com/DejanVuj"><img src="https://img.shields.io/badge/-Twitter-1DA1F2?style=for-the-badge&logo=Twitter&logoColor=white" alt="Twitter profile"></a>
+|
+
+</div>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contributing
 
