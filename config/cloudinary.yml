@@ -1,0 +1,20 @@
+development: 
+  cloud_name: "ddf1eqd29"
+  api_key: "426288811446363"
+  api_secret: "b_alWfismzTFX71522sXxecOsmM"
+  static_file_support: false
+  secure: true
+
+production:
+  cloud_name: "ddf1eqd29"
+  api_key: "426288811446363"
+  api_secret: "b_alWfismzTFX71522sXxecOsmM"
+  static_file_support: true
+  secure: true
+
+test:
+  cloud_name: "ddf1eqd29"
+  api_key: "426288811446363"
+  api_secret: "b_alWfismzTFX71522sXxecOsmM"
+  static_file_support: false
+  secure: true

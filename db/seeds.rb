@@ -1,44 +1,27 @@
-# Create a user
-user = User.create(
-  email: "superadmin@example.com",
-  password: "password",
-  role: "super_admin"
-)
+  FactoryBot.create(:user)
+  hotel = FactoryBot.create(:hotel)
 
-# Create a hotel
-hotel = Hotel.create(
-  name: "Poseidon The Beach Hotel",
-  address: "Beach Jaz, 85310 Budva, Montenegro",
-  description: "Situated in Budva, a few steps from Jaz Beach, Poseidon The Beach Hotel features accommodation with a garden, free private parking, a terrace, and a restaurant.",
-  contact: "info@poseidon-jaz.com"
-)
+  room_names = ["Cozy Room", "Bliss", "Family suite", "Blue"]
+  room_type = ["Double room", "Triple room", "Quad room", "Studio"]
+  room_images = ["room2.jpg", "room1.jpg", "room3.jpg", "room4.jpg"]
+  number_of_beds = %w[2 2 4 5]
+  autumn_price = %w[165 279 364 420]
+  winter_price = %w[169 289 369 430]
+  spring_price = %w[159 279 357 418]
+  summer_price = %w[169 297 374 442]
+  descriptions = [
+    "A cozy room with a comfortable double bed, perfect for couples or solo travelers",
+    "Spacious room featuring three beds, ideal for small families or groups of friends.",
+    "Large and accommodating room with four beds, suitable for families or friends traveling together.",
+    'The studio room offers a spacious open layout that seamlessly combines a comfortable sleeping area,
+     a cozy living space, and a well-equipped kitchenette. '
+  ]
 
-# Create rooms
-room_data = [
-  {
-    name: "Room 1",
-    room_type: "Single",
-    number_of_beds: 2,
-    autumn_price: 100,
-    winter_price: 1050,
-    spring_price: 114,
-    summer_price: 125,
-    description: "Test Description"
-  },
-  # Add more room data as needed
-]
-
-room_data.each do |room_attrs|
-  room = Room.create(room_attrs)
-  
-  # Attach an image to the room
-  room.image.attach(
-    io: File.open(Rails.root.join("spec", "images", "room1.jpg")),
-    filename: "room1.jpg",
-    content_type: "image/jpeg"
-  )
-
-  # Associate the room with the hotel
-  hotel.rooms << room
-end
-
+  4.times do |i|
+    room = FactoryBot.create(:room, hotel:, name: room_names[i], room_type: room_type[i],
+      number_of_beds: number_of_beds[i], autumn_price: autumn_price[i],
+      winter_price: winter_price[i], spring_price: spring_price[i],
+      summer_price: summer_price[i], description: descriptions[i])
+    room.image.attach(io: File.open(Rails.root.join("spec", "images", room_images[i])), filename: room_images[i],
+      content_type: "image/jpeg")
+  end
