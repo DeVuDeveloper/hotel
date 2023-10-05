@@ -7,7 +7,6 @@ import "./enter";
 import "./custom/main.js";
 import "./timer.js";
 import "./timer2.js";
-import "./service-worker";
 import "./hover.js";
 import "./favorite.js";
 import "./fav-nav.js";
