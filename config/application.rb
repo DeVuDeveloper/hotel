@@ -15,5 +15,6 @@ module HotelApp
     config.action_controller.forgery_protection_origin_check = false
     config.cache_store = :redis_cache_store, {url: "redis://localhost:6379/0"}
     config.log_level = :debug
+    config.autoload_paths << Rails.root.join('lib')
   end
 end

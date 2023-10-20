@@ -5,6 +5,19 @@ class HotelsController < ApplicationController
     @user = current_user
     @hotels = Hotel.includes(images_attachments: :blob).all
     @hotel = Hotel.first
+
+    #   Logging the @hotel variable to the Rails log with debug level
+    #   Rails.logger.debug "Hotel: #{@hotel.inspect}"
+    #
+    #   Using binding.pry to start an interactive debugging session
+    #   binding.pry
+    #
+    #   Using byebug to start another interactive debugging session
+    #   byebug
+    #
+    #   Using puts to print the @hotel variable to the server console
+    #   puts @hotel.inspect
+
     @reviews = Review.includes(:user).all
     @average_rating = RatingCalculatorService.calculate_average_rating(@reviews)
     session[:cookies_accepted] = nil

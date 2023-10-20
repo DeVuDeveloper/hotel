@@ -37,6 +37,15 @@
           </form>
           <div id="search-results" class="absolute top-24 bg-wgite text-gray-900 hidden"></div>
         </div>
+          <button id="show-favorite-rooms-button" class="hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium relative">
+            <svg class="h-6 w-6 text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="currentColor" stroke-width="1" fill="none" />
+            </svg>
+            <div id="favorite-count" class="absolute top-0 right-0 mt-1 ml-4 text-yellow-500 w-5 h-5 text-center text-xs">
+              0
+            </div>
+          </button>
+          <div id="favorite-rooms-popup" class="hidden"></div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
         <% if @user.present? %>
@@ -50,15 +59,7 @@
               </span>
             <% end %>
           <% end %>
-          <button id="show-favorite-rooms-button" class="hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium relative">
-            <svg class="h-6 w-6 text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="currentColor" stroke-width="1" fill="none" />
-            </svg>
-            <div id="favorite-count" class="absolute top-0 right-0 mt-1 ml-4 text-yellow-500 w-5 h-5 text-center text-xs">
-              0
-            </div>
-          </button>
-          <div id="favorite-rooms-popup" class="hidden"></div>
+        
           <% if  @user.is_superadmin? %>
             <%= active_link_to  t('global.menu.super_admin'), admin_dashboard_hotels_path, class: "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium", active_class: 'bg-gray-900'%>
           <% end %>

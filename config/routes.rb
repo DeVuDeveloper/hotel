@@ -3,6 +3,7 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  get 'metrics/prometheus'
   get "newsletter_subscribers/new"
   get "newsletter_subscribers/create"
   get "newsletter_subscribers/destroy"
@@ -88,4 +89,5 @@ Rails.application.routes.draw do
   post "/api/send-location", to: "api#send_location"
   get "/search", to: "search#search_results"
   mount Sidekiq::Web => "/sidekiq"
+  get 'test_gauge', to: 'test#gauge'
 end
