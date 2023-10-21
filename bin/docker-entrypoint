@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+echo "entrypoint"
+echo "${*}"
+
+exec "${@}"

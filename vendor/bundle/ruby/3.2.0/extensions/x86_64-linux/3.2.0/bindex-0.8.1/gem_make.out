@@ -1,0 +1,15 @@
+current directory: /home/dejan/Desktop/hotel/vendor/bundle/ruby/3.2.0/gems/bindex-0.8.1/ext/skiptrace
+/home/dejan/.rbenv/versions/3.2.2/bin/ruby -I /home/dejan/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0 -r ./siteconf20231020-94124-to253n.rb extconf.rb
+creating Makefile
+
+current directory: /home/dejan/Desktop/hotel/vendor/bundle/ruby/3.2.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= clean
+
+current directory: /home/dejan/Desktop/hotel/vendor/bundle/ruby/3.2.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\=
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.so
+
+current directory: /home/dejan/Desktop/hotel/vendor/bundle/ruby/3.2.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20231020-94124-3rnc31/skiptrace/internal

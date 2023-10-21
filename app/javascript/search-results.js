@@ -35,7 +35,7 @@ document.addEventListener("turbo:load", function() {
     function displaySearchResults(results) {
       searchResults.innerHTML = "";
       if (results.length === 0) {
-        searchResults.innerHTML = "Results not fount.";
+        searchResults.innerHTML = "Results not found.";
         return;
       }
   

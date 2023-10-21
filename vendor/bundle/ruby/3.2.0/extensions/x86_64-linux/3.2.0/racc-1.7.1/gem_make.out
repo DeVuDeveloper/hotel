@@ -1,0 +1,17 @@
+current directory: /home/dejan/Desktop/hotel/vendor/bundle/ruby/3.2.0/gems/racc-1.7.1/ext/racc/cparse
+/home/dejan/.rbenv/versions/3.2.2/bin/ruby -I /home/dejan/.rbenv/versions/3.2.2/lib/ruby/site_ruby/3.2.0 -r ./siteconf20231020-94124-9n6hkj.rb extconf.rb
+checking for rb_block_call()... yes
+checking for rb_ary_subseq()... yes
+creating Makefile
+
+current directory: /home/dejan/Desktop/hotel/vendor/bundle/ruby/3.2.0/gems/racc-1.7.1/ext/racc/cparse
+make DESTDIR\= clean
+
+current directory: /home/dejan/Desktop/hotel/vendor/bundle/ruby/3.2.0/gems/racc-1.7.1/ext/racc/cparse
+make DESTDIR\=
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /home/dejan/Desktop/hotel/vendor/bundle/ruby/3.2.0/gems/racc-1.7.1/ext/racc/cparse
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20231020-94124-5fu2bo/racc
