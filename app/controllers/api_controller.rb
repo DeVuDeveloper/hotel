@@ -4,9 +4,9 @@ class ApiController < ApplicationController
     longitude = params[:longitude]
     user_id = params[:user_id]
 
-    user = User.find(user_id)
+    user = current_user
 
-    user.update(location_latitude: latitude, location_longitude: longitude)
+    user.update(latitude: latitude, longitude: longitude)
 
     render json: {message: "Location data sucessfully saved"}
   end

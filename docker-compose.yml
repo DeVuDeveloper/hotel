@@ -18,6 +18,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
+      sidekiq:
+        condition: service_started
   db:
     image: postgres:16
     ports:
@@ -42,6 +44,18 @@ services:
   #     - "9200:9200"
   #   environment:
   #     - discovery.type=single-node
+
+  sidekiq:
+    build:
+      context: ./
+      dockerfile: development.Dockerfile
+    command: bundle exec sidekiq
+    depends_on:
+      - redis
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - .env
 
 volumes:
   pg_data:
