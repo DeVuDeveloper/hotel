@@ -1,11 +1,8 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
-  port: <%= ENV['DB_PORT'] %>
-  host: <%= ENV['DB_HOST'] %>
-  database: <%= ENV['DB_NAME'] %>
+  username: dejan
+  password: udji
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
@@ -18,4 +15,5 @@ test:
 
 production:
   <<: *default
-  database: hotel_test
+  database: hotel_production
+  password: <%= ENV["HOTEL_DATABASE_PASSWORD"] %>
