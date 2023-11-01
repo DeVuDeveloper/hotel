@@ -36,4 +36,6 @@ Rails.application.configure do
   end
 
   config.active_record.dump_schema_after_migration = false
+
+  config.require_master_key = true
 end

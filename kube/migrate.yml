@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: migrate
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: migrate
+          image: dejandeveloper/hotel:2
+          command: ['bin/rails']
+          args: ['db:migrate', 'RAILS_ENV=production']
+          env:
+            - name: DATABASE_URL
+              value: postgres://dejan:udji@postgres-service:5432/hotel_production

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotel-deployment
+spec:
+  selector:
+    matchLabels:
+      app: hotel
+  template:
+    metadata:
+      labels:
+        app: hotel
+    spec:
+      containers:
+      - name: hotel
+        image: dejandeveloper/hotel:3
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DATABASE_URL
+          value: postgres://dejan:udji@postgres-service:5432/hotel_production
+        - name: CLOUDINARY_CLOUD_NAME
+          value: 'ddf1eqd29'
+        - name: CLOUDINARY_API_KEY
+          value: '426288811446363'
+        - name: CLOUDINARY_API_SECRET
+          value: 'b_alWfismzTFX71522sXxecOsmM'
+        - name: REDIS_HOST
+          value: "redis-16748.c14.us-east-1-2.ec2.cloud.redislabs.com"
+        - name: REDIS_PORT
+          value: "16748"
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: redis-credentials
+              key: REDIS_PASSWORD
+        - name: REDIS_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: redis-credentials
+              key: REDIS_USERNAME

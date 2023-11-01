@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotel-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: hotel
+  template:
+    metadata:
+      labels:
+        app: hotel
+    spec:
+      containers:
+      - name: rails-app
+        image: dejanvudeveloper/hotel:2
+        ports:
+        - containerPort: 3000
+        env:
+        - name: RAILS_MASTER_KEY
+          valueFrom:
+            secretKeyRef:
+              name: rails-secrets
+              key: rails_master_key
+        - name: REDIS_URL
+          value: redis://redis:6379

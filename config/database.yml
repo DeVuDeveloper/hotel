@@ -3,6 +3,8 @@ default: &default
   encoding: unicode
   username: dejan
   password: udji
+  host: localhost
+  port: 5432
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
@@ -16,4 +18,3 @@ test:
 production:
   <<: *default
   database: hotel_production
-  password: <%= ENV["HOTEL_DATABASE_PASSWORD"] %>
