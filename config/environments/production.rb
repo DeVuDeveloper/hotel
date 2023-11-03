@@ -11,7 +11,7 @@ Rails.application.configure do
 
   config.action_controller.perform_caching = true
 
-  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present? || ENV["RENDER"].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   config.assets.compile = false
 
@@ -36,4 +36,8 @@ Rails.application.configure do
   end
 
   config.active_record.dump_schema_after_migration = false
+
+  config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
+
+  config.active_job.queue_adapter = :sidekiq
 end
