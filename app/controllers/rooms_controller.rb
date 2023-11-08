@@ -7,7 +7,7 @@ class RoomsController < ApplicationController
   def index
     @user = current_user
     all_rooms = Room.includes(image_attachment: :blob).all
-
+    Rails.logger.debug(all_rooms.to_sql)
     @rooms = all_rooms.paginate(page: params[:page], per_page: 2)
 
     Rails.cache.fetch("all_rooms", expires_in: 1.hour) do

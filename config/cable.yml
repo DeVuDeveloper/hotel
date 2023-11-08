@@ -8,4 +8,4 @@ test:
 production:
   adapter: redis
   url: <%= ENV['REDIS_URL'] %>
-  channel_prefix: hotel_production
+  channel_prefix: hotel_redis

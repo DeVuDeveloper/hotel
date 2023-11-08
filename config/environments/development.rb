@@ -22,9 +22,9 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
   config.action_controller.enable_fragment_cache_logging = true
 
-  config.cache_store = :redis_cache_store, {url: ENV["REDIS_URL"]}
+  config.cache_store = :redis_cache_store, { url: "localhost:6379/1" }
 
-  config.active_storage.service = :cloudinary
+  config.active_storage.service = :local
 
   config.action_mailer.raise_delivery_errors = false
 
