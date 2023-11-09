@@ -22,7 +22,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
   config.action_controller.enable_fragment_cache_logging = true
 
-  config.cache_store = :redis_cache_store, { url: "localhost:6379/1" }
+  config.cache_store = :redis_cache_store, {url: ENV["REDIS_URL"]}
 
   config.active_storage.service = :local
 

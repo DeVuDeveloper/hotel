@@ -15,5 +15,6 @@ module HotelApp
     config.action_controller.forgery_protection_origin_check = false
     config.log_level = :debug
     config.autoload_paths << Rails.root.join('lib')
+    config.cache_store = :redis_cache_store, {url: ENV["REDIS_URL"]}
   end
 end
