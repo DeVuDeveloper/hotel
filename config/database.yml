@@ -8,15 +8,15 @@ default: &default
 
 development:
   <<: *default
-  database: hotel
+  database: hotel-development
 
 test:
   <<: *default
-  database: hotel
+  database: hotel-test
 
 production:
   <<: *default
-  database: hotel 
+  database: hotel-production
 
 
 
