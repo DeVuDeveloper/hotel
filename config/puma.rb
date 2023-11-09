@@ -40,6 +40,8 @@ workers ENV.fetch("WEB_CONCURRENCY") { 4 }
 # process behavior so workers use less memory.
 #
 # preload_app!
+stdout_redirect "log/puma.log", "log/puma.log", true
+
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart

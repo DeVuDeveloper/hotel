@@ -40,4 +40,8 @@ Rails.application.configure do
   config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
 
   config.active_job.queue_adapter = :sidekiq
+
+  config.factory_bot.definition_file_paths = [Rails.root.join('spec', 'factories')]
+  config.factory_bot.reload
+
 end
