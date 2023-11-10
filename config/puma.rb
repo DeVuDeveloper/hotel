@@ -21,7 +21,7 @@ worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 
 
 # config/puma.rb
-bind "ssl://0.0.0.0:80?key=/root/key.pem&cert=/root/cert.pem"
+bind "ssl://0.0.0.0:443?key=/root/key.pem&cert=/root/cert.pem"
 
 
 
