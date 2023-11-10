@@ -13,6 +13,8 @@ Rails.application.configure do
 
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
+  config.public_file_server.enabled = true
+
   config.assets.compile = false
 
   config.active_storage.service = :cloudinary
