@@ -20,7 +20,9 @@ worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 # port ENV.fetch("PORT", 3000)
 
 
-bind "ssl://0.0.0.0:80?key=/path/to/real/ssl/key.pem&cert=/path/to/ssl/cert.pem"
+# config/puma.rb
+bind "ssl://0.0.0.0:80?key=/root/key.pem&cert=/path/to/ssl/cert.pem"
+
 
 
 # Specifies the `environment` that Puma will run in.
