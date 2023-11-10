@@ -1,5 +1,5 @@
 
-hotel = Hotel.first
+hotel = FactoryBot.create(:hotel)
 
 room_names = ["Cozy Room", "Bliss", "Family suite", "Blue"]
 room_type = ["Double room", "Triple room", "Quad room", "Studio"]
