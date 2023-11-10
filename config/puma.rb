@@ -6,9 +6,7 @@ threads min_threads_count, max_threads_count
 
 worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 
-# port ENV.fetch("PORT", 3000)
-
-bind "ssl://0.0.0.0:443?key=/root/key_nopass.pem&cert=/root/cert.pem"
+bind "ssl://0.0.0.0:443?cert=/root/cert.pem"
 
 environment ENV.fetch("RAILS_ENV", "development")
 
