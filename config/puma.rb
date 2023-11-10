@@ -8,7 +8,7 @@ worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 
 # port ENV.fetch("PORT", 3000)
 
-bind "ssl://0.0.0.0:443?key=/root/key.pem&cert=/root/cert.pem"
+bind "ssl://0.0.0.0:443?key=/root/key.pem&cert=/root/cert.pem&verify_mode=none"
 
 environment ENV.fetch("RAILS_ENV", "development")
 
