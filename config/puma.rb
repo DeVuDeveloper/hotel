@@ -19,9 +19,10 @@ worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 #
 # port ENV.fetch("PORT", 3000)
 
-if ENV['RAILS_ENV'] == 'production'
-  bind "tcp://0.0.0.0:80"
-end
+# config/puma.rb
+
+bind "ssl://0.0.0.0:443?key=/etc/letsencrypt/live/hotel-poseidon.online/privkey.pem&cert=/etc/letsencrypt/live/hotel-poseidon.online/fullchain.pem"
+
 
 # Specifies the `environment` that Puma will run in.
 #
