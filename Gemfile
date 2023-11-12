@@ -29,7 +29,7 @@ gem "jsbundling-rails"
 gem "cssbundling-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
-gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data'
 gem "view_component"
 gem "web-push"
 gem "will_paginate", "~> 4.0"

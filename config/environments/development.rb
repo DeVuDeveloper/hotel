@@ -20,9 +20,10 @@ Rails.application.configure do
   config.server_timing = true
 
   config.action_controller.perform_caching = true
+  
   config.action_controller.enable_fragment_cache_logging = true
 
-  config.cache_store = :redis_cache_store, { url: "localhost:6379/1" }
+  config.cache_store = :redis_cache_store, { url: "redis://#{ENV['REDIS_URL']}:#{ENV['REDIS_PORT']}/0"}
 
   config.active_storage.service = :local
 

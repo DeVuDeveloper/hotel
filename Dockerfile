@@ -1,27 +1,36 @@
-FROM ruby:3.2-buster
+# Use a specific version of Ruby and Alpine
+FROM ruby:3.2.2-alpine3.18
 
-COPY --from=gcr.io/berglas/berglas:latest /bin/berglas /bin/berglas
+# Install dependencies
+RUN apk --update add \
+  nodejs \
+  netcat-openbsd \
+  postgresql-dev
 
-# Install bundler
-RUN gem update --system
-RUN gem install bundler
+# Install additional build dependencies (if needed)
+RUN apk --update add --virtual build-dependencies \
+  make \
+  g++
 
-# Install production dependencies.
-WORKDIR /usr/src/app
-COPY Gemfile Gemfile.lock ./
-ENV BUNDLE_FROZEN=true
+# Create and set the working directory
+RUN mkdir /myapp
+WORKDIR /myapp
+
+# Copy the Gemfile and Gemfile.lock
+ADD Gemfile /myapp/Gemfile
+ADD Gemfile.lock /myapp/Gemfile.lock
+
+# Install gems
 RUN bundle install
 
-# Copy local code to the container image.
-COPY . ./
+# Remove build dependencies and cleanup
+RUN apk del build-dependencies && rm -rf /var/cache/apk/*
 
-# Environment
-ENV RAILS_ENV production
-ENV RAILS_MAX_THREADS 60
-ENV RAILS_LOG_TO_STDOUT true
+# Copy the rest of the application
+ADD . /myapp
 
-# See entrypoint.sh. Our secrets are managed through Berglas.
-ENV RAILS_MASTER_KEY_LINK some-bucket/some-folder/some-app/master.key
+# Copy the entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin
 
-# Run the web service on container startup.
-CMD ["bash", "entrypoint.sh"]
+# Set the entrypoint
+ENTRYPOINT ["docker-entrypoint.sh"]

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotel-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: rails-app
+  template:
+    metadata:
+      labels:
+        app: rails-app
+    spec:
+      containers:
+      - name: rails-app
+        image: dejandeveloper/hotel:latest
+        ports:
+        - containerPort: 3000
+        env:
+          - name: DB_USER
+            value: "myuser"
+          - name: DB_PASSWORD
+            value: "mypassword"
+          - name: DB_HOST
+            value: "postgres-service"
+          - name: DB_PORT
+            value: "5432"

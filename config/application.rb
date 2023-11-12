@@ -15,5 +15,6 @@ module HotelApp
     config.action_controller.forgery_protection_origin_check = false
     config.log_level = :debug
     config.autoload_paths << Rails.root.join('lib')
+    config.active_job.queue_adapter = :sidekiq
   end
 end
