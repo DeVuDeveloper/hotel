@@ -1,4 +1,4 @@
-FactoryBot.create(:user)
+
 hotel = FactoryBot.create(:hotel)
 
 room_names = ["Cozy Room", "Bliss", "Family suite", "Blue"]

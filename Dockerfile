@@ -1,27 +1,39 @@
-FROM ruby:3.2-buster
+FROM ruby:3.2.2-alpine
 
-COPY --from=gcr.io/berglas/berglas:latest /bin/berglas /bin/berglas
+WORKDIR /rails
 
-# Install bundler
-RUN gem update --system
-RUN gem install bundler
+# Set production environment
+ENV RAILS_ENV="production" \
+    BUNDLE_DEPLOYMENT="1" \
+    BUNDLE_JOBS="4" \
+    BUNDLE_WITHOUT="development:test" \
+    BUNDLE_PATH="/usr/local/bundle"
 
-# Install production dependencies.
-WORKDIR /usr/src/app
+# Install system dependencies
+RUN apk --no-cache add \
+    build-base \
+    postgresql-dev \
+    nodejs \
+    yarn
+
+# Install tzdata for timezone data
+RUN apk --no-cache add tzdata
+
+# Copy your Gemfile and Gemfile.lock to install gems
 COPY Gemfile Gemfile.lock ./
-ENV BUNDLE_FROZEN=true
 RUN bundle install
 
-# Copy local code to the container image.
-COPY . ./
+# Copy package.json and yarn.lock to install Node.js dependencies
+COPY package.json yarn.lock ./
+RUN yarn install
 
-# Environment
-ENV RAILS_ENV production
-ENV RAILS_MAX_THREADS 60
-ENV RAILS_LOG_TO_STDOUT true
+# Copy the rest of your application code into the container
+COPY . .
 
-# See entrypoint.sh. Our secrets are managed through Berglas.
-ENV RAILS_MASTER_KEY_LINK some-bucket/some-folder/some-app/master.key
+# Precompile assets for production
 
-# Run the web service on container startup.
-CMD ["bash", "entrypoint.sh"]
+# Expose the port your Rails app will run on (typically 3000)
+EXPOSE 3000
+
+# Start the Rails server
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

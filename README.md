@@ -1,6 +1,10 @@
-# Hotel App
+# Hotel App.
 
-The Hotel App is a modern Ruby on Rails web application designed for seamless hotel management, efficient user experience, and comprehensive reservation management. It features cutting-edge technologies including Rails Hotwire, Stimulus ad Vite ensuring dynamic interactions and responsiveness. The application includes an intuitive user registration and login system, empowering users to book hotel rooms hassle-free. Notably, the app boasts a robust admin panel for efficient hotel, room, and booking management.
+The Hotel App, a modern Ruby on Rails web application, optimizes hotel management with user-centric features. Utilizing advanced technologies like Rails Hotwire, Redis, Sidekiq, and ElasticSearch, it ensures dynamic interactions and responsiveness. The app includes an advanced user registration system with room availability, push notifications, modifications, newsletters, and a sleek admin panel for efficient hotel management.
+
+## Live Preview
+
+[Visit the Live Preview](https://hotel-poseidon.online)
 
 ## Screenshots
 
@@ -59,10 +63,11 @@ The Hotel App is a modern Ruby on Rails web application designed for seamless ho
   bundle exec sidekiq
 ```
 
-5. Run the server(Open your Browser and navigate to url: http://localhost:5100/): 
+5. Run the server(Open your Browser and navigate to url: http://localhost:3000/): 
 
 ```bash
   bin/dev
+  docker-compose build && docker-compose up
 ```
 
 

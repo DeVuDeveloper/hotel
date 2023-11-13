@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Room < ApplicationRecord
-  # include Elasticsearch::Model
-  # include Elasticsearch::Model::Callbacks
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
 
   belongs_to :hotel
   has_many :reservations, dependent: :destroy
@@ -53,15 +53,15 @@ class Room < ApplicationRecord
     end
   end
 
-  # settings index: {number_of_shards: 1} do
-  #   mappings dynamic: "false" do
-  #     indexes :name, type: "text"
-  #     indexes :room_type, type: "keyword"
-  #     indexes :description, type: "text"
-  #     indexes :summer_price, type: "float"
-  #     indexes :winter_price, type: "float"
-  #     indexes :spring_price, type: "float"
-  #     indexes :autumn_price, type: "float"
-  #   end
-  # end
+ settings index: {number_of_shards: 1} do
+   mappings dynamic: "false" do
+     indexes :name, type: "text"
+     indexes :room_type, type: "keyword"
+     indexes :description, type: "text"
+     indexes :summer_price, type: "float"
+     indexes :winter_price, type: "float"
+     indexes :spring_price, type: "float"
+     indexes :autumn_price, type: "float"
+   end
+ end
 end

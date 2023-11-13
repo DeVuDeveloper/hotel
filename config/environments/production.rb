@@ -3,6 +3,9 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+
+  config.hosts << "hotel-poseidon.online"
+  
   config.cache_classes = true
 
   config.eager_load = true
@@ -12,6 +15,8 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
 
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
+
+  config.public_file_server.enabled = true
 
   config.assets.compile = false
 
@@ -29,15 +34,19 @@ Rails.application.configure do
 
   config.log_formatter = ::Logger::Formatter.new
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger = ActiveSupport::Logger.new($stdout)
-    logger.formatter = config.log_formatter
-    config.logger = ActiveSupport::TaggedLogging.new(logger)
-  end
+
+
+  config.logger = Logger.new(STDOUT)
+
+  config.logger = Logger.new("#{Rails.root}/log/production.log")
 
   config.active_record.dump_schema_after_migration = false
 
   config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
 
   config.active_job.queue_adapter = :sidekiq
+
+  config.factory_bot.definition_file_paths = [Rails.root.join('spec', 'factories')]
+  config.factory_bot.reload
+
 end
