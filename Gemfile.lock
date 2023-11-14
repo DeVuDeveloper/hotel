@@ -350,6 +350,7 @@ GEM
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    ruby_http_client (3.5.5)
     rubyzip (2.3.2)
     rufo (0.16.2)
     rufus-scheduler (3.9.1)
@@ -358,6 +359,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sendgrid-ruby (6.6.2)
+      ruby_http_client (~> 3.4)
     serviceworker-rails (0.6.0)
       railties (>= 3.1)
     sidekiq (7.2.0)
@@ -452,6 +455,7 @@ DEPENDENCIES
   jsbundling-rails
   letter_opener
   momentjs-rails
+  net-smtp
   noticed (~> 1.6)
   omniauth
   omniauth-google-oauth2
@@ -465,6 +469,7 @@ DEPENDENCIES
   rspec-rails
   rufo
   selenium-webdriver
+  sendgrid-ruby
   serviceworker-rails
   sidekiq
   sidekiq-scheduler

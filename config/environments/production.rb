@@ -34,8 +34,6 @@ Rails.application.configure do
 
   config.log_formatter = ::Logger::Formatter.new
 
-
-
   config.logger = Logger.new(STDOUT)
 
   config.logger = Logger.new("#{Rails.root}/log/production.log")
@@ -47,6 +45,19 @@ Rails.application.configure do
   config.active_job.queue_adapter = :sidekiq
 
   config.factory_bot.definition_file_paths = [Rails.root.join('spec', 'factories')]
+
   config.factory_bot.reload
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address: 'smtp.sparkpostmail.com',
+  port: 587,
+  domain: 'hotel-ocean.online',
+  user_name: ENV['SPARKPOST_SMTP_USERNAME'],
+  password: ENV['SPARKPOST_API_KEY'],
+  authentication: :login,
+  enable_starttls_auto: true
+}
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
 end

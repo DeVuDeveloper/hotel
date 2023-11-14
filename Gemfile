@@ -35,6 +35,8 @@ gem "web-push"
 gem "will_paginate", "~> 4.0"
 gem "factory_bot_rails"
 gem "faker"
+gem 'sendgrid-ruby'
+gem 'net-smtp'
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
