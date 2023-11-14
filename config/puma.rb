@@ -20,13 +20,11 @@ worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 # port ENV.fetch("PORT", 3000)
 
 # config/puma.rb
-
 if ENV['RAILS_ENV'] == 'production'
-    bind "ssl://0.0.0.0:443?key=#{Rails.root.join('path/to/your/privkey.pem')}&cert=#{Rails.root.join('path/to/your/fullchain.pem')}"
-  else
-    bind 'tcp://0.0.0.0:3000'
+bind "ssl://0.0.0.0:443?key=/etc/letsencrypt/live/hotel-poseidon.online/privkey.pem&cert=/etc/letsencrypt/live/hotel-poseidon.online/fullchain.pem"
+else
+  bind 'tcp://0.0.0.0:3000'
 end
-
 
 # Specifies the `environment` that Puma will run in.
 #
