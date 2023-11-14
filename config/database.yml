@@ -3,20 +3,22 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: dejan
-  password: udji12345
   host: localhost
 
 development:
   <<: *default
   database: hotel-development
+  password: udji
 
 test:
   <<: *default
   database: hotel-test
+  password: udji
 
 production:
   <<: *default
   database: hotel-production
+  password: udji12345
 
 
 

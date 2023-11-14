@@ -1,11 +1,11 @@
 function newslettersBanner() {
-    var newsletterBanner = document.getElementById('newsletterMessage');
-    if (newsletterBanner) {
+  var newsletterBanner = document.querySelector('#newsletterMessage .modal-content');
+  if (newsletterBanner) {
       newsletterBanner.style.display = 'none';
       setTimeout(function () {
-        newsletterBanner.style.display = 'block';
+          newsletterBanner.style.display = 'block';
       }, 4000);
-    }
   }
+}
 
-  window.addEventListener('load', newslettersBanner);
+window.addEventListener('load', newslettersBanner);
