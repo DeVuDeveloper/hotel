@@ -50,14 +50,14 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address: 'smtp.sparkpostmail.com',
-  port: 587,
-  domain: 'hotel-ocean.online',
-  user_name: ENV['SPARKPOST_SMTP_USERNAME'],
-  password: ENV['SPARKPOST_API_KEY'],
-  authentication: :login,
-  enable_starttls_auto: true
+    address: 'smtp.elasticemail.com',
+    port: 2525,
+    user_name: ENV['SMTP_USERNAME'],
+    password: ENV['SMTP_PASS'],
+    authentication: 'plain',
+    enable_starttls_auto: true
 }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: 'https://hotel-poseidon.online/' } 
 end

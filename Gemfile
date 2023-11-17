@@ -35,7 +35,6 @@ gem "web-push"
 gem "will_paginate", "~> 4.0"
 gem "factory_bot_rails"
 gem "faker"
-gem 'sendgrid-ruby'
 gem 'net-smtp'
 
 group :development, :test do
@@ -48,7 +47,6 @@ end
 
 group :development do
   gem "bullet"
-  gem "letter_opener"
   gem "standard"
   gem "web-console"
 end

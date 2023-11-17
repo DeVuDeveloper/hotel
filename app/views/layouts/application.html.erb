@@ -12,6 +12,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
   </head>
   <body data-controller="push" data-application-server-key="<%= ENV['DEFAULT_APPLICATION_SERVER_KEY'] %>">
     <main class="h-screen w-full bg-white relative flex overflow-hidden">

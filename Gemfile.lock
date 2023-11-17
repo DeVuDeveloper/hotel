@@ -173,10 +173,6 @@ GEM
     json (2.6.3)
     jwt (2.7.1)
     language_server-protocol (3.17.0.3)
-    launchy (2.5.2)
-      addressable (~> 2.8)
-    letter_opener (1.8.1)
-      launchy (>= 2.2, < 3)
     lint_roller (1.1.0)
     llhttp-ffi (0.4.0)
       ffi-compiler (~> 1.0)
@@ -350,7 +346,6 @@ GEM
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
-    ruby_http_client (3.5.5)
     rubyzip (2.3.2)
     rufo (0.16.2)
     rufus-scheduler (3.9.1)
@@ -359,8 +354,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sendgrid-ruby (6.6.2)
-      ruby_http_client (~> 3.4)
     serviceworker-rails (0.6.0)
       railties (>= 3.1)
     sidekiq (7.2.0)
@@ -453,7 +446,6 @@ DEPENDENCIES
   faker
   htmlbeautifier
   jsbundling-rails
-  letter_opener
   momentjs-rails
   net-smtp
   noticed (~> 1.6)
@@ -469,7 +461,6 @@ DEPENDENCIES
   rspec-rails
   rufo
   selenium-webdriver
-  sendgrid-ruby
   serviceworker-rails
   sidekiq
   sidekiq-scheduler
