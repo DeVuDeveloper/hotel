@@ -216,3 +216,10 @@ table {
 .favorite-icon.active {
   color: yellow; 
 }
+
+/* .g_id_signin {
+  position: fixed;
+  top: 10%;
+  right: 0%;
+  transform: translate(-50%, -50%);
+} */

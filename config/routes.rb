@@ -9,9 +9,8 @@ Rails.application.routes.draw do
   get "notifications/index"
   resources :notification_messages
 
-  devise_for :users, controllers: {
-    omniauth_callbacks: "users/omniauth_callbacks"
-  }
+  devise_for :users
+
   root "hotels#index"
   post "/generate_calendars", to: "rooms#generate_calendars", as: :generate_calendars
 
@@ -88,4 +87,5 @@ Rails.application.routes.draw do
   post "/api/send-location", to: "api#send_location"
   get "/search", to: "search#search_results"
   mount Sidekiq::Web => "/sidekiq"
+  post "/google_onetap_callback", to: "callbacks#google_onetap", as: :google_onetap_callback
 end

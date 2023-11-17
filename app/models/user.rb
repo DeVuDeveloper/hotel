@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
+    :recoverable, :rememberable, :validatable
 
   enum role: {user: 0, guest: 1, manager: 2, admin: 3, super_admin: 4}
 
@@ -24,12 +24,7 @@ class User < ApplicationRecord
                           target: "users"
                       }
 
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-    end
-  end
+
 
   def is_superadmin?
     role == "super_admin"

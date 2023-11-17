@@ -11,9 +11,6 @@ gem "cloudinary"
 gem "htmlbeautifier"
 gem "momentjs-rails"
 gem "noticed", "~> 1.6"
-gem "omniauth"
-gem "omniauth-google-oauth2"
-gem "omniauth-rails_csrf_protection"
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 gem "rails", "~> 7.0.6"
@@ -36,6 +33,7 @@ gem "will_paginate", "~> 4.0"
 gem "factory_bot_rails"
 gem "faker"
 gem 'net-smtp'
+gem 'googleauth'
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
