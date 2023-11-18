@@ -36,15 +36,14 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.min.js" defer></script>
 
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <div id="g_id_onload"
       data-client_id="<%= ENV["GOOGLE_OAUTH2_CLIENT_ID"] %>"
       data-login_uri="<%= google_onetap_callback_url %>"
       data-auto_prompt="<%= user_signed_in? ? "false" : "true" %>"
       data-authenticity_token="<%= form_authenticity_token %>"
       data-itp_support="true"
-    >
+      data-auto_select="true"
+     >
     </div>  
   </body>
 </html>

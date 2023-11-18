@@ -123,7 +123,6 @@ table {
   overflow-y: scroll;
 }
 
-
 .flash__message {
   font-size: 0.875rem;
   animation: appear-then-fade 4s both;
@@ -139,7 +138,6 @@ table {
 .flash__message-alert {
   color: hsl(0, 96%, 53%);
 }
-
 
 @keyframes appear-then-fade {
   0%, 100% {
@@ -161,8 +159,6 @@ table {
   width: 50%;
   margin-left: 25%;
 }
-
-
 
 .overlay-icons {
   background-color: rgba(0, 0, 0, 0.5);
@@ -216,10 +212,3 @@ table {
 .favorite-icon.active {
   color: yellow; 
 }
-
-/* .g_id_signin {
-  position: fixed;
-  top: 10%;
-  right: 0%;
-  transform: translate(-50%, -50%);
-} */
