@@ -17,7 +17,9 @@ worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
-port ENV.fetch("PORT", 3001)
+# port ENV.fetch("PORT", 3001)
+
+bind "ssl://0.0.0.0:443?key=/etc/letsencrypt/live/hotel-poseidon.online/privkey.pem&cert=/etc/letsencrypt/live/hotel-poseidon.online/fullchain.pem"
 
 # Specifies the `environment` that Puma will run in.
 #
@@ -42,4 +44,5 @@ workers ENV.fetch("WEB_CONCURRENCY") { 4 }
 # preload_app!
 
 # Allow puma to be restarted by `bin/rails restart` command.
+stdout_redirect "log/puma.log", "log/puma.log", true
 plugin :tmp_restart
