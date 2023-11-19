@@ -12,14 +12,19 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-081RNEE4JJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-081RNEE4JJ');
+    </script>
   </head>
   <body data-controller="push" data-application-server-key="<%= ENV['DEFAULT_APPLICATION_SERVER_KEY'] %>">
-
-   
-
     <main class="h-screen w-full bg-white relative flex overflow-hidden">
       <div id="flash" class="fixed top-4rem right-1/2 transform translate-x-1/2 flex-col max-w-[100%] w-max gap-5rem px-0 py-4">
-       <%= render "layouts/flash" %>
+        <%= render "layouts/flash" %>
       </div>
       <%= render(SidebarComponent.new(user: current_user)) %>
       <section class="w-full h-full">
@@ -32,9 +37,7 @@
       </section>
       <%= render 'shared/chatbot' %>
     </main>
-
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.min.js" defer></script>
-
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <div id="g_id_onload"
       data-client_id="<%= ENV["GOOGLE_OAUTH2_CLIENT_ID"] %>"
@@ -44,6 +47,6 @@
       data-itp_support="true"
       data-auto_select="true"
      >
-    </div>  
+    </div>
   </body>
 </html>
