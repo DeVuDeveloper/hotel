@@ -8,9 +8,12 @@ The Hotel App, a modern Ruby on Rails web application, optimizes hotel managemen
 
 ## Screenshots
 
-<div style="">
-  <img src="app/assets/images/screen1.png" alt="hotel 1" width="30%">
-
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <img src="app/assets/images/screen1.png" alt="hotel 1" style="width: 48%;">
+  <div style="text-align: center;">
+    <img src="app/assets/images/grafana.png" alt="Grafana" style="width: 68%;">
+    <figcaption>Grafana/Prometheus Metrics</figcaption>
+  </div>
 </div>
 
 ## Features

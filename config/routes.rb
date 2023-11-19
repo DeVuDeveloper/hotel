@@ -88,4 +88,6 @@ Rails.application.routes.draw do
   get "/search", to: "search#search_results"
   mount Sidekiq::Web => "/sidekiq"
   post "/google_onetap_callback", to: "callbacks#google_onetap", as: :google_onetap_callback
+  get 'metrics/prometheus'
+  get 'test_gauge', to: 'test#gauge'
 end

@@ -34,6 +34,7 @@ gem "factory_bot_rails"
 gem "faker"
 gem 'net-smtp'
 gem 'googleauth'
+gem 'prometheus-client'
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]

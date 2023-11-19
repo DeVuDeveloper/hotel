@@ -227,6 +227,7 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.4)
+    prometheus-client (4.2.2)
     propshaft (0.8.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -434,6 +435,7 @@ DEPENDENCIES
   net-smtp
   noticed (~> 1.6)
   pg (~> 1.1)
+  prometheus-client
   propshaft
   pry
   puma (~> 5.0)
