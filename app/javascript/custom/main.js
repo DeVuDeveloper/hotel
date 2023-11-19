@@ -26,7 +26,19 @@ class CookieBar {
     }
 
     appendGACode() {
-        // ... (unchanged code)
+        const gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-081RNEE4JJ';
+        document.head.appendChild(gaScript);
+    
+        gaScript.onload = () => {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                window.dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'G-081RNEE4JJ');
+        };
     }
 
     allowCookies(allow) {
